@@ -221,68 +221,9 @@ namespace Plex.Engine
                 graphicsDevice.ApplyChanges();
             }
 
-            bool shouldDoRPC = ConfigurationManager.GetRPCEnable();
-            if (!string.IsNullOrWhiteSpace(_appIdForRpc) && shouldDoRPC)
-            {
-                try
-                {
-                    if (!_isRpcOn)
-                    {
-                        var handlers = new Discord.EventHandlers();
-                        handlers.readyCallback = this.DiscordReady;
-                        handlers.disconnectedCallback = (c, m) => this.DiscordDisconnected(c, m);
-                        handlers.errorCallback = this.DiscordError;
-                        handlers.joinCallback = this.DiscordJoin;
-                        handlers.requestCallback = this.DiscordRequest;
-                        handlers.spectateCallback = this.DiscordSpectate;
-                        Discord.RPC.Initialize(_appIdForRpc, ref handlers, true, null);
-                        _isRpcOn = true;
-                    }
-                }
-                catch (Exception ex)
-                {
-                    DiscordDisconnected(int.MinValue, ex.ToString());
-                    _isRpcOn = false;
-                }
-            }
-            else
-            {
-                if (_isRpcOn == true)
-                {
-                    Discord.RPC.Shutdown();
-                    _isRpcOn = false;
-                }
-            }
-
             TextRenderer.Init(ConfigurationManager.GetTextRenderer());
         }
-
-        public void DiscordReady()
-        {
-            Discord.RPCHelpers.Initialize();
-        }
-
-        public void DiscordDisconnected(int errorCode, string message)
-        {
-            Infobox.Show("Disconnected from Discord RPC.", $"{message}\r\n\r\nDisconnection code: {errorCode}");
-            _isRpcOn = false;
-        }
-
-        public void DiscordError(int errorCode, string message)
-        {
-            Infobox.Show("Discord RPC error", $"{message}\r\n\r\nDisconnection code: {errorCode}"); 
-        }
-
-        public void DiscordJoin(string secret) { }
-
-        public void DiscordSpectate(string secret) { }
-
-        public void DiscordRequest(Discord.JoinRequest request)
-        {
-            
-        }
-
-
+        
         /// <summary>
         /// Allows the game to perform any initialization it needs to before starting to run.
         /// This is where it can query for any required services and load any non-graphic
@@ -323,14 +264,6 @@ namespace Plex.Engine
             LoadingContent?.Invoke();
         }
 
-
-        protected override void OnExiting(object sender, EventArgs args)
-        {
-            if(_isRpcOn)
-                Discord.RPC.Shutdown();
-            base.OnExiting(sender, args);
-        }
-
         /// <summary>
         /// UnloadContent will be called once per game and is the place to unload
         /// game-specific content.
@@ -354,29 +287,6 @@ namespace Plex.Engine
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            if (_isRpcOn)
-            {
-                try
-                {
-                    Discord.RPC.RunCallbacks();
-                    if (ServerManager.Connected)
-                        secondssincelastrpcupdate += gameTime.ElapsedGameTime.TotalSeconds;
-                    if (secondssincelastrpcupdate > 15)
-                    {
-                        if (ServerManager.Connected)
-                        {
-                            Discord.RPCHelpers.UpdateRegular();
-                        }
-                        else
-                        {
-                            Discord.RPCHelpers.Initialize();
-                        }
-                        secondssincelastrpcupdate = 0;
-                    }
-                }
-                catch { }
-            }
-
             keyboardListener.Update(gameTime);
             if (UIManager.CrossThreadOperations.Count > 0)
             {

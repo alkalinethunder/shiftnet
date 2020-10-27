@@ -3,7 +3,6 @@ using System.Threading;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Plex.Engine;
-using Plex.Engine.Discord;
 using Plex.Engine.GraphicsSubsystem;
 using Plex.Engine.GUI;
 using Plex.Objects;
@@ -77,8 +76,6 @@ namespace Shiftnet
 
         public MainMenu()
         {
-            RPCHelpers.SetArbitraryStatus("In main menu");
-
             TerminalEmulator.LoadFonts();
             AddControl(_terminal);
             _terminal.StartShell((stdout, stdin) =>

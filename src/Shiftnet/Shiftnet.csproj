@@ -9,5 +9,13 @@
     <ProjectReference Include="..\..\third-party\pandemic-framework\src\AlkalineThunder.Pandemic\AlkalineThunder.Pandemic.csproj" />
     <ProjectReference Include="..\Plex.Engine\Plex.Engine.csproj" />
   </ItemGroup>
-
+  
+  <ItemGroup>
+    <EmbeddedResource Remove="Integrations\**" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="DiscordRichPresence" Version="1.0.150" />
+  </ItemGroup>
+  
 </Project>
