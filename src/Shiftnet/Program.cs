@@ -22,7 +22,8 @@ namespace Shiftnet
         static void Main()
         {
             // NEW ENGINE
-            GameUtils.Run(typeof(Program).Assembly);
+            using var app = new ShiftnetGameApp();
+            app.Run();
 
             /* OLD ENGINE
             FileSkimmerBackend.Init(new MGFSLayer());
