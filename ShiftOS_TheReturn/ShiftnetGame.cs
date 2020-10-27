@@ -21,7 +21,7 @@ namespace Plex.Engine
     /// <summary>
     /// This is the main type for your game.
     /// </summary>
-    public class Plexgate : Game
+    public class ShiftnetGame : Game
     {
         public bool uploading = false;
         public bool downloading = false;
@@ -91,7 +91,7 @@ namespace Plex.Engine
         private string _appIdForRpc = "";
         private bool _isRpcOn = false;
 
-        public Plexgate(string discordAppID = "")
+        public ShiftnetGame(string discordAppID = "")
         {
             _appIdForRpc = discordAppID;
 
@@ -103,7 +103,7 @@ namespace Plex.Engine
             Window.IsBorderless = false;
 
             //Set the title
-            Window.Title = "Plex";
+            Window.Title = "Shiftnet";
 
             var res = ConfigurationManager.GetSystemResolution();
             graphicsDevice.PreferredBackBufferWidth = res.Width;
@@ -522,10 +522,10 @@ namespace Plex.Engine
                 color = Color.Red;
             highestfps = Math.Max(highestfps, fps);
             TotalFPS += fps;
-            DebugText.Text = $@"Plex
+            DebugText.Text = $@"Shiftnet
 =======================
 
-Copyright (c) 2017 Plex Developers
+Copyright (c) 2017 Shiftnet Developers
 
 Debug information
 

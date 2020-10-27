@@ -8,10 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Plex.Frontend {
-    using System;
-    
-    
+namespace Shiftnet {
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -39,7 +36,7 @@ namespace Plex.Frontend {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Plex.Frontend.FontAwesome", typeof(FontAwesome).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Shiftnet.Frontend.FontAwesome", typeof(FontAwesome).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

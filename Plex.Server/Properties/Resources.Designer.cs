@@ -39,7 +39,7 @@ namespace Plex.Server.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Plex.Server.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Shiftnet.Server.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,7 +61,33 @@ namespace Plex.Server.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to /* Plex Ports data file        /// *        /// * This file contains information about all ports in the game&apos;s campaign.        /// *        /// */        ///        ///[        ///	{        ///		FriendlyName: &quot;SMTP mailserver (unencrypted)&quot;,        ///		AttachTo: &quot;MailServer&quot;,        ///		Value: 25,        ///		Name: &quot;smtp&quot;,        ///	},        ///	{        ///		FriendlyName: &quot;File Transfer Protocol&quot;,        ///		AttachTo: &quot;Computer, NAS, WebServer, Mobile&quot;,        ///		Value: 21,        ///		Name: &quot;ftp&quot;,        ///	},        ///	{        ///		FriendlyName: &quot;Plexgate Terminal server&quot;,        ///		AttachTo: &quot;Computer, WebServer, Mobile&quot;,        ///		Value: 22,        ///		Name: &quot;ssh&quot;,        ///	},        ///	{        ///		FriendlyName: &quot;Plexgate Desktop server [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to /* Shiftnet Ports data file
+        /// *
+        /// * This file contains information about all ports in the game&apos;s campaign.
+        /// *
+        /// */
+        ///
+        ///[
+        ///	{
+        ///		FriendlyName: &quot;SMTP mailserver (unencrypted)&quot;,
+        ///		AttachTo: &quot;MailServer&quot;,
+        ///		Value: 25,
+        ///		Name: &quot;smtp&quot;,
+        ///	},
+        ///	{
+        ///		FriendlyName: &quot;File Transfer Protocol&quot;,
+        ///		AttachTo: &quot;Computer, NAS, WebServer, Mobile&quot;,
+        ///		Value: 21,
+        ///		Name: &quot;ftp&quot;,
+        ///	},
+        ///	{
+        ///		FriendlyName: &quot;Plexgate Terminal server&quot;,
+        ///		AttachTo: &quot;Computer, WebServer, Mobile&quot;,
+        ///		Value: 22,
+        ///		Name: &quot;ssh&quot;,
+        ///	},
+        ///	{
+        ///		FriendlyName: &quot;Plexgate Desktop server [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string HardcodedPorts_temp {
             get {

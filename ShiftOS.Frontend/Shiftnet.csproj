@@ -11,14 +11,15 @@
     <ProjectGuid>{4DFC3088-1B08-4A0E-A9F5-483A7B9811FD}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Plex.Frontend</RootNamespace>
-    <AssemblyName>Plex</AssemblyName>
+    <RootNamespace>Shiftnet</RootNamespace>
+    <AssemblyName>Shiftnet</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MonoGamePlatform>DesktopGL</MonoGamePlatform>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <UseMSBuildEngine>false</UseMSBuildEngine>
+    <LangVersion>8</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <DebugSymbols>true</DebugSymbols>

@@ -39,7 +39,7 @@ namespace Plex.Engine.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Plex.Engine.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Shiftnet.Engine.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -300,7 +300,10 @@ namespace Plex.Engine.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to [        ///	&quot;english&quot;        ///	&quot;deutsch - in beta&quot;        ///]
+        ///   Looks up a localized string similar to [
+        ///	&quot;english&quot;
+        ///	&quot;deutsch - in beta&quot;
+        ///]
         ///.
         /// </summary>
         internal static string languages {
@@ -310,7 +313,25 @@ namespace Plex.Engine.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to /*        /// * Project: Plex        /// *         /// * Copyright (c) 2017 Watercolor Games. All rights reserved. For internal use only.        /// *         ///        ///        ///        ///        ///        ///        /// *         /// * The above copyright notice and this permission notice shall be included in all        /// * copies or substantial portions of the Software.        /// *         /// * THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR        /// * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,        /// * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE        /// * AUTHORS OR COPYRI [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to /*
+        /// * Project: Shiftnet
+        /// * 
+        /// * Copyright (c) 2017 Watercolor Games. All rights reserved. For internal use only.
+        /// * 
+        ///
+        ///
+        ///
+        ///
+        ///
+        ///
+        /// * 
+        /// * The above copyright notice and this permission notice shall be included in all
+        /// * copies or substantial portions of the Software.
+        /// * 
+        /// * THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+        /// * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+        /// * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+        /// * AUTHORS OR COPYRI [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string pywintemplate {
             get {
@@ -330,7 +351,25 @@ namespace Plex.Engine.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to /*        /// * THIS IS AN EXAMPLE FILE        /// *        /// * Any Shiftorium upgrades placed in here won&apos;t be recognized by the main Plex frontend        /// * (Plex.WinForms). It uses its own Shiftorium definition file found in its Resources.        /// */        ///        ///[        ///	{        ///		Name: &quot;MUD Fundamentals&quot;,        ///		Cost: 50,        ///		Description: &quot;Some basic commands for the terminal that&apos;ll help you out in the multi-user domain.&quot;,        ///		Dependencies: null        ///	},        ///	{        ///		Name: &quot;WM 4 Windows&quot;,        ///		Cost: 150,        ///		Description: &quot;Display up to 4 simultaneous windows on-screen in a 2x2 grid.&quot;,        ///		Depen [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to /*
+        /// * THIS IS AN EXAMPLE FILE
+        /// *
+        /// * Any Shiftorium upgrades placed in here won&apos;t be recognized by the main Shiftnet frontend
+        /// * (Shiftnet.WinForms). It uses its own Shiftorium definition file found in its Resources.
+        /// */
+        ///
+        ///[
+        ///	{
+        ///		Name: &quot;MUD Fundamentals&quot;,
+        ///		Cost: 50,
+        ///		Description: &quot;Some basic commands for the terminal that&apos;ll help you out in the multi-user domain.&quot;,
+        ///		Dependencies: null
+        ///	},
+        ///	{
+        ///		Name: &quot;WM 4 Windows&quot;,
+        ///		Cost: 150,
+        ///		Description: &quot;Display up to 4 simultaneous windows on-screen in a 2x2 grid.&quot;,
+        ///		Depen [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string Shiftorium {
             get {
@@ -350,7 +389,17 @@ namespace Plex.Engine.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {        ///	&quot;{SUBMIT}&quot;:&quot;Bestätigen&quot;,        ///        ///&quot;{TERMINAL_TUTORIAL_1}&quot;:&quot;Wilkommen zum Plex Terminal. Hier wirst du die meiste Zeit in Plex verbringen.        ///          ///Eine kurze Erklärung wie du das Terminal benutzt lautet wiefolgt. Du kannst das command &apos;sos.help&apos; benutzen um eine Liste aller commands aufzurufen. Schreib es        ///einfach in das Terminal und drücke &lt;enter&gt; um alle commands anzuzeigen.        ///         ///Commands können mit argumenten versehen werden, indem du ein key-value Paar in einem {} Block hinter dem command angibst. Zum Beispiel:        ///         ///some [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to {
+        ///	&quot;{SUBMIT}&quot;:&quot;Bestätigen&quot;,
+        ///
+        ///&quot;{TERMINAL_TUTORIAL_1}&quot;:&quot;Wilkommen zum Shiftnet Terminal. Hier wirst du die meiste Zeit in Shiftnet verbringen.
+        ///  
+        ///Eine kurze Erklärung wie du das Terminal benutzt lautet wiefolgt. Du kannst das command &apos;sos.help&apos; benutzen um eine Liste aller commands aufzurufen. Schreib es
+        ///einfach in das Terminal und drücke &lt;enter&gt; um alle commands anzuzeigen.
+        /// 
+        ///Commands können mit argumenten versehen werden, indem du ein key-value Paar in einem {} Block hinter dem command angibst. Zum Beispiel:
+        /// 
+        ///some [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string strings_de {
             get {
@@ -359,7 +408,18 @@ namespace Plex.Engine.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {        ///	&quot;{SUBMIT}&quot;:&quot;Submit&quot;,        ///        ///&quot;{TERMINAL_TUTORIAL_1}&quot;:&quot;Welcome to the Plex terminal. This is where you will spend the bulk of your time within Plex.        ///	        ///A brief rundown of how to use the terminal is as follows. You can use the &apos;sos.help&apos; command to show a list of all commands. Simply type it in and strike &lt;enter&gt; to view all commands.        ///	        ///Commands can be sent arguments by specifying a key-value pair inside a {} block at the end of the command. For example:        ///	        ///some.command{print:\&quot;hello\&quot;}        ///math.add{op1:1,op2:2}        ///set.va [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to {
+        ///	&quot;{SUBMIT}&quot;:&quot;Submit&quot;,
+        ///
+        ///&quot;{TERMINAL_TUTORIAL_1}&quot;:&quot;Welcome to the Shiftnet terminal. This is where you will spend the bulk of your time within Shiftnet.
+        ///	
+        ///A brief rundown of how to use the terminal is as follows. You can use the &apos;sos.help&apos; command to show a list of all commands. Simply type it in and strike &lt;enter&gt; to view all commands.
+        ///	
+        ///Commands can be sent arguments by specifying a key-value pair inside a {} block at the end of the command. For example:
+        ///	
+        ///some.command{print:\&quot;hello\&quot;}
+        ///math.add{op1:1,op2:2}
+        ///set.va [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string strings_en {
             get {
@@ -384,7 +444,16 @@ namespace Plex.Engine.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {        ///	Character: &quot;sys&quot;,        ///	Lines:[        ///		&quot;Hello there, %user.&quot;,        ///		&quot;Welcome to Plex.&quot;,        ///		&quot;This is an automated message to all new sentiences within the Plex multi-user domain.&quot;,        ///		&quot;Before you can begin with Plex, you&apos;ll need to know a few things about it.&quot;,        ///		&quot;One: Terminal command syntax.&quot;,        ///		&quot;Inside Plex, the bulk of your time is going to be spent within the Terminal.&quot;,        ///		&quot;The Terminal is an application that starts up when you turn on your computer. It allows you to execute system commands, open programs and contro [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to {
+        ///	Character: &quot;sys&quot;,
+        ///	Lines:[
+        ///		&quot;Hello there, %user.&quot;,
+        ///		&quot;Welcome to Shiftnet.&quot;,
+        ///		&quot;This is an automated message to all new sentiences within the Shiftnet multi-user domain.&quot;,
+        ///		&quot;Before you can begin with Shiftnet, you&apos;ll need to know a few things about it.&quot;,
+        ///		&quot;One: Terminal command syntax.&quot;,
+        ///		&quot;Inside Shiftnet, the bulk of your time is going to be spent within the Terminal.&quot;,
+        ///		&quot;The Terminal is an application that starts up when you turn on your computer. It allows you to execute system commands, open programs and contro [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string sys_shiftoriumstory {
             get {

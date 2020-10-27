@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plex.Engine", "ShiftOS_TheR
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plex.Objects", "ShiftOS.Objects\Plex.Objects.csproj", "{A069089A-8962-4607-B2B2-4CF4A371066E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plex", "ShiftOS.Frontend\Plex.csproj", "{4DFC3088-1B08-4A0E-A9F5-483A7B9811FD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shiftnet", "ShiftOS.Frontend\Shiftnet.csproj", "{4DFC3088-1B08-4A0E-A9F5-483A7B9811FD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plex.Server", "Plex.Server\Plex.Server.csproj", "{54B1A6BA-F465-4DF7-BA4C-56EA5D2B9326}"
 EndProject

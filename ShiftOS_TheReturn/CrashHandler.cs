@@ -1,5 +1,5 @@
 /*
- * Project: Plex
+ * Project: Shiftnet
  * 
  * Copyright (c) 2017 Watercolor Games. All rights reserved. For internal use only.
  * 
@@ -91,7 +91,7 @@ namespace Plex.Engine
 
             
             //Send the bug to Unite as a bug report
-            // or alternatively, send to reportbug@Plex.ml
+            // or alternatively, send to reportbug@Shiftnet.ml
             // or just on the discord that works too
             
         }
@@ -124,9 +124,9 @@ When:   {DateTime.Now.ToString()}
 Why:    {HandledException.Message}
 What:   {HandledException.GetType().Name}
 
-We, at the Plex Development Team, apologise for your game crash,
+We, at the Shiftnet Development Team, apologise for your game crash,
 we will take this bug report seriously - and it has been emailed
-to the development team of Plex, thank you for enjoying our game!
+to the development team of Shiftnet, thank you for enjoying our game!
 
 Advanced Information (for experts and developers):
 ----------------------------------------------------
@@ -137,7 +137,7 @@ Host system information:
 Operating system:   {Environment.OSVersion.Platform.ToString()}
 Version:            {Environment.OSVersion.VersionString}
 Is 64-bit:          {Environment.Is64BitOperatingSystem}
-Plex exec path:  {Application.ExecutablePath}
+Shiftnet exec path:  {Application.ExecutablePath}
 
 Advanced Host Information:
 ---------------------------------
@@ -146,13 +146,13 @@ CPU Name:           {GetHardwareInfo.GetProcessorName()}
 Physical RAM Installed:         {GetHardwareInfo.GetRAMAmount()}
 GPU Name:           {GetHardwareInfo.GetGPUName()}
 
-Plex basic information:
+Shiftnet basic information:
 ---------------------------------
 
-Plex Version:    {Assembly.GetExecutingAssembly().GetName().Version}
-Plex Date:       {lastModified.ToString()}
+Shiftnet Version:    {Assembly.GetExecutingAssembly().GetName().Version}
+Shiftnet Date:       {lastModified.ToString()}
 
-Plex environment information:
+Shiftnet environment information:
 ---------------------------------
 
 Paths loaded in system:     {JsonConvert.SerializeObject(Paths.GetAll())}
@@ -183,7 +183,7 @@ Stack trace:
 
             File.WriteAllText("crash.txt", rtbcrash_Text); // make that text document and put above super long string in it
 #if !DEBUG
-            var result = MessageBox.Show(caption: "Plex - Fatal error", text: "Plex has encountered a fatal error and has been shut down. Info about the error has been saved to a file called crash.txt in the same folder as the active executable. Would you like to try and recover the game session?", buttons: MessageBoxButtons.YesNo);
+            var result = MessageBox.Show(caption: "Shiftnet - Fatal error", text: "Shiftnet has encountered a fatal error and has been shut down. Info about the error has been saved to a file called crash.txt in the same folder as the active executable. Would you like to try and recover the game session?", buttons: MessageBoxButtons.YesNo);
             if(result == DialogResult.Yes)
             {
                 Application.Restart(); // tries to restart if user clicks yes, who wouldve guessed

@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Plex")]
+[assembly: AssemblyTitle("Shiftnet")]
 [assembly: AssemblyDescription("Shift it your way.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Plex Development Team")]
-[assembly: AssemblyProduct("Plex")]
+[assembly: AssemblyCompany("Shiftnet Development Team")]
+[assembly: AssemblyProduct("Shiftnet")]
 [assembly: AssemblyCopyright("Copyright © Watercolor Games. All rights reserved.")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

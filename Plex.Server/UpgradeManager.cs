@@ -17,7 +17,7 @@ namespace Plex.Server
         private static string GetUpgradeJSON()
         {
 			var assembly = Assembly.GetExecutingAssembly();
-			var resourceName = "Plex.Server.Resources.upgradedb.json";
+			var resourceName = "Shiftnet.Server.Resources.upgradedb.json";
 
 			using (var stream = assembly.GetManifestResourceStream(resourceName))
 			{

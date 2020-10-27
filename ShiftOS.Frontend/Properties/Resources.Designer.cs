@@ -8,10 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Plex.Frontend.Properties {
-    using System;
-    
-    
+namespace Shiftnet.Properties {
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -39,7 +36,7 @@ namespace Plex.Frontend.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Plex.Frontend.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Shiftnet.Frontend.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -134,7 +131,7 @@ namespace Plex.Frontend.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to /* Plex Exploits data file
+        ///   Looks up a localized string similar to /* Shiftnet Exploits data file
         /// *
         /// * This file contains information about all exploits in the game&apos;s campaign.
         /// *
@@ -394,7 +391,7 @@ namespace Plex.Frontend.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to /* Plex hackables data file
+        ///   Looks up a localized string similar to /* Shiftnet hackables data file
         /// *
         /// * This file contains information about all hackable systems in the game&apos;s campaign.
         /// *
@@ -438,7 +435,7 @@ namespace Plex.Frontend.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to /* Plex Loot data file
+        ///   Looks up a localized string similar to /* Shiftnet Loot data file
         /// *
         /// * This file contains information about all loot in the game&apos;s campaign.
         /// *
@@ -508,7 +505,7 @@ namespace Plex.Frontend.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to /* Plex Payloads data file
+        ///   Looks up a localized string similar to /* Shiftnet Payloads data file
         /// *
         /// * This file contains information about all payloads in the game&apos;s campaign.
         /// *
@@ -562,7 +559,7 @@ namespace Plex.Frontend.Properties {
         /// <summary>
         ///   Looks up a localized string similar to {
         ///	Name: &quot;Pong&quot;,
-        ///	Description: &quot;It&apos;s a game so good we made you play it all the time in Plex 0.0.x, 0.1.x and 1.0. It&apos;s only natural that we&apos;d sleep Pong into the game again somehow, right?&quot;,
+        ///	Description: &quot;It&apos;s a game so good we made you play it all the time in Shiftnet 0.0.x, 0.1.x and 1.0. It&apos;s only natural that we&apos;d sleep Pong into the game again somehow, right?&quot;,
         ///	SourceType: &quot;ShiftoriumUpgrade&quot;,
         ///	Source: &quot;pong&quot;
         ///}.
@@ -574,7 +571,33 @@ namespace Plex.Frontend.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to /* Plex Ports data file        /// *        /// * This file contains information about all ports in the game&apos;s campaign.        /// *        /// */        ///        ///[        ///	{        ///		FriendlyName: &quot;SMTP mailserver (unencrypted)&quot;,        ///		AttachTo: &quot;MailServer&quot;,        ///		Value: 25,        ///		Name: &quot;smtp&quot;,        ///	},        ///	{        ///		FriendlyName: &quot;File Transfer Protocol&quot;,        ///		AttachTo: &quot;Computer, NAS, WebServer, Mobile&quot;,        ///		Value: 21,        ///		Name: &quot;ftp&quot;,        ///	},        ///	{        ///		FriendlyName: &quot;Plexgate Terminal server&quot;,        ///		AttachTo: &quot;Computer, WebServer, Mobile&quot;,        ///		Value: 22,        ///		Name: &quot;ssh&quot;,        ///	},        ///	{        ///		FriendlyName: &quot;Plexgate Desktop server [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to /* Shiftnet Ports data file
+        /// *
+        /// * This file contains information about all ports in the game&apos;s campaign.
+        /// *
+        /// */
+        ///
+        ///[
+        ///	{
+        ///		FriendlyName: &quot;SMTP mailserver (unencrypted)&quot;,
+        ///		AttachTo: &quot;MailServer&quot;,
+        ///		Value: 25,
+        ///		Name: &quot;smtp&quot;,
+        ///	},
+        ///	{
+        ///		FriendlyName: &quot;File Transfer Protocol&quot;,
+        ///		AttachTo: &quot;Computer, NAS, WebServer, Mobile&quot;,
+        ///		Value: 21,
+        ///		Name: &quot;ftp&quot;,
+        ///	},
+        ///	{
+        ///		FriendlyName: &quot;Plexgate Terminal server&quot;,
+        ///		AttachTo: &quot;Computer, WebServer, Mobile&quot;,
+        ///		Value: 22,
+        ///		Name: &quot;ssh&quot;,
+        ///	},
+        ///	{
+        ///		FriendlyName: &quot;Plexgate Desktop server [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string Ports {
             get {
@@ -628,9 +651,9 @@ namespace Plex.Frontend.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to /* Plex setup data file
+        ///   Looks up a localized string similar to /* Shiftnet setup data file
         /// * 
-        /// * This file holds information used by a Plex &quot;Installer&quot; for setting up a system component.
+        /// * This file holds information used by a Shiftnet &quot;Installer&quot; for setting up a system component.
         /// *
         /// */
         ///
@@ -656,7 +679,17 @@ namespace Plex.Frontend.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {        ///	&quot;{SUBMIT}&quot;:&quot;Bestätigen&quot;,        ///        ///&quot;{TERMINAL_TUTORIAL_1}&quot;:&quot;Wilkommen zum Plex Terminal. Hier wirst du die meiste Zeit in Plex verbringen.        ///          ///Eine kurze Erklärung wie du das Terminal benutzt lautet wiefolgt. Du kannst das command &apos;sos.help&apos; benutzen um eine Liste aller commands aufzurufen. Schreib es        ///einfach in das Terminal und drücke &lt;enter&gt; um alle commands anzuzeigen.        ///         ///Commands können mit argumenten versehen werden, indem du ein key-value Paar in einem {} Block hinter dem command angibst. Zum Beispiel:        ///         ///some [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to {
+        ///	&quot;{SUBMIT}&quot;:&quot;Bestätigen&quot;,
+        ///
+        ///&quot;{TERMINAL_TUTORIAL_1}&quot;:&quot;Wilkommen zum Shiftnet Terminal. Hier wirst du die meiste Zeit in Shiftnet verbringen.
+        ///  
+        ///Eine kurze Erklärung wie du das Terminal benutzt lautet wiefolgt. Du kannst das command &apos;sos.help&apos; benutzen um eine Liste aller commands aufzurufen. Schreib es
+        ///einfach in das Terminal und drücke &lt;enter&gt; um alle commands anzuzeigen.
+        /// 
+        ///Commands können mit argumenten versehen werden, indem du ein key-value Paar in einem {} Block hinter dem command angibst. Zum Beispiel:
+        /// 
+        ///some [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string strings_de {
             get {
@@ -665,7 +698,23 @@ namespace Plex.Frontend.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to /*        /// * Plex English Language Pack        /// *        /// * This is the default language pack distributed within the game.        /// */        ///        ///{        ///  //General strings        ///  //These strings can be used anywhere in the UI where language context isn&apos;t necessary.        ///  &quot;{GEN_PROGRAMS}&quot;: &quot;Programs&quot;,        ///  &quot;{GEN_COMMANDS}&quot;: &quot;Commands&quot;,        ///  &quot;{GEN_OBJECTIVES}&quot;: &quot;Objectives&quot;,        ///  &quot;{GEN_CURRENTPROCESSES}&quot;: &quot;Current processes&quot;,        ///  &quot;{GEN_WELCOME}&quot;: &quot;Welcome to Plex.&quot;,        ///  &quot;{GEN_SYSTEMNAME}&quot;: &quot;System name&quot;,        ///  &quot;{GEN_PASSWORD}&quot;: &quot;Password&quot;,        ///  &quot;{GEN_LPROMPT}&quot;: &quot;%sysname login: &quot; [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to /*
+        /// * Shiftnet English Language Pack
+        /// *
+        /// * This is the default language pack distributed within the game.
+        /// */
+        ///
+        ///{
+        ///  //General strings
+        ///  //These strings can be used anywhere in the UI where language context isn&apos;t necessary.
+        ///  &quot;{GEN_PROGRAMS}&quot;: &quot;Programs&quot;,
+        ///  &quot;{GEN_COMMANDS}&quot;: &quot;Commands&quot;,
+        ///  &quot;{GEN_OBJECTIVES}&quot;: &quot;Objectives&quot;,
+        ///  &quot;{GEN_CURRENTPROCESSES}&quot;: &quot;Current processes&quot;,
+        ///  &quot;{GEN_WELCOME}&quot;: &quot;Welcome to Shiftnet.&quot;,
+        ///  &quot;{GEN_SYSTEMNAME}&quot;: &quot;System name&quot;,
+        ///  &quot;{GEN_PASSWORD}&quot;: &quot;Password&quot;,
+        ///  &quot;{GEN_LPROMPT}&quot;: &quot;%sysname login: &quot; [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string strings_en {
             get {
@@ -674,7 +723,23 @@ namespace Plex.Frontend.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to /*        /// * Plex French Language Pack        /// *        /// * This is a default language pack distributed within the game.        /// */        ///        ///{        ///  //General strings        ///  //These strings can be used anywhere in the UI where language context isn&apos;t necessary.        ///  &quot;{GEN_PROGRAMS}&quot;: &quot;Les programmes&quot;,        ///  &quot;{GEN_COMMANDS}&quot;: &quot;Les ordres&quot;,        ///  &quot;{GEN_OBJECTIVES}&quot;: &quot;Les objectifs&quot;,        ///  &quot;{GEN_CURRENTPROCESSES}&quot;: &quot;Les procèdures actuelles&quot;,        ///  &quot;{GEN_WELCOME}&quot;: &quot;Bienvenue au Plex.&quot;,        ///  &quot;{GEN_SYSTEMNAME}&quot;: &quot;Nom de système&quot;,        ///  &quot;{GEN_PASSWORD}&quot;: &quot;Mot de passe&quot;,        ///  &quot;{GEN_LPROM [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to /*
+        /// * Shiftnet French Language Pack
+        /// *
+        /// * This is a default language pack distributed within the game.
+        /// */
+        ///
+        ///{
+        ///  //General strings
+        ///  //These strings can be used anywhere in the UI where language context isn&apos;t necessary.
+        ///  &quot;{GEN_PROGRAMS}&quot;: &quot;Les programmes&quot;,
+        ///  &quot;{GEN_COMMANDS}&quot;: &quot;Les ordres&quot;,
+        ///  &quot;{GEN_OBJECTIVES}&quot;: &quot;Les objectifs&quot;,
+        ///  &quot;{GEN_CURRENTPROCESSES}&quot;: &quot;Les procèdures actuelles&quot;,
+        ///  &quot;{GEN_WELCOME}&quot;: &quot;Bienvenue au Shiftnet.&quot;,
+        ///  &quot;{GEN_SYSTEMNAME}&quot;: &quot;Nom de système&quot;,
+        ///  &quot;{GEN_PASSWORD}&quot;: &quot;Mot de passe&quot;,
+        ///  &quot;{GEN_LPROM [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string strings_fr {
             get {
