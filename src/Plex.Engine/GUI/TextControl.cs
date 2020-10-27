@@ -287,7 +287,7 @@ namespace Plex.Engine.GUI
                                     RasterizerState);
 
             }
-            gfx.DrawRectangle(0, 0, Width, Height, _textBuffer, Color.White * (float)Opacity, System.Windows.Forms.ImageLayout.None, false);
+            gfx.DrawRectangle(0, 0, Width, Height, _textBuffer, Color.White * (float)Opacity, ImageLayout.None, false);
         }
     }
 

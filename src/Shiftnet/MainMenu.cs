@@ -168,13 +168,13 @@ namespace Shiftnet
             AddControl(_pressStart);
 
             _watercolorgames.Image = UIManager.ContentLoader.Load<Texture2D>("Artwork/Watercolor_Full");
-            _watercolorgames.ImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            _watercolorgames.ImageLayout = ImageLayout.Stretch;
 
             _peacenet_text.Image = UIManager.ContentLoader.Load<Texture2D>("Artwork/thepeacenet_text");
-            _peacenet_text.ImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            _peacenet_text.ImageLayout = ImageLayout.Stretch;
 
             _peacenet_welcome.Image = UIManager.ContentLoader.Load<Texture2D>("Artwork/peacenet_welcome");
-            _peacenet_welcome.ImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            _peacenet_welcome.ImageLayout = ImageLayout.Stretch;
 
             _btnSinglePlayer.Click += ()=>
             {
@@ -192,16 +192,16 @@ namespace Shiftnet
                 AppearanceManager.SetupDialog(new Apps.GameSettings());
             };
 
-            _faUser.Image = FontAwesome.user.ToTexture2D(UIManager.GraphicsDevice);
-            _faGroup.Image = FontAwesome.group.ToTexture2D(UIManager.GraphicsDevice);
-            _faSettings.Image = FontAwesome.cog.ToTexture2D(UIManager.GraphicsDevice);
+            _faUser.Image = null;
+            _faGroup.Image = null;
+            _faSettings.Image = null;
             _faUser.AutoSize = true;
             _faGroup.AutoSize = true;
             _faSettings.AutoSize = true;
 
 
-            UIManager.Game._uploadImg.Image = FontAwesome.cloud_upload.ToTexture2D(UIManager.GraphicsDevice);
-            UIManager.Game._downloadImg.Image = FontAwesome.cloud_download.ToTexture2D(UIManager.GraphicsDevice);
+            UIManager.Game._uploadImg.Image = null;
+            UIManager.Game._downloadImg.Image = null;
 
 
         }

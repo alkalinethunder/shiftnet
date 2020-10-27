@@ -16,9 +16,9 @@ namespace Plex.Engine.GUI
     public class PictureBox : Control
     {
         private Texture2D img = null;
-        private System.Windows.Forms.ImageLayout _layout = System.Windows.Forms.ImageLayout.Zoom;
+        private ImageLayout _layout = ImageLayout.Zoom;
 
-        public System.Windows.Forms.ImageLayout ImageLayout
+        public ImageLayout ImageLayout
         {
             get
             {
@@ -64,5 +64,14 @@ namespace Plex.Engine.GUI
         {
            gfx.DrawRectangle(0, 0, Width, Height, img, Microsoft.Xna.Framework.Color.White * (float)Opacity, _layout);
         }
+    }
+
+    public enum ImageLayout
+    {
+        None,
+        Zoom,
+        Stretch,
+        Tile,
+        Center
     }
 }

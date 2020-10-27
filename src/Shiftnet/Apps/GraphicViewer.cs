@@ -27,7 +27,7 @@ namespace Shiftnet.Apps
         public void OnLoad()
         {
             _imgPreview.Image = _imgTexture;
-            _imgPreview.ImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            _imgPreview.ImageLayout = ImageLayout.Zoom;
         }
 
         public void OnSkinLoad()

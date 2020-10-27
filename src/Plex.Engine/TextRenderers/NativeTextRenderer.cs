@@ -1,5 +1,6 @@
 using System;
 using Plex.Engine.GraphicsSubsystem;
+using Plex.Engine.GUI;
 
 namespace Plex.Engine.TextRenderers
 {
@@ -60,7 +61,7 @@ namespace Plex.Engine.TextRenderers
             Implementation.DrawString(text, text.Length, font.FontFamily.Name, font.FontFamily.Name.Length, font.SizeInPoints, (int)font.Style, (int)alignment, (int)wrapMode, maxwidth, (int)measure.X, (int)measure.Y, data);
             var tex2 = new Microsoft.Xna.Framework.Graphics.Texture2D(gfx.Device, (int)measure.X, (int)measure.Y);
 			tex2.SetData<byte>(data);
-            gfx.DrawRectangle(x, y, (int)measure.X, (int)measure.Y, tex2, color, System.Windows.Forms.ImageLayout.Stretch, true);
+            gfx.DrawRectangle(x, y, (int)measure.X, (int)measure.Y, tex2, color, ImageLayout.Stretch, true);
 		}
 	}
 }

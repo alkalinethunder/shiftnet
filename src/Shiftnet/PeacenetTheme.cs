@@ -78,7 +78,7 @@ namespace Shiftnet
                     arrow = _arrow_bottom;
                     break;
             }
-            gfx.DrawRectangle(x, y, width, height, arrow, Color.White, System.Windows.Forms.ImageLayout.Zoom);
+            gfx.DrawRectangle(x, y, width, height, arrow, Color.White, ImageLayout.Zoom);
         }
 
         public override void DrawButtonBackground(GraphicsContext gfx, int x, int y, int width, int height, ButtonState state)

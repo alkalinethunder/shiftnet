@@ -23,11 +23,11 @@ namespace Shiftnet.Apps
         private Button _reset = new Button();
 
         private System.Drawing.Image _image = null;
-        private System.Windows.Forms.ImageLayout _layout = System.Windows.Forms.ImageLayout.None;
-        private Action<System.Drawing.Image, byte[], System.Windows.Forms.ImageLayout> _callback = null;
+        private ImageLayout _layout;
+        private Action<System.Drawing.Image, byte[], ImageLayout> _callback = null;
         private string _titleText = "";
 
-        public GraphicPicker(string title, System.Drawing.Image img, System.Windows.Forms.ImageLayout layout, Action<System.Drawing.Image, byte[], System.Windows.Forms.ImageLayout> callback)
+        public GraphicPicker(string title, System.Drawing.Image img, ImageLayout layout, Action<System.Drawing.Image, byte[], ImageLayout> callback)
         {
             Height = 550;
             Width = 400;
@@ -61,7 +61,7 @@ namespace Shiftnet.Apps
             _reset.Click += () =>
             {
                 _image = null;
-                _layout = System.Windows.Forms.ImageLayout.Stretch;
+                _layout = ImageLayout.Stretch;
                 LoadPreview();
             };
             _browse.Click += () =>
@@ -81,22 +81,22 @@ namespace Shiftnet.Apps
             };
             _tile.Click += () =>
             {
-                _layout = System.Windows.Forms.ImageLayout.Tile;
+                _layout = ImageLayout.Tile;
                 LoadPreview();
             };
             _stretch.Click += () =>
             {
-                _layout = System.Windows.Forms.ImageLayout.Stretch;
+                _layout = ImageLayout.Stretch;
                 LoadPreview();
             };
             _zoom.Click += () =>
             {
-                _layout = System.Windows.Forms.ImageLayout.Zoom;
+                _layout = ImageLayout.Zoom;
                 LoadPreview();
             };
             _center.Click += () =>
             {
-                _layout = System.Windows.Forms.ImageLayout.Center;
+                _layout = ImageLayout.Center;
                 LoadPreview();
             };
 

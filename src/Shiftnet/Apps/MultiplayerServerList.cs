@@ -180,7 +180,7 @@ namespace Shiftnet.Apps
                     }
                     catch
                     {
-                        _list.SetImage(key, FontAwesome.times_circle.ToTexture2D(UIManager.GraphicsDevice));
+                        
                     }
                     finally
                     {

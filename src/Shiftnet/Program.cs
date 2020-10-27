@@ -43,30 +43,12 @@ namespace Shiftnet
             {
                 ServerThread = new Thread(() =>
                 {
-                    System.Diagnostics.Debug.Print("Starting local server...");
-                    Plex.Server.Program.SetServerPort(3252);
-                    _status.Width = UIManager.Viewport.Width;
-                    _status.Height = UIManager.Viewport.Height;
-                    UIManager.AddTopLevel(_status);
-                    Plex.Server.Program.LoadWorld();
-                    Plex.Server.Terminal.Populate();
-                    Plex.Server.Program.StartFromClient(null, false);
                 });
                 ServerThread.IsBackground = true;
                 ServerThread.Start();
             };
 
-
-            Plex.Server.Program.ServerStarted += () =>
-            {
-                UIManager.StopHandling(_status);
-                Plex.Engine.Desktop.InvokeOnWorkerThread(() =>
-                {
-                    Thread.Sleep(500);
-                    UIManager.ConnectToServer("localhost", 3252);
-                });
-            };
-
+            
             TerminalBackend.TerminalRequested += () =>
             {
                 AppearanceManager.SetupWindow(new Apps.Terminal());

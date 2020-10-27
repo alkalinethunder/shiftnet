@@ -373,26 +373,7 @@ namespace Shiftnet.Apps
 
         public System.Drawing.Image GetImage(FileType type)
         {
-            switch (type)
-            {
-                case FileType.UpOne:
-                    return FontAwesome.arrow_circle_up;
-                case FileType.Mount:
-                case FileType.Directory:
-                    return FontAwesome.folder;
-                case FileType.Executable:
-                case FileType.Lua:
-                case FileType.Python:
-                    return FontAwesome.file_code_o;
-                case FileType.Image:
-                    return FontAwesome.file_picture_o;
-                case FileType.Skin:
-                    return FontAwesome.cogs;
-                case FileType.TextFile:
-                    return FontAwesome.file_text_o;
-                default:
-                    return FontAwesome.file_o;
-            }
+            return null;
         }
 
         public bool OnUnload()

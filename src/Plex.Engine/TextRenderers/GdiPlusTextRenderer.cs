@@ -17,6 +17,7 @@ namespace Plex.Engine.TextRenderers
     /// Provides GDI+ software text rendering for the UI subsystem. (Slow)
     /// </summary>
     [FallbackRenderer]
+    [DefaultRenderer]
     public class GdiPlusTextRenderer : ATextRenderer
     {
         public override void DrawText(GraphicsContext gfx, int x, int y, string text, Font font, Microsoft.Xna.Framework.Color color, int maxwidth, TextAlignment alignment, WrapMode wrapMode)
@@ -51,7 +52,7 @@ namespace Plex.Engine.TextRenderers
                 bmp.UnlockBits(lck);
                 var tex2 = new Texture2D(gfx.Device, bmp.Width, bmp.Height);
                 tex2.SetData<byte>(bytes);
-                gfx.DrawRectangle(x, y, bmp.Width, bmp.Height, tex2, color, System.Windows.Forms.ImageLayout.Stretch, true);
+                gfx.DrawRectangle(x, y, bmp.Width, bmp.Height, tex2, color, ImageLayout.Stretch, true);
             }
         }
 

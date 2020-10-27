@@ -320,17 +320,6 @@ namespace Plex.Engine
             // Create a new SpriteBatch, which can be used to draw textures.
             this.spriteBatch = new SpriteBatch(base.GraphicsDevice);
 
-            // TODO: use this.Content to load your game content here
-            var bmp = Engine.Properties.Resources.cursor_9x_pointer;
-            var _lock = bmp.LockBits(new System.Drawing.Rectangle(0, 0, bmp.Width, bmp.Height), System.Drawing.Imaging.ImageLockMode.ReadOnly, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
-            byte[] rgb = new byte[Math.Abs(_lock.Stride) * _lock.Height];
-            Marshal.Copy(_lock.Scan0, rgb, 0, rgb.Length);
-            bmp.UnlockBits(_lock);
-            MouseTexture = new Texture2D(GraphicsDevice, bmp.Width, bmp.Height);
-            MouseTexture.SetData<byte>(rgb);
-            rgb = null;
-
-
             LoadingContent?.Invoke();
         }
 

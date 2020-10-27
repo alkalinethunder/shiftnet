@@ -72,7 +72,7 @@ namespace Shiftnet.Apps
                 };
                 Plex.Engine.Desktop.InvokeOnWorkerThread(() =>
                 {
-                    existing.Avatar.Image = FontAwesome.user.ToTexture2D(UIManager.GraphicsDevice);
+                    existing.Avatar.Image = null;
                     if (!existing.MessageID.StartsWith("client_"))
                     {
                         DownloadAvatar(author, existing.Avatar);

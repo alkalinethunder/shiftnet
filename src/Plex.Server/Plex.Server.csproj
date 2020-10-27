@@ -5,4 +5,9 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Peacenet.Backend\Peacenet.Backend.csproj" />
+    <ProjectReference Include="..\Plex.Objects\Plex.Objects.csproj" />
+  </ItemGroup>
+
 </Project>

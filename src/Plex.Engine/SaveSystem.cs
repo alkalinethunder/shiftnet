@@ -44,11 +44,6 @@ namespace Plex.Engine
         /// <param name="useDefaultUI">Whether Shiftnet should initiate it's Windows Forms front-end.</param>
         public static void Begin(bool useDefaultUI = true)
         {
-            AppDomain.CurrentDomain.UnhandledException += (o, a) =>
-            {
-                CrashHandler.Start((Exception)a.ExceptionObject);
-            };
-
             FSUtils.CreateMountIfNotExists();
 
             Paths.Init();

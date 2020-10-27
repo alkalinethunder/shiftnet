@@ -205,7 +205,7 @@ namespace Shiftnet
             this.pbicon.Width = 64;
             this.pbicon.Height = 64;
             this.pbicon.Image = _warning;
-            this.pbicon.ImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pbicon.ImageLayout = ImageLayout.Zoom;
             // 
             // Dialog
             // 
