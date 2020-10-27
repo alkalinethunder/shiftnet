@@ -6,6 +6,8 @@ using Plex.Engine.GUI;
 using Plex.Engine.Theming;
 using static Plex.Engine.FSUtils;
 
+using AlkalineThunder.Pandemic;
+
 namespace Shiftnet
 {
     /// <summary>
@@ -19,6 +21,10 @@ namespace Shiftnet
         [STAThread]
         static void Main()
         {
+            // NEW ENGINE
+            GameUtils.Run(typeof(Program).Assembly);
+
+            /* OLD ENGINE
             FileSkimmerBackend.Init(new MGFSLayer());
             //Now we can initiate the Infobox subsystem
             Plex.Engine.Infobox.Init(new Infobox());
@@ -61,6 +67,7 @@ namespace Shiftnet
                 var mc = new Apps.MissionComplete(mission);
                 AppearanceManager.SetupDialog(mc);
             };
+
             using (var game = new ShiftnetGame("378307289502973963")) //This is the peacenet discord app ID. It's used for RPC.
             {
                 game.Initializing += () =>
@@ -78,6 +85,7 @@ namespace Shiftnet
             if(ServerThread != null)
                 if(ServerThread.ThreadState != ThreadState.Aborted)
                     ServerThread.Abort();
+            */
         }
     }
 
