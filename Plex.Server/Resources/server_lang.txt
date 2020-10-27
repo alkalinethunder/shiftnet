@@ -1,3 +1,0 @@
-{
-	"{ERR_SYNTAXERROR}": "Syntax error."
-}
