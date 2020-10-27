@@ -1,4 +1,4 @@
-using Plex.Frontend.GraphicsSubsystem;
+using Plex.Engine.GraphicsSubsystem;
 
 namespace Plex.Engine.Cutscenes
 {

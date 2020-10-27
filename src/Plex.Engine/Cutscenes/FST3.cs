@@ -8,7 +8,7 @@ using System.Text;
 using NAudio.Wave;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Plex.Frontend.GraphicsSubsystem;
+using Plex.Engine.GraphicsSubsystem;
 
 namespace Plex.Engine.Cutscenes
 {
