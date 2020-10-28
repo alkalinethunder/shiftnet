@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<gui>
+    <dockPanel width="600" height="400">
+        <scroller dockPanel.dock="Left">
+            <stackPanel>
+                <text>Select Resolution:</text>
+                <select id="resolutions" />
+            </stackPanel>
+        </scroller>
+        <scroller>
+            <stackPanel>
+                <text>dummy</text>
+            </stackPanel>
+        </scroller>
+    </dockPanel>
+</gui>

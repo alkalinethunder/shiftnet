@@ -10,7 +10,6 @@ using AlkalineThunder.Pandemic.Gui.Controls;
 using AlkalineThunder.Pandemic.Gui.Markup;
 using AlkalineThunder.Pandemic.Input;
 using AlkalineThunder.Pandemic.Scenes;
-using AlkalineThunder.Pandemic.Windowing;
 
 namespace Shiftnet
 {
@@ -43,10 +42,5 @@ namespace Shiftnet
         {
             this.App.Exit();
         }
-    }
-
-    public class SettingsWindow : Window
-    {
-        
     }
 }
