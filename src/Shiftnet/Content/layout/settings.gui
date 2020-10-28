@@ -2,15 +2,209 @@
 
 <gui>
     <dockPanel width="600" height="400">
-        <scroller dockPanel.dock="Left">
+        <scroller dockPanel.dock="Left" padding="10">
             <stackPanel>
-                <text>Select Resolution:</text>
+                <text font="Heading2">
+                    Select Resolution:
+                </text>
+                
+                <spacer height="3" />
+                
                 <select id="resolutions" />
             </stackPanel>
         </scroller>
-        <scroller>
+        
+        <stackPanel dockPanel.dock="Bottom" horizontal-align="Right" orientation="Horizontal" spacing="5" padding="10">
+            <button id="ok">
+                <text>Save</text>
+            </button>
+            <button id="cancel">
+                <text>Cancel</text>
+            </button>
+        </stackPanel>
+        
+        <scroller padding="10">
             <stackPanel>
-                <text>dummy</text>
+                <text font="Heading2">
+                    Display
+                </text>
+                
+                <group orientation="Horizontal" spacing="5">
+                    <text vertical-align="Center">
+                        Window Mode:
+                    </text>
+
+                    <spacer group.autoSize="false" />
+                    
+                    <button id="fullscreen" vertical-align="Center">
+                        <text>
+                            Fullscreen
+                        </text>
+                    </button>
+                    <button id="borderless" vertical-align="Center">
+                        <text>
+                            Borderless
+                        </text>
+                    </button>
+                    <button id="windowed" vertical-align="Center">
+                        <text>
+                            Windowed
+                        </text>
+                    </button>
+                </group>
+
+                <group orientation="Horizontal" spacing="5">
+                    <text vertical-align="Center">
+                        V-Sync:
+                    </text>
+
+                    <spacer group.autoSize="false" />
+                    
+                    <checkbox id="vsync">
+                        <text>Enabled</text>
+                    </checkbox>
+                </group>
+
+
+                <group orientation="Horizontal" spacing="5">
+                    <text vertical-align="Center">
+                        Transparency Effects:
+                    </text>
+
+                    <spacer group.autoSize="false" />
+                    
+                    <checkbox id="transparencyEffects">
+                        <text>Enabled</text>
+                    </checkbox>
+                </group>
+
+                <group orientation="Horizontal" spacing="5">
+                    <text vertical-align="Center">
+                        Blurs:
+                    </text>
+
+                    <spacer group.autoSize="false" />
+                    
+                    <checkbox id="blurs">
+                        <text>Enabled</text>
+                    </checkbox>
+                </group>
+
+                <spacer height="25" />
+                
+                <text font="Heading2">
+                    Input
+                </text>
+
+                <group orientation="Horizontal" spacing="5">
+                    <text vertical-align="Center">
+                        Swap Mouse Buttons:
+                    </text>
+                    
+                    <spacer group.autoSize="false" />
+                    
+                    <checkbox id="swapMouseButtons">
+                        <text>Enabled</text>
+                    </checkbox>
+                </group>
+
+                <spacer height="25" />
+                
+                <text font="Heading2">
+                    Audio
+                </text>
+
+                <group orientation="Horizontal" spacing="5">
+                    <text vertical-align="Center">
+                        Master Volume:
+                    </text>
+
+                    <spacer group.autoSize="false" />
+
+                    <slider id="masterVolume" />
+                </group>
+
+                <group orientation="Horizontal" spacing="5">
+                    <text vertical-align="Center">
+                        Music:
+                    </text>
+
+                    <spacer group.autoSize="false" />
+
+                    <slider id="music" />
+                </group>
+
+                <group orientation="Horizontal" spacing="5">
+                    <text vertical-align="Center">
+                        Sound Effects:
+                    </text>
+
+                    <spacer group.autoSize="false" />
+
+                    <slider id="sfx" />
+                </group>
+
+                <spacer height="25" />
+                
+                <text font="Heading2">
+                    Accessibility
+                </text>
+
+                <group orientation="Horizontal" spacing="5">
+                    <text vertical-align="Center">
+                        Dark Mode:
+                    </text>
+
+                    <spacer group.autoSize="false" />
+
+                    <checkbox id="darkMode">
+                        <text>Enabled</text>
+                    </checkbox>
+                </group>
+
+                <group orientation="Horizontal" spacing="5">
+                    <text vertical-align="Center">
+                        Large Font Size:
+                    </text>
+
+                    <spacer group.autoSize="false" />
+
+                    <checkbox id="largerFont">
+                        <text>Enabled</text>
+                    </checkbox>
+                </group>
+
+                <group orientation="Horizontal" spacing="5">
+                    <text vertical-align="Center">
+                        Colorblind Mode:
+                    </text>
+
+                    <spacer group.autoSize="false" />
+
+                    <checkbox id="colorblind">
+                        <text>Enabled</text>
+                    </checkbox>
+                </group>
+
+                <spacer height="25" />
+
+                <text font="Heading2">
+                    Fancy Features
+                </text>
+
+                <group orientation="Horizontal" spacing="5">
+                    <text vertical-align="Center">
+                        Discord Rich Presence:
+                    </text>
+
+                    <spacer group.autoSize="false" />
+
+                    <checkbox id="discordPresence">
+                        <text>Enabled</text>
+                    </checkbox>
+                </group>
+
+
             </stackPanel>
         </scroller>
     </dockPanel>

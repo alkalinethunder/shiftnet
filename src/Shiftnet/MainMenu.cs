@@ -18,6 +18,7 @@ namespace Shiftnet
         private Button _play;
         private Button _settings;
         private Button _exit;
+        private SettingsWindow _settingsWindow;
         
         protected override void OnLoad()
         {
@@ -35,7 +36,12 @@ namespace Shiftnet
 
         private void SettingsOnClick(object? sender, MouseButtonEventArgs e)
         {
-            OpenWindow<SettingsWindow>();
+            if (_settingsWindow == null)
+            {
+                _settingsWindow = OpenWindow<SettingsWindow>();
+            }
+            
+            SceneSystem.SetFocus(_settingsWindow.Gui);
         }
 
         private void ExitOnClick(object? sender, MouseButtonEventArgs e)
