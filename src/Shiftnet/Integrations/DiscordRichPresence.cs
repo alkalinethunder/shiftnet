@@ -1,5 +1,6 @@
 using System;
 using AlkalineThunder.Pandemic;
+using AlkalineThunder.Pandemic.Settings;
 using Community.CsharpSqlite;
 using DiscordRPC;
 using DiscordRPC.Logging;
@@ -7,37 +8,87 @@ using Microsoft.Xna.Framework;
 
 namespace Shiftnet.Integrations
 {
+    [RequiresModule(typeof(SettingsService))]
     public class DiscordRichPresenceModule : EngineModule
     {
         private DiscordRpcClient _rpc;
         private RichPresence _presence;
         private Timestamps _timestamps;
+
+        private SettingsService Settings
+            => GetModule<SettingsService>();
+
+        public bool EnableRichPresence
+        {
+            get => Settings.GetValue("discord.presence", true);
+            set => Settings.SetValue("discord.presence", value);
+        }
         
         protected override void OnInitialize()
         {
             GameUtils.Log("discord rpc init...");
 
-            _rpc = new DiscordRpcClient("770739106354429953");
-            _rpc.Logger = new PandemicConsoleDiscordLogger();
-
-            _rpc.Initialize();
-        }
-
-        protected override void OnLoadContent()
-        {
             _timestamps = new Timestamps(DateTime.UtcNow);
-            
+
             _presence = new RichPresence()
                 .WithTimestamps(_timestamps);
 
-            _rpc.SetPresence(_presence);
-            
-            GameUtils.Log("discord rpc connected.");
+            if (EnableRichPresence)
+            {
+                InitializeRichPresence();
+            }
         }
 
+        private void InitializeRichPresence()
+        {
+            _rpc = new DiscordRpcClient("770739106354429953");
+            _rpc.Logger = new PandemicConsoleDiscordLogger();
+            _rpc.Initialize();
+            UpdatePresence();
+        }
+
+        private void ShutdownRichPresence()
+        {
+            _rpc.Deinitialize();
+            _rpc = null;
+        }
+        
+        protected override void OnLoadContent()
+        {
+            GameUtils.Log("discord rpc connected.");
+            
+            Settings.SettingsUpdated += SettingsOnSettingsUpdated;
+        }
+
+        private void SettingsOnSettingsUpdated(object? sender, EventArgs e)
+        {
+            if (EnableRichPresence && _rpc == null)
+            {
+                InitializeRichPresence();
+            }
+            else if (_rpc != null && !EnableRichPresence)
+            {
+                ShutdownRichPresence();
+            }
+        }
+
+        private void UpdatePresence()
+        { 
+            _rpc.SetPresence(_presence);
+        }
+        
         protected override void OnUpdate(GameTime gameTime)
         {
-            _rpc.UpdateEndTime(DateTime.UtcNow);
+            if (_rpc != null)
+            {
+                _rpc.UpdateEndTime(DateTime.UtcNow);
+            }
+        }
+
+        [Exec("discord.setPresenceEnabled")]
+        public void Exec_SetPresenceEnabled(bool value)
+        {
+            EnableRichPresence = value;
         }
     }
 
