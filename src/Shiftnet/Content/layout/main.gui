@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<gui>
+    <box horizontal-align="Center" vertical-align="Center">
+        <stackPanel>
+            <text horizontal-align="Center">
+                The Shiftnet
+            </text>
+            
+            <spacer height="10" />
+            
+            <button id="play">
+                <text>Play</text>
+            </button>
+
+            <spacer height="3" />
+            
+            <button id="settings">
+                <text>Settings</text>
+            </button>
+            
+            <spacer height="3" />
+            
+            <button id="exit">
+                <text>Exit</text>
+            </button>
+
+            <spacer height="10" />
+            
+            <text horizontal-align="Center">
+                Developed by Michael VanOverbeek
+            </text>
+        </stackPanel>
+    </box>
+</gui>

@@ -18,4 +18,10 @@
     <PackageReference Include="DiscordRichPresence" Version="1.0.150" />
   </ItemGroup>
   
+  <ItemGroup>
+    <None Update="Content\layout\main.gui">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  
 </Project>
