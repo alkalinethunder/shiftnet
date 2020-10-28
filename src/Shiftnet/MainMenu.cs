@@ -10,6 +10,7 @@ using AlkalineThunder.Pandemic.Gui.Controls;
 using AlkalineThunder.Pandemic.Gui.Markup;
 using AlkalineThunder.Pandemic.Input;
 using AlkalineThunder.Pandemic.Scenes;
+using AlkalineThunder.Pandemic.Windowing;
 
 namespace Shiftnet
 {
@@ -27,14 +28,25 @@ namespace Shiftnet
             _settings = Gui.FindById<Button>("settings");
             _exit = Gui.FindById<Button>("exit");
 
+            _settings.Click += SettingsOnClick;
             _exit.Click += ExitOnClick;
             
             base.OnLoad();
+        }
+
+        private void SettingsOnClick(object? sender, MouseButtonEventArgs e)
+        {
+            OpenWindow<SettingsWindow>();
         }
 
         private void ExitOnClick(object? sender, MouseButtonEventArgs e)
         {
             this.App.Exit();
         }
+    }
+
+    public class SettingsWindow : Window
+    {
+        
     }
 }
