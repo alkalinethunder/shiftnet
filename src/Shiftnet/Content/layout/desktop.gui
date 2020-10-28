@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<gui>
+    <dockPanel>
+        <box id="topPanel" dockPanel.dock="Top">
+            <group spacing="5" orientation="Horizontal">
+                <button id="apps">
+                    <text>
+                        Apps
+                    </text>
+                </button>
+                <button id="settings">
+                    <text>
+                        Settings
+                    </text>
+                </button>
+                
+                <spacer group.autoSize="false" />
+                <text id="time" vertical-align="Center">
+                    12:00
+                </text>
+            </group>
+        </box>
+        
+        <box id="bottomPanel" dockPanel.dock="Bottom">
+            
+        </box>
+        
+        <box id="workspace" bg="#00000000">
+            <dockPanel padding="10">
+                <group padding="5" spacing="10" dockPanel.dock="Left" width="300">
+                    <box id="status" group.autoSize="false" />
+                    <box id="feed" group.autoSize="false" />
+                </group>
+                
+                <box padding="5" dockPanel.dock="Bottom" height="335">
+                    <console id="console" />
+                </box>
+                <box id="content" padding="5" />
+            </dockPanel>
+        </box>
+    </dockPanel>
+</gui>

@@ -28,10 +28,22 @@ namespace Shiftnet
             _settings = Gui.FindById<Button>("settings");
             _exit = Gui.FindById<Button>("exit");
 
+            _play.Click += PlayOnClick;
             _settings.Click += SettingsOnClick;
             _exit.Click += ExitOnClick;
             
             base.OnLoad();
+        }
+
+        private void PlayOnClick(object? sender, MouseButtonEventArgs e)
+        {
+            if (_settingsWindow != null)
+            {
+                _settingsWindow.Close();
+                _settingsWindow = null;
+            }
+
+            SceneSystem.GoToScene<Desktop>();
         }
 
         private void SettingsOnClick(object? sender, MouseButtonEventArgs e)
