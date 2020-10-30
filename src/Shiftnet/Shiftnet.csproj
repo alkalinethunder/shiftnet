@@ -20,7 +20,7 @@
   
   <ItemGroup>
     <None Update="Content\layout\main.gui">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Content\layout\settings.gui">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

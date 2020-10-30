@@ -159,15 +159,10 @@ namespace Shiftnet
 
         private void SetWindowModeButtonColors()
         {
-            _fullscreen.ButtonColor = _fullscreenMode == FullScreenMode.FullScreen
-                ? ControlColor.Primary
-                : ControlColor.Secondary;
-            _borderless.ButtonColor = _fullscreenMode == FullScreenMode.Borderless
-                ? ControlColor.Primary
-                : ControlColor.Secondary;
-            _windowed.ButtonColor = _fullscreenMode == FullScreenMode.Windowed
-                ? ControlColor.Primary
-                : ControlColor.Secondary;
+            _fullscreen.IsActive = _fullscreenMode == FullScreenMode.FullScreen;
+            _borderless.IsActive = _fullscreenMode == FullScreenMode.Borderless;
+            _windowed.IsActive = _fullscreenMode == FullScreenMode.Windowed;
+
         }
     }
 }

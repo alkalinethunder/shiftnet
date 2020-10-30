@@ -29,14 +29,28 @@
         <box id="workspace" bg="#00000000">
             <dockPanel padding="10">
                 <group padding="5" spacing="10" dockPanel.dock="Left" width="300">
-                    <box id="status" group.autoSize="false" />
-                    <box id="feed" group.autoSize="false" />
+                    <box id="status" group.autoSize="false">
+                        <text vertical-align="Center" horizontal-align="Center" font="Heading1">
+                            SYSTEM STATUS AREA
+                        </text>    
+                    </box>
+                    <box id="feed" group.autoSize="false">
+                        <text vertical-align="Center" horizontal-align="Center" font="Heading1">
+                            SOCIAL MEDIA FEED
+                        </text>  
+                    </box>
                 </group>
                 
                 <box padding="5" dockPanel.dock="Bottom" height="335">
-                    <console id="console" />
+                    <text vertical-align="Center" horizontal-align="Center" font="Heading1">
+                        CONSOLE
+                    </text>
                 </box>
-                <box id="content" padding="5" />
+                <box id="content" padding="5">
+                    <text vertical-align="Center" horizontal-align="Center" font="Heading1">
+                        MAIN CONTENT AREA
+                    </text>  
+                </box>
             </dockPanel>
         </box>
     </dockPanel>

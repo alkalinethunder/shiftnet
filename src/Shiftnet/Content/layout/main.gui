@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 
 <gui>
-    <box horizontal-align="Center" vertical-align="Center">
+    <box style.test="test" horizontal-align="Center" vertical-align="Center">
         <stackPanel>
             <text horizontal-align="Center">
                 The Shiftnet
