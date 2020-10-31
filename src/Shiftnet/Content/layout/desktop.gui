@@ -42,14 +42,10 @@
                 </group>
                 
                 <box padding="5" dockPanel.dock="Bottom" height="335">
-                    <text vertical-align="Center" horizontal-align="Center" font="Heading1">
-                        CONSOLE
-                    </text>
+                    <console />
                 </box>
                 <box id="content" padding="5">
-                    <text vertical-align="Center" horizontal-align="Center" font="Heading1">
-                        MAIN CONTENT AREA
-                    </text>  
+                    <editor />  
                 </box>
             </dockPanel>
         </box>

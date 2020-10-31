@@ -4,7 +4,7 @@
     <dockPanel width="600" height="400">
         <scroller dockPanel.dock="Left" padding="10">
             <stackPanel>
-                <text font="Heading2">
+                <text style.font="heading">
                     Select Resolution:
                 </text>
                 
@@ -25,7 +25,7 @@
         
         <scroller padding="10">
             <stackPanel>
-                <text font="Heading2">
+                <text style.font="heading">
                     Display
                 </text>
                 
@@ -92,7 +92,7 @@
 
                 <spacer height="25" />
                 
-                <text font="Heading2">
+                <text style.font="heading">
                     Input
                 </text>
 
@@ -110,7 +110,7 @@
 
                 <spacer height="25" />
                 
-                <text font="Heading2">
+                <text style.font="heading">
                     Audio
                 </text>
 
@@ -146,7 +146,7 @@
 
                 <spacer height="25" />
                 
-                <text font="Heading2">
+                <text style.font="heading">
                     Accessibility
                 </text>
 
@@ -188,7 +188,7 @@
 
                 <spacer height="25" />
 
-                <text font="Heading2">
+                <text style.font="heading">
                     Fancy Features
                 </text>
 

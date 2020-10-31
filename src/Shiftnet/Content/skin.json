@@ -1,0 +1,44 @@
+﻿{
+  "meta": {
+    "name": "ShiftOS",
+    "description": "The default look and feel of ShiftOS.",
+    "author": "Developer X",
+    "engine": "default" /* new pandemic skin system */
+  },
+  "colors": {
+    "light": {
+      "background": "#efefef",
+      "foreground": "#000000",
+      "primary": "#1baaf7",
+      "secondary": "#808080"
+    },
+    "dark": {
+      "background": "#222222",
+      "foreground": "#ffffff",
+      "primary": "#1baaf7",
+      "secondary": "#808080"
+    }
+  },
+  /* Properties that are unique to the skin engine being used. */
+  "properties": {
+    "selectList.borderSize": 0,
+    "selectList.padding.left": 0,
+    "selectList.padding.top": 0,
+    "selectList.padding.right": 0,
+    "selectList.padding.bottom": 0
+  },
+  "fonts": {
+    "console": {
+      "path": "UbuntuMono-R.ttf",
+      "size": 12
+    },
+    "paragraph": {
+      "path": "fonts/Overpass-Regular.ttf",
+      "size": 12
+    },
+    "heading": {
+      "path": "fonts/Overpass-Regular.ttf",
+      "size": 15
+    }
+  }
+}
