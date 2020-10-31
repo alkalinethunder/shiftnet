@@ -10,13 +10,15 @@
       "background": "#efefef",
       "foreground": "#000000",
       "primary": "#1baaf7",
-      "secondary": "#808080"
+      "secondary": "#808080",
+      "danger": "#f71b1b"
     },
     "dark": {
       "background": "#222222",
       "foreground": "#ffffff",
       "primary": "#1baaf7",
-      "secondary": "#808080"
+      "secondary": "#808080",
+      "danger": "#f71b1b"
     }
   },
   /* Properties that are unique to the skin engine being used. */

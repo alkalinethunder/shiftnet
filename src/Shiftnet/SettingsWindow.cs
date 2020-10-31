@@ -34,6 +34,8 @@ namespace Shiftnet
         
         protected override void OnInitialize()
         {
+            Title = "Settings";
+            
             var gui = GuiBuilder.Build(this, "layout/settings.gui");
 
             _resolutions = gui.FindById<SelectList>("resolutions");

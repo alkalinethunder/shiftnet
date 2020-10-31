@@ -45,7 +45,6 @@
                     <console />
                 </box>
                 <box id="content" padding="5">
-                    <editor />  
                 </box>
             </dockPanel>
         </box>

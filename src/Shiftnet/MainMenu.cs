@@ -51,6 +51,10 @@ namespace Shiftnet
             if (_settingsWindow == null)
             {
                 _settingsWindow = OpenWindow<SettingsWindow>();
+                _settingsWindow.Closed += (o, args) =>
+                {
+                    _settingsWindow = null;
+                };
             }
             
             SceneSystem.SetFocus(_settingsWindow.Gui);
