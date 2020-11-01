@@ -26,7 +26,7 @@
             
         </box>
         
-        <box id="workspace" bg="#00000000">
+        <box id="workspace" style.color="#00000000">
             <dockPanel padding="10">
                 <group padding="5" spacing="10" dockPanel.dock="Left" width="300">
                     <box id="status" group.autoSize="false">
@@ -42,9 +42,10 @@
                 </group>
                 
                 <box padding="5" dockPanel.dock="Bottom" height="335">
-                    <console />
+                    <console id="console" />
                 </box>
                 <box id="content" padding="5">
+                    <editor />
                 </box>
             </dockPanel>
         </box>
