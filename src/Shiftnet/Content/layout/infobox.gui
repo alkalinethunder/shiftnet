@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<gui>
+    <stackPanel max-width="800" max-height="600" padding="10">
+        <dockPanel>
+            <icon padding="5" width="48" height="48" src="Infobox/Warning" vertical-align="Center" dockPanel.dock="Left" />
+            
+            <scroller padding="5" vertical-align="Center">
+                <text id="message" />
+            </scroller>
+        </dockPanel>
+        
+        <stackPanel orientation="Horizontal" spacing="3" horizontal-align="Center">
+            <button id="ok">
+                <text>OK</text>
+            </button>
+            <button id="yes">
+                <text>Yes</text>
+            </button>
+            <button id="no">
+                <text>No</text>
+            </button>
+            <button id="cancel">
+                <text>Cancel</text>
+            </button>
+        </stackPanel>
+    </stackPanel>
+</gui>

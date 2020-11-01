@@ -26,13 +26,9 @@ namespace Shiftnet
         private TextBlock _time = null;
         private Button _appLauncherOpen = null;
         private Button _settingsOpen = null;
+        private Button _leave;
         private ConsoleControl _console;
-        private Process _proc;
-        private Task _outTask;
-        private Task _inTask;
-        private object _inLock = new object();
-        private object _outLock = new object();
-            
+        private Shell _shell;    
         
         protected override void OnLoad()
         {
@@ -41,26 +37,40 @@ namespace Shiftnet
             _time = Gui.FindById<TextBlock>("time");
             _appLauncherOpen = Gui.FindById<Button>("apps");
             _settingsOpen = Gui.FindById<Button>("settings");
+            _leave = Gui.FindById<Button>("leave");
             
             _settingsOpen.Click += SettingsOpenOnClick;
 
+            _leave.Click += LeaveOnClick;
+            
             _console = Gui.FindById<ConsoleControl>("console");
-            StartConceptShell();
+            StartShell();
             
             base.OnLoad();
         }
 
-        private void StartConceptShell()
+        private void LeaveOnClick(object? sender, MouseButtonEventArgs e)
         {
-            _proc = new Process();
-            _proc.StartInfo.FileName = "cmd.exe";
-            _proc.StartInfo.RedirectStandardOutput = true;
-            _proc.EnableRaisingEvents = true;
-            _proc.StartInfo.RedirectStandardInput = true;
-            _proc.Start();
+            var infobox = OpenWindow<Infobox>();
+            infobox.Message = "Are you sure you want to exit ShiftOS?";
+            infobox.Title = "Shut down";
+            infobox.Buttons = InfoboxButtons.YesNo;
+            infobox.Dismissed += InfoboxOnDismissed;
+        }
 
-            _outTask = ReadOutput();
-            _inTask = SendInput();
+        private void InfoboxOnDismissed(object? sender, InfoboxDismissedEventArgs e)
+        {
+            if (e.Result == InfoboxResult.Yes)
+            {
+                SceneSystem.GoToScene<MainMenu>();
+            }
+        }
+
+        private void StartShell()
+        {
+            _shell = new Shell(this, _console);
+            _shell.Start();
+
         }
         
         private void SettingsOpenOnClick(object? sender, MouseButtonEventArgs e)
@@ -84,34 +94,10 @@ namespace Shiftnet
             base.OnUpdate(gameTime);
         }
 
-
-        private async Task ReadOutput()
+        protected override void OnUnload()
         {
-            var block = new char[1024];
-            
-            while (true)
-            {
-                var bytesRead = await _proc.StandardOutput.ReadAsync(block, 0, block.Length);
-
-                await App.GameLoop.Invoke(() =>
-                {
-                    for (var i = 0; i < bytesRead; i++)
-                        _console.Write(block[i].ToString());
-                });
-
-            }
-        }
-
-        private async Task SendInput()
-        {
-            while (true)
-            {
-                var text = await _console.Input.ReadLineAsync();
-                await App.GameLoop.Invoke(() =>
-                {
-                    _proc.StandardInput.WriteLine(text);
-                });
-            }
+            _shell.Stop();
+            base.OnUnload();
         }
     }
 }

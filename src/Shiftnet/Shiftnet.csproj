@@ -3,6 +3,7 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <MonoGamePlatform>DesktopGL</MonoGamePlatform>
   </PropertyGroup>
 
   <ItemGroup>
@@ -11,11 +12,12 @@
   </ItemGroup>
   
   <ItemGroup>
-    <EmbeddedResource Remove="Integrations\**" />
+    <PackageReference Include="DiscordRichPresence" Version="1.0.150" />
+    <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.0.1641" />
   </ItemGroup>
   
   <ItemGroup>
-    <PackageReference Include="DiscordRichPresence" Version="1.0.150" />
+    <MonoGameContentReference Include="Content\Content.mgcb" />
   </ItemGroup>
   
   <ItemGroup>
@@ -35,6 +37,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Content\fonts\Overpass-Regular.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\layout\infobox.gui">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
