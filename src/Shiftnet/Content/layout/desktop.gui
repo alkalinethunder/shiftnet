@@ -27,31 +27,37 @@
             </group>
         </box>
         
-        <box id="bottomPanel" dockPanel.dock="Bottom">
-            
-        </box>
-        
         <box id="workspace" style.color="#00000000">
             <dockPanel padding="10">
                 <group padding="5" spacing="10" dockPanel.dock="Left" width="300">
-                    <box id="status" group.autoSize="false">
+                    <blur id="status" group.autoSize="false">
                         <text vertical-align="Center" horizontal-align="Center" font="Heading1">
                             SYSTEM STATUS AREA
                         </text>    
-                    </box>
-                    <box id="feed" group.autoSize="false">
+                    </blur>
+                    <blur id="feed" group.autoSize="false">
                         <text vertical-align="Center" horizontal-align="Center" font="Heading1">
                             SOCIAL MEDIA FEED
                         </text>  
-                    </box>
+                    </blur>
                 </group>
                 
-                <box padding="5" dockPanel.dock="Bottom" height="335">
-                    <console id="console" />
-                </box>
-                <box id="content" padding="5">
-                    <editor />
-                </box>
+                <blur padding="5" dockPanel.dock="Bottom" height="335">
+                    <console style.bg="#00000000" id="console" />
+                </blur>
+                <blur padding="5">
+                    <group>
+                        <box>
+                            <group orientation="Horizontal">
+                                <text id="title">
+                                    Active Content Title
+                                </text>
+                                <stackPanel group.autoSize="false" orientation="Horizontal" id="tabs" spacing="2" />
+                            </group>
+                        </box>
+                        <box group.autoSize="false" id="content" />
+                    </group>
+                </blur>
             </dockPanel>
         </box>
     </dockPanel>

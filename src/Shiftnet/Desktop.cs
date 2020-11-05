@@ -1,14 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AlkalineThunder.Pandemic;
 using AlkalineThunder.Pandemic.Gui.Controls;
 using AlkalineThunder.Pandemic.Gui.Markup;
 using AlkalineThunder.Pandemic.Input;
+using AlkalineThunder.Pandemic.Rendering;
 using AlkalineThunder.Pandemic.Scenes;
+using AlkalineThunder.Pandemic.Settings;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Plex.Engine;
@@ -19,6 +21,14 @@ namespace Shiftnet
 {
     public class Desktop : Scene
     {
+        private Texture2D _wallpaper;
+        private float _wallFade;
+        private Texture2D _newWallpaper;
+        private double _wallFadeTime;
+        private double _wallFadeDuration = 1;
+        private StackPanel _tabs;
+        private Box _mainContent;
+
         // windows
         private SettingsWindow _settingsWindow;
         
@@ -28,7 +38,10 @@ namespace Shiftnet
         private Button _settingsOpen = null;
         private Button _leave;
         private ConsoleControl _console;
-        private Shell _shell;    
+        private Shell _shell;
+
+        public SettingsService SettingsService
+            => GetModule<SettingsService>();
         
         protected override void OnLoad()
         {
@@ -45,6 +58,11 @@ namespace Shiftnet
             
             _console = Gui.FindById<ConsoleControl>("console");
             StartShell();
+
+            _tabs = Gui.FindById<StackPanel>("tabs");
+            _mainContent = Gui.FindById<Box>("content");
+            
+            SetWallpaper("Backgrounds/rainyskies");
             
             base.OnLoad();
         }
@@ -68,9 +86,14 @@ namespace Shiftnet
 
         private void StartShell()
         {
-            _shell = new Shell(this, _console);
+            _shell = new Shell(this, _console, true);
             _shell.Start();
 
+        }
+
+        public void ShutDown()
+        {
+            SceneSystem.GoToScene<MainMenu>();
         }
         
         private void SettingsOpenOnClick(object? sender, MouseButtonEventArgs e)
@@ -89,6 +112,19 @@ namespace Shiftnet
 
         protected override void OnUpdate(GameTime gameTime)
         {
+            if (_newWallpaper != null)
+            {
+                _wallFadeTime += gameTime.ElapsedGameTime.TotalSeconds;
+                if (_wallFadeTime >= _wallFadeDuration)
+                {
+                    _wallpaper = _newWallpaper;
+                    _newWallpaper = null;
+                    _wallFadeTime = 0;
+                }
+
+                _wallFade = MathHelper.Clamp((float) (_wallFadeTime / _wallFadeDuration), 0, 1);
+            }
+            
             _time.Text = DateTime.Now.ToShortTimeString();
 
             base.OnUpdate(gameTime);
@@ -98,6 +134,35 @@ namespace Shiftnet
         {
             _shell.Stop();
             base.OnUnload();
+        }
+
+        [Exec("desktop.setWallpaper")]
+        public void SetWallpaper(string wallpaper)
+        {
+            _newWallpaper = App.GameLoop.Content.Load<Texture2D>(wallpaper);
+        }
+        
+        protected override void OnDraw(GameTime gameTime, SpriteRocket2D renderer)
+        {
+            base.OnDraw(gameTime, renderer);
+
+            var color = Color.White;
+            var darken = SettingsService.EnableDarkTheme;
+            if (darken)
+                color = color.Darken(0.15f);
+
+            renderer.Begin();
+            if (_wallpaper != null)
+            {
+                renderer.FillRectangle(Gui.BoundingBox, color * (1 - _wallFade), _wallpaper);
+            }
+
+            if (_newWallpaper != null)
+            {
+                renderer.FillRectangle(Gui.BoundingBox, color * _wallFade, _newWallpaper);
+            }
+
+            renderer.End();
         }
     }
 }

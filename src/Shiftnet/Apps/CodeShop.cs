@@ -8,9 +8,8 @@ using Plex.Objects;
 
 namespace Shiftnet.Apps
 {
-    [Launcher("Upgrades", false, null, "Utilities")]
-    [WinOpen("upgrademgr")]
-    public class CodeShop : Control, IPlexWindow
+    [AppInformation("Code Shop", "Upgrade your ShiftOS environment and hacking tools with new features and abilities.")]
+    public class CodeShop : ShiftApp
     {
         private TextControl _mainTitle = new TextControl();
         private ListBox upgradelist = null;
@@ -23,42 +22,29 @@ namespace Shiftnet.Apps
 
         public CodeShop()
         {
-            Width = 720;
-            Height = 480;
-            AddControl(_upgradeTitle);
-            AddControl(_upgradeDescription);
-            AddControl(_mainTitle);
             _mainTitle.Text = "Upgrades";
             _mainTitle.AutoSize = true;
         }
 
-        protected override void OnLayout(GameTime gameTime)
+        protected void OnLayout(GameTime gameTime)
         {
             try
             {
                 upgradelist.X = 30;
                 upgradelist.Y = 75;
-                upgradelist.Width = this.Width / 2;
                 upgradelist.Width -= 30;
-                upgradelist.Height = this.Height - upgradelist.Y - 75;
                 upgradeprogress.X = upgradelist.X;
                 upgradeprogress.Y = upgradelist.Y + upgradelist.Height + 10;
                 upgradeprogress.Width = upgradelist.Width;
                 upgradeprogress.Height = 24;
-                buy.X = Width - buy.Width - 15;
-                buy.Y = Height - buy.Height - 15;
                 buy.Visible = (selectedUpgrade != null);
                 _upgradeTitle.FontStyle = TextControlFontStyle.Header2;
                 _upgradeTitle.AutoSize = true;
-                int wrapwidth = (Width - (upgradelist.X + upgradelist.Width)) - 45;
-                _upgradeTitle.MaxWidth = wrapwidth;
                 _upgradeTitle.Y = 15;
                 _upgradeTitle.X = upgradelist.X + upgradelist.Width + 15;
 
                 _upgradeDescription.X = _upgradeTitle.X;
-                _upgradeDescription.Width = wrapwidth;
                 _upgradeDescription.Y = _upgradeTitle.Y + _upgradeTitle.Height + 10;
-                _upgradeDescription.Height = (Height - _upgradeDescription.Y - 50);
 
                 _mainTitle.Y = upgradelist.Y - _mainTitle.Height - 5;
                 _mainTitle.FontStyle = TextControlFontStyle.Header1;
@@ -114,11 +100,8 @@ namespace Shiftnet.Apps
                     }
                 }
             };
-            AddControl(buy);
             upgradelist = new ListBox();
             upgradeprogress = new ProgressBar();
-            AddControl(upgradeprogress);
-            AddControl(upgradelist);
             upgradelist.SelectedIndexChanged += () =>
             {
                 if (upgradelist.SelectedItem != null)
@@ -152,7 +135,6 @@ namespace Shiftnet.Apps
                 {
                     buy.Text = "Buy upgrade";
                 }
-                Invalidate();
             }
 
             string title = "Welcome to the Shiftorium!";
@@ -194,7 +176,6 @@ As you continue through your job, going further up the ranks, you will unlock ad
                 Plex.Engine.Desktop.InvokeOnWorkerThread(() =>
                 {
                     upgradelist.AddItem($"{data.Category}: {data.Name} ({type})");
-                    Invalidate();
                 });
             }
 
@@ -224,5 +205,9 @@ As you continue through your job, going further up the ranks, you will unlock ad
             PopulateList();
         }
 
+        protected override void Main()
+        {
+            
+        }
     }
 }
