@@ -14,6 +14,9 @@ namespace Shiftnet.Modules
 
         public IEnumerable<HelpEntry> AvailableApps
             => _apps.Select(x => new HelpEntry(x.Name, x.Description));
+
+        public IEnumerable<AppLauncher> AvailableAppLaunchers
+            => _apps.AsReadOnly();
         
         private void LocateApps()
         {

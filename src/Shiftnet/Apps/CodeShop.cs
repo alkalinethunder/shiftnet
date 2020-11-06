@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AlkalineThunder.Pandemic.Gui.Markup;
 using Microsoft.Xna.Framework;
 using Plex.Engine;
 using Plex.Engine.GUI;
@@ -8,7 +9,7 @@ using Plex.Objects;
 
 namespace Shiftnet.Apps
 {
-    [AppInformation("Code Shop", "Upgrade your ShiftOS environment and hacking tools with new features and abilities.")]
+    [AppInformation("Code Shop", "Upgrade your ShiftOS environment and hacking tools with new features and abilities.", Command = "upgrades")]
     public class CodeShop : ShiftApp
     {
         private TextControl _mainTitle = new TextControl();
@@ -207,7 +208,10 @@ As you continue through your job, going further up the ranks, you will unlock ad
 
         protected override void Main()
         {
-            
+            Title = "Code Shop";
+
+            var gui = this.Build("layout/app/codeshop.gui");
+            Gui.AddChild(gui);
         }
     }
 }

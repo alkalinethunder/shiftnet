@@ -1,13 +1,21 @@
 ﻿using System;
+using System.Text;
+using AlkalineThunder.Pandemic.Gui;
 using Shiftnet.AppHosts;
+using AlkalineThunder.Pandemic.Gui.Controls;
+using AlkalineThunder.Pandemic.Scenes;
+using AlkalineThunder.Pandemic.Skinning;
 
 namespace Shiftnet.Apps
 {
-    public abstract class ShiftApp
+    public abstract class ShiftApp : IGuiContext
     {
         private IShiftAppHost _appHost;
         private string[] _args;
 
+        protected CanvasPanel Gui
+            => _appHost.Gui;
+        
         protected string[] Arguments
             => _args;
 
@@ -30,10 +38,31 @@ namespace Shiftnet.Apps
 
             _appHost = appHost ?? throw new ArgumentNullException(nameof(appHost));
             _args = args;
-            
-            Main();
+
+            try
+            {
+                Main();
+            }
+            catch (Exception ex)
+            {
+                var sb = new StringBuilder();
+                sb.AppendLine($"Unfortunately, {Title} encountered an error and couldn't be launched.");
+                sb.AppendLine();
+                sb.AppendLine("Error details:");
+                sb.AppendLine();
+#if DEBUG
+                sb.Append(ex.ToString());
+#else
+                sb.Append(ex.Message);
+#endif
+                
+                ShiftOS.ShowInfobox(Title + " couldn't launch.", sb.ToString());
+                Close();
+            }
         }
 
         protected abstract void Main();
+        public SceneSystem SceneSystem => ShiftOS.SceneSystem;
+        public SkinSystem Skin => ShiftOS.Skin;
     }
 }

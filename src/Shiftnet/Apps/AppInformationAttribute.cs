@@ -7,6 +7,7 @@ namespace Shiftnet.Apps
     {
         public string Name { get; }
         public string Description { get; }
+        public string Command { get; set; }
         public DisplayTarget DisplayTarget { get; }
         public bool SingleInstance { get; set; } = true;
 

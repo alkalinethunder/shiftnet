@@ -9,21 +9,25 @@ using Shiftnet.Commands;
 
 namespace Shiftnet.Modules
 {
+    [RequiresModule(typeof(AppsModule))]
     public class CommandModule : EngineModule
     {
         private List<CommandInformation> _commands = new List<CommandInformation>();
 
+        public AppsModule AppsModule
+            => GetModule<AppsModule>();
+        
         public IEnumerable<HelpEntry> AvailableCommands
             => _commands.Select(x => new HelpEntry(x.Name, x.Description));
         
-        public async Task<bool> RunCommand(string name, string[] args, CancellationToken token, ConsoleControl console)
+        public async Task<bool> RunCommand(string name, string[] args, CancellationToken token, ConsoleControl console, Desktop os)
         {
             token.ThrowIfCancellationRequested();
 
             var command = _commands.FirstOrDefault(x => x.Name == name);
             if (command != null)
             {
-                await command.Run(token, args, console);
+                await command.Run(token, args, console, os);
                 return true;
             }
 
@@ -54,10 +58,23 @@ namespace Shiftnet.Modules
                 }
             }
         }
+
+        private void LoadAppCommands()
+        {
+            foreach (var app in AppsModule.AvailableAppLaunchers)
+            {
+                if (app.HasCommand)
+                {
+                    var command = new ProgramLaunchCommand(app);
+                    _commands.Add(command);
+                }
+            }
+        }
         
         protected override void OnInitialize()
         {
             LocateCommands();
+            LoadAppCommands();
         }
     }
 }

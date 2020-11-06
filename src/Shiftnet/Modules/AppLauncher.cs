@@ -8,6 +8,12 @@ namespace Shiftnet.Modules
         private AppInformationAttribute _appInfo;
         private Type _app;
 
+        public string Command
+            => _appInfo.Command;
+
+        public bool HasCommand
+            => !string.IsNullOrWhiteSpace(Command);
+        
         public string TypeName
             => _app.FullName;
 
@@ -21,6 +27,13 @@ namespace Shiftnet.Modules
         {
             _app = type;
             _appInfo = info;
+        }
+
+        public void Launch(string[] args, Desktop os)
+        {
+            var app = (ShiftApp) Activator.CreateInstance(_app, null);
+            var appHost = os.CreateAppHost(_appInfo);
+            app.Initialize(appHost, args);
         }
     }
 }

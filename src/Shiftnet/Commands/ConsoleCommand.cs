@@ -14,7 +14,7 @@ namespace Shiftnet.Commands
             _type = type;
         }
         
-        public override async Task Run(CancellationToken token, string[] args, ConsoleControl console)
+        public override async Task Run(CancellationToken token, string[] args, ConsoleControl console, Desktop os)
         {
             token.ThrowIfCancellationRequested();
 

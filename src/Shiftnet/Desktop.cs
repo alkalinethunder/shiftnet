@@ -16,6 +16,9 @@ using Microsoft.Xna.Framework.Graphics;
 using Plex.Engine;
 using Plex.Engine.GraphicsSubsystem;
 using Plex.Engine.Theming;
+using Shiftnet.AppHosts;
+using Shiftnet.Apps;
+using Shiftnet.Modules;
 
 namespace Shiftnet
 {
@@ -94,6 +97,12 @@ namespace Shiftnet
         public void ShutDown()
         {
             SceneSystem.GoToScene<MainMenu>();
+        }
+
+        public IShiftAppHost CreateAppHost(AppInformationAttribute appInfo)
+        {
+            // TODO: app hosts for Feed Area and Main Area.
+            return OpenWindow<ShiftAppWindow>().LinkToDesktop(this);
         }
         
         private void SettingsOpenOnClick(object? sender, MouseButtonEventArgs e)

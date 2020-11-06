@@ -307,7 +307,7 @@ namespace Shiftnet
 
                     if (!await ProcessBuiltIn(name, args))
                     {
-                        if (!await CommandModule.RunCommand(name, args, _token, _console))
+                        if (!await CommandModule.RunCommand(name, args, _token, _console, _os))
                         {
                             await _stdout.WriteLineAsync("Command not found.");
                         }

@@ -42,6 +42,9 @@
     <None Update="Content\layout\infobox.gui">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="Content\layout\app\codeshop.gui">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   
 </Project>
