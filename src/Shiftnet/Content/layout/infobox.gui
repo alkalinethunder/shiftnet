@@ -4,7 +4,8 @@
     <stackPanel max-width="800" max-height="600" padding="10">
         <dockPanel>
             <icon padding="5" width="48" height="48" src="Infobox/Warning" vertical-align="Center" dockPanel.dock="Left" />
-            
+
+            <input id="textEntry" dockPanel.dock="Bottom" padding="5" />
             <scroller padding="5" vertical-align="Center">
                 <text id="message" />
             </scroller>

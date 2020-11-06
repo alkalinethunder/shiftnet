@@ -48,14 +48,14 @@
                 <blur padding="5">
                     <group>
                         <box>
-                            <group orientation="Horizontal">
-                                <text id="title">
-                                    Active Content Title
+                            <group orientation="Horizontal" padding="2" spacing="5">
+                                <text id="title" vertical-align="Center">
+                                    Programs
                                 </text>
-                                <stackPanel group.autoSize="false" orientation="Horizontal" id="tabs" spacing="2" />
+                                <stackPanel group.autoSize="false" orientation="Horizontal" id="tabs-main" spacing="2" />
                             </group>
                         </box>
-                        <box group.autoSize="false" id="content" />
+                        <switcher group.autoSize="false" id="main-switcher" />
                     </group>
                 </blur>
             </dockPanel>

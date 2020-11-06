@@ -94,48 +94,15 @@ namespace Shiftnet
     {
         public string GetFileExtension(FileType fileType)
         {
-            switch (fileType)
-            {
-                case FileType.CommandFormat:
-                    return ".cf";
-                case FileType.Executable:
-                    return ".saa";
-                case FileType.Filesystem:
-                    return ".mfs";
-                case FileType.Image:
-                    return ".png";
-                case FileType.JSON:
-                    return ".json";
-                case FileType.Lua:
-                    return ".lua";
-                case FileType.Python:
-                    return ".py";
-                case FileType.Skin:
-                    return ".skn";
-                case FileType.TextFile:
-                    return ".txt";
-                default:
-                    return ".scrtm";
-            }
+            return "";
         }
 
         public void GetPath(string[] filetypes, FileOpenerStyle style, Action<string> callback)
         {
-            var fs = new Apps.FileSkimmer();
-            fs.IsDialog = true;
-            fs.DialogMode = style;
-            fs.FileFilters = filetypes;
-            fs.DialogCallback = callback;
-            AppearanceManager.SetupDialog(fs);
         }
 
         public void OpenDirectory(string path)
         {
-            if (!DirectoryExists(path))
-                return;
-            var fs = new Apps.FileSkimmer();
-            fs.Navigate(path);
-            AppearanceManager.SetupWindow(fs);
         }
     }
 

@@ -8,9 +8,21 @@
             </text>
             
             <spacer height="10" />
-            
-            <button id="play">
-                <text>Play</text>
+
+            <button id="continue">
+                <text>Continue</text>
+            </button>
+
+            <spacer height="3" />
+
+            <button id="new">
+                <text>New Game</text>
+            </button>
+
+            <spacer height="3" />
+
+            <button id="load">
+                <text>Load Game</text>
             </button>
 
             <spacer height="3" />

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using AlkalineThunder.Pandemic.Gui.Controls;
@@ -19,7 +20,17 @@ namespace Shiftnet.Commands
         {
             await os.App.GameLoop.Invoke(() =>
             {
-                _launcher.Launch(args, os);
+                try
+                {
+                    _launcher.Launch(args, os);
+                }
+                catch (Exception ex)
+                {
+                    console.WriteLine($"{_launcher.Name} was unable to launch.");
+#if DEBUG
+                    console.WriteLine(ex.ToString());
+#endif
+                }
             });
         }
     }

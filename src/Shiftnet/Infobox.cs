@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using AlkalineThunder.Pandemic.Gui.Controls;
 using AlkalineThunder.Pandemic.Gui.Markup;
 using AlkalineThunder.Pandemic.Input;
@@ -16,7 +17,19 @@ namespace Shiftnet
         private Button _cancel;
         private Button _yes;
         private Button _no;
+        private TextInput _textEntry;
+        
+        public string TextError { get; private set; }
 
+        public bool TextPromptEnabled
+        {
+            get => _textEntry.Visible;
+            set => _textEntry.Visible = value;
+        }
+        
+        public InfoboxTextCallback TextCallback { get; set; }
+        public InfoboxValidator[] TextValidators { get; set; }
+        
         public InfoboxButtons Buttons
         {
             get => _buttons;
@@ -45,6 +58,8 @@ namespace Shiftnet
             base.OnInitialize();
             Closed += OnClosed;
 
+            _textEntry = Gui.FindById<TextInput>("textEntry");
+            
             _ok = Gui.FindById<Button>("ok");
             _yes = Gui.FindById<Button>("yes");
             _no = Gui.FindById<Button>("no");
@@ -55,6 +70,8 @@ namespace Shiftnet
             _no.Click += NoOnClick;
             _cancel.Click += CancelOnClick;
 
+            _textEntry.HintText = "Enter text...";
+            
             UpdateButtons();
         }
 
@@ -116,6 +133,31 @@ namespace Shiftnet
         {
             if (!_dismissed)
             {
+                if (TextPromptEnabled)
+                {
+                    if (result == InfoboxResult.OK)
+                    {
+                        var text = _textEntry.Text;
+                        if (TextValidators != null)
+                        {
+                            foreach (var validator in TextValidators)
+                            {
+                                if (!validator(text, out var error))
+                                {
+                                    TextError = error;
+                                    return;
+                                }
+                            }
+                        }
+
+                        TextCallback?.Invoke(result, text);
+                    }
+                    else
+                    {
+                        TextCallback?.Invoke(result, string.Empty);
+                    }
+                }
+                
                 _dismissed = true;
                 Dismissed?.Invoke(this, new InfoboxDismissedEventArgs(result));
                 if (!_closing)

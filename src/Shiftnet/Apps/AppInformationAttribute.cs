@@ -8,6 +8,7 @@ namespace Shiftnet.Apps
         public string Name { get; }
         public string Description { get; }
         public string Command { get; set; }
+        public bool UserCloseable { get; set; } = true;
         public DisplayTarget DisplayTarget { get; }
         public bool SingleInstance { get; set; } = true;
 

@@ -24,7 +24,7 @@ namespace Shiftnet
         {
             Gui.AddChild(GuiBuilder.Build(this, "layout/main.gui"));
 
-            _play = Gui.FindById<Button>("play");
+            _play = Gui.FindById<Button>("new");
             _settings = Gui.FindById<Button>("settings");
             _exit = Gui.FindById<Button>("exit");
 
@@ -43,7 +43,16 @@ namespace Shiftnet
                 _settingsWindow = null;
             }
 
-            SceneSystem.GoToScene<Desktop>();
+            this.AskForText("New Game", "Please enter your new ShiftOS computer's name:", NewGameCallback,
+                InfoboxValidators.NonWhite, InfoboxValidators.NoSpaces);
+        }
+
+        private void NewGameCallback(InfoboxResult result, string text)
+        {
+            if (result == InfoboxResult.OK)
+            {
+                SceneSystem.GoToScene<Desktop>();
+            }
         }
 
         private void SettingsOnClick(object? sender, MouseButtonEventArgs e)

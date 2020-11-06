@@ -18,6 +18,7 @@ using Plex.Engine.GraphicsSubsystem;
 using Plex.Engine.Theming;
 using Shiftnet.AppHosts;
 using Shiftnet.Apps;
+using Shiftnet.Controls;
 using Shiftnet.Modules;
 
 namespace Shiftnet
@@ -31,7 +32,10 @@ namespace Shiftnet
         private double _wallFadeDuration = 1;
         private StackPanel _tabs;
         private Box _mainContent;
-
+        private List<TabbedAppHost> _mainApps = new List<TabbedAppHost>();
+        private StackPanel _mainTabs;
+        private SwitcherPanel _mainArea;
+        
         // windows
         private SettingsWindow _settingsWindow;
         
@@ -64,6 +68,9 @@ namespace Shiftnet
 
             _tabs = Gui.FindById<StackPanel>("tabs");
             _mainContent = Gui.FindById<Box>("content");
+
+            _mainArea = Gui.FindById<SwitcherPanel>("main-switcher");
+            _mainTabs = Gui.FindById<StackPanel>("tabs-main");
             
             SetWallpaper("Backgrounds/rainyskies");
             
@@ -94,6 +101,12 @@ namespace Shiftnet
 
         }
 
+        public void NotifyTabbedAppHostClosed(TabbedAppHost host)
+        {
+            if (_mainApps.Contains(host))
+                _mainApps.Remove(host);
+        }
+        
         public void ShutDown()
         {
             SceneSystem.GoToScene<MainMenu>();
@@ -101,8 +114,27 @@ namespace Shiftnet
 
         public IShiftAppHost CreateAppHost(AppInformationAttribute appInfo)
         {
-            // TODO: app hosts for Feed Area and Main Area.
-            return OpenWindow<ShiftAppWindow>().LinkToDesktop(this);
+            if (appInfo.DisplayTarget == DisplayTarget.Windows)
+            {
+                return OpenWindow<ShiftAppWindow>().LinkToDesktop(this);
+            }
+            else
+            {
+                var tab = new PanelTab(appInfo.UserCloseable);
+                var canvas = new CanvasPanel();
+                var tabHost = new TabbedAppHost(this, tab, canvas);
+                
+                switch (appInfo.DisplayTarget)
+                {
+                    default:
+                        _mainTabs.AddChild(tab);
+                        _mainArea.AddChild(canvas);
+                        _mainApps.Add(tabHost);
+                        break;
+                }
+
+                return tabHost;
+            }
         }
         
         private void SettingsOpenOnClick(object? sender, MouseButtonEventArgs e)
@@ -136,6 +168,12 @@ namespace Shiftnet
             
             _time.Text = DateTime.Now.ToShortTimeString();
 
+            // update active tab for main area.
+            foreach (var tab in _mainApps)
+            {
+                tab.UpdateActiveTab();
+            }
+            
             base.OnUpdate(gameTime);
         }
 
