@@ -11,7 +11,7 @@ namespace Shiftnet
         
         protected override void OnLoad()
         {
-            SceneSystem.GoToScene<MainMenu>();
+            SceneSystem.GoToScene<MainMenu>(null);
         }
     }
 }

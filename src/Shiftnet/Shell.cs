@@ -285,7 +285,7 @@ namespace Shiftnet
             while (_running)
             {
                 _token.ThrowIfCancellationRequested();
-                await _stdout.WriteAsync("test> ");
+                await _stdout.WriteAsync($"user@{_os.CurrentOS.HostName}:~$ ");
                 var text = await CancellableReadLine();
 
                 var tokens = Array.Empty<string>();

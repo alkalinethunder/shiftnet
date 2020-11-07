@@ -10,6 +10,7 @@ using AlkalineThunder.Pandemic.Gui.Controls;
 using AlkalineThunder.Pandemic.Gui.Markup;
 using AlkalineThunder.Pandemic.Input;
 using AlkalineThunder.Pandemic.Scenes;
+using Shiftnet.Modules;
 
 namespace Shiftnet
 {
@@ -18,7 +19,11 @@ namespace Shiftnet
         private Button _play;
         private Button _settings;
         private Button _exit;
+        private Button _continue;
         private SettingsWindow _settingsWindow;
+
+        private GameplayManager GameplayManager
+            => GetModule<GameplayManager>();
         
         protected override void OnLoad()
         {
@@ -26,13 +31,26 @@ namespace Shiftnet
 
             _play = Gui.FindById<Button>("new");
             _settings = Gui.FindById<Button>("settings");
+            _continue = Gui.FindById<Button>("continue");
             _exit = Gui.FindById<Button>("exit");
 
             _play.Click += PlayOnClick;
             _settings.Click += SettingsOnClick;
             _exit.Click += ExitOnClick;
+            _continue.Click += ContinueOnClick;
             
             base.OnLoad();
+        }
+
+        private void ContinueOnClick(object? sender, MouseButtonEventArgs e)
+        {
+            if (_settingsWindow != null)
+            {
+                _settingsWindow.Close();
+                _settingsWindow = null;
+            }
+
+            GameplayManager.ContinueGame();
         }
 
         private void PlayOnClick(object? sender, MouseButtonEventArgs e)
@@ -51,7 +69,7 @@ namespace Shiftnet
         {
             if (result == InfoboxResult.OK)
             {
-                SceneSystem.GoToScene<Desktop>();
+                GameplayManager.StartNewGame(text);
             }
         }
 

@@ -31,6 +31,7 @@ namespace Shiftnet
         private double _wallFadeTime;
         private double _wallFadeDuration = 1;
         private StackPanel _tabs;
+        private IShiftOS _currentOS;
         private Box _mainContent;
         private List<TabbedAppHost> _mainApps = new List<TabbedAppHost>();
         private StackPanel _mainTabs;
@@ -52,6 +53,10 @@ namespace Shiftnet
         
         protected override void OnLoad()
         {
+            _currentOS = Properties.GetValue<IShiftOS>("os", null)
+                         ?? throw new InvalidOperationException(
+                             "An IShiftOS implementation is needed in the 'os' property of this Scene.");
+            
             Gui.AddChild(GuiBuilder.Build(this, "layout/desktop.gui"));
 
             _time = Gui.FindById<TextBlock>("time");
@@ -90,7 +95,7 @@ namespace Shiftnet
         {
             if (e.Result == InfoboxResult.Yes)
             {
-                SceneSystem.GoToScene<MainMenu>();
+                SceneSystem.GoToScene<MainMenu>(null);
             }
         }
 
@@ -109,9 +114,12 @@ namespace Shiftnet
         
         public void ShutDown()
         {
-            SceneSystem.GoToScene<MainMenu>();
+            SceneSystem.GoToScene<MainMenu>(null);
         }
 
+        public IShiftOS CurrentOS
+            => _currentOS;
+        
         public IShiftAppHost CreateAppHost(AppInformationAttribute appInfo)
         {
             if (appInfo.DisplayTarget == DisplayTarget.Windows)
