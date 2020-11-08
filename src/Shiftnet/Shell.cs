@@ -19,7 +19,9 @@ namespace Shiftnet
         private CancellationToken _token;
         private Desktop _os;
         private bool _running = false;
-
+        private string _cwd = "/";
+        
+        
         private IEnumerable<string> Tips
         {
             get
@@ -275,6 +277,20 @@ namespace Shiftnet
                     }
 
                     return false;
+                case "cd":
+                    var path = string.Join(' ', args);
+
+                    if (!_os.CurrentOS.FileSystem.DirectoryExists(path))
+                    {
+                        await _stdout.WriteLineAsync($"cd: {path}: Directory not found.");
+                    }
+                    else
+                    {
+                        var absolute = Paths.GetAbsolute(path);
+                        _cwd = absolute;
+                    }
+                    
+                    return true;
             }
 
             return false;
@@ -285,7 +301,7 @@ namespace Shiftnet
             while (_running)
             {
                 _token.ThrowIfCancellationRequested();
-                await _stdout.WriteAsync($"user@{_os.CurrentOS.HostName}:~$ ");
+                await _stdout.WriteAsync($"user@{_os.CurrentOS.HostName}:{_cwd}$ ");
                 var text = await CancellableReadLine();
 
                 var tokens = Array.Empty<string>();
@@ -307,7 +323,7 @@ namespace Shiftnet
 
                     if (!await ProcessBuiltIn(name, args))
                     {
-                        if (!await CommandModule.RunCommand(name, args, _token, _console, _os))
+                        if (!await CommandModule.RunCommand(name, args, _token, _console, _os, _cwd))
                         {
                             await _stdout.WriteLineAsync("Command not found.");
                         }

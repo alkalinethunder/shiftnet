@@ -16,13 +16,13 @@ namespace Shiftnet.Commands
             _launcher = launcher;
         }
 
-        public override async Task Run(CancellationToken token, string[] args, ConsoleControl console, Desktop os)
+        public override async Task Run(CancellationToken token, string[] args, ConsoleControl console, Desktop os, string cwd)
         {
             await os.App.GameLoop.Invoke(() =>
             {
                 try
                 {
-                    _launcher.Launch(args, os);
+                    _launcher.Launch(args, os, cwd);
                 }
                 catch (Exception ex)
                 {

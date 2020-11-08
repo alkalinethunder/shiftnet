@@ -14,13 +14,13 @@ namespace Shiftnet.Commands
             _type = type;
         }
         
-        public override async Task Run(CancellationToken token, string[] args, ConsoleControl console, Desktop os)
+        public override async Task Run(CancellationToken token, string[] args, ConsoleControl console, Desktop os, string cwd)
         {
             token.ThrowIfCancellationRequested();
 
             var cmd = (Command) Activator.CreateInstance(_type, null);
 
-            await cmd.Run(token, args, console);
+            await cmd.Run(token, args, console, cwd);
         }
 
     }

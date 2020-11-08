@@ -22,6 +22,8 @@ namespace Shiftnet.Apps
         protected Desktop ShiftOS
             => _appHost.ShiftOS;
         
+        protected string CurrentDirectory { get; private set; }
+        
         public string Title
         {
             get => _appHost.Title;
@@ -31,11 +33,14 @@ namespace Shiftnet.Apps
         public void Close()
             => _appHost.Close();
 
-        public void Initialize(IShiftAppHost appHost, string[] args)
+        public void Initialize(IShiftAppHost appHost, string[] args, string cwd)
         {
             if (_appHost != null)
                 throw new InvalidOperationException("Application has already started.");
 
+
+            CurrentDirectory = cwd;
+            
             _appHost = appHost ?? throw new ArgumentNullException(nameof(appHost));
             _args = args;
 

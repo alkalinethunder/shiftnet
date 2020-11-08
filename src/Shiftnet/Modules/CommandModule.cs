@@ -1,6 +1,7 @@
 ﻿using System;
 using AlkalineThunder.Pandemic;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -20,14 +21,17 @@ namespace Shiftnet.Modules
         public IEnumerable<HelpEntry> AvailableCommands
             => _commands.Select(x => new HelpEntry(x.Name, x.Description));
         
-        public async Task<bool> RunCommand(string name, string[] args, CancellationToken token, ConsoleControl console, Desktop os)
+        public async Task<bool> RunCommand(string name, string[] args, CancellationToken token, ConsoleControl console, Desktop os, string cwd)
         {
+            if (!os.CurrentOS.FileSystem.DirectoryExists(cwd))
+                throw new IOException("Current working directory doesn't exist.");
+
             token.ThrowIfCancellationRequested();
 
             var command = _commands.FirstOrDefault(x => x.Name == name);
             if (command != null)
             {
-                await command.Run(token, args, console, os);
+                await command.Run(token, args, console, os, cwd);
                 return true;
             }
 

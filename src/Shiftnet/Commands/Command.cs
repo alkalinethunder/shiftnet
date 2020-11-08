@@ -15,6 +15,8 @@ namespace Shiftnet.Commands
 
         protected string[] Arguments => _args;
 
+        protected string CurrentDirectory { get; private set; }
+        
         protected void ThrowIfCancelled()
         {
             _token.ThrowIfCancellationRequested();
@@ -71,12 +73,14 @@ namespace Shiftnet.Commands
             return line;
         }
 
-        public async Task Run(CancellationToken token, string[] args, ConsoleControl console)
+        public async Task Run(CancellationToken token, string[] args, ConsoleControl console, string cwd)
         {
             _args = args;
             _console = console;
             _token = token;
 
+            CurrentDirectory = cwd;
+            
             ThrowIfCancelled();
             await Main();
         }

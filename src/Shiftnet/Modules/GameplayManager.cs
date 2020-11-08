@@ -2,10 +2,12 @@
 using AlkalineThunder.Pandemic.SaveGame;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Transactions;
 using AlkalineThunder.Pandemic.Scenes;
 using Community.CsharpSqlite;
+using Plex.Objects.ShiftFS;
 using Shiftnet.Saves;
 using Network = Plex.Objects.Network;
 
@@ -48,6 +50,27 @@ namespace Shiftnet.Modules
             _playerName = hostname;
             
             StartInternal();
+        }
+
+        private DirectoryEntry[] GetChildDirectories(DirectoryEntry entry)
+        {
+            using var transaction = SaveSystem.OpenSaveFile();
+            var directories = transaction.Database.GetCollection<DirectoryEntry>(nameof(DirectoryEntry));
+            return directories.Find(x => x.ParentId == entry.Id).ToArray();
+        }
+
+        private DirectoryEntry GetDirectoryEntry(int id)
+        {
+            using var transaction = SaveSystem.OpenSaveFile();
+            var directories = transaction.Database.GetCollection<DirectoryEntry>(nameof(DirectoryEntry));
+            return directories.FindOne(x => x.Id == id);
+        }
+
+        private FileEntry[] GetChildFiles(DirectoryEntry entry)
+        {
+            using var transaction = SaveSystem.OpenSaveFile();
+            var directories = transaction.Database.GetCollection<FileEntry>(nameof(FileEntry));
+            return directories.Find(x => x.ParentId == entry.Id).ToArray();
         }
 
         private void StartInternal()
@@ -146,20 +169,111 @@ namespace Shiftnet.Modules
         private class PlayerFileSystem : IFileSystem
         {
             private GameplayManager _gameplayManager;
-
+            private DiskNode _rootNode;
+            
             public PlayerFileSystem(GameplayManager gameplayManager)
             {
                 _gameplayManager = gameplayManager;
+                
+                var computer = _gameplayManager.GetPlayerComputer();
+                var root = _gameplayManager.GetDirectoryEntry(computer.RootDirectoryId);
+                _rootNode = new DiskNode
+                {
+                    DirectoryEntry = root.Id,
+                    Name = "/"
+                };
+
+                BuildDiskTree(_rootNode);
             }
 
+            private void BuildDiskTree(DiskNode node)
+            {
+                var directory = _gameplayManager.GetDirectoryEntry(node.DirectoryEntry);
+                var children = _gameplayManager.GetChildDirectories(directory);
+
+                node.Children.Clear();
+                
+                foreach (var subdir in children)
+                {
+                    var subNode = new DiskNode
+                    {
+                        DirectoryEntry = subdir.Id,
+                        Name = subdir.Name,
+                        Parent = node
+                    };
+
+                    BuildDiskTree(subNode);
+
+                    node.Children.Add(subNode);
+                }
+
+                foreach (var file in _gameplayManager.GetChildFiles(directory))
+                {
+                    var fileNode = new DiskFileNode
+                    {
+                        FileEntry = file.Id,
+                        FileName = file.Name,
+                        Parent = node
+                    };
+
+                    node.Files.Add(fileNode);
+                }
+            }
+
+            private DiskNode GetDiskNodeInternal(string[] parts)
+            {
+                var node = _rootNode;
+
+                foreach (var word in parts)
+                {
+                    if (word == ".")
+                        continue;
+
+                    if (word == "..")
+                    {
+                        node = node.Parent ?? node;
+                        continue;
+                    }
+
+                    node = node.Children.FirstOrDefault(x => x.Name == word);
+
+                    if (node == null)
+                        break;
+                }
+
+                return node;
+            }
+
+            private DiskFileNode GetFileNodeInternal(string[] parts)
+            {
+                var dirExists = GetDiskNodeInternal(parts) != null;
+
+                if (dirExists)
+                    return null;
+
+                var parentNode = GetDiskNodeInternal(parts.Take(parts.Length - 1).ToArray());
+
+                if (parentNode == null)
+                    return null;
+
+                var fileNode = parentNode.Files.FirstOrDefault(x => x.FileName == parts.Last());
+                return fileNode;
+            }
+            
             public bool DirectoryExists(string path)
             {
-                throw new NotImplementedException();
+                var parts = Paths.Split(Paths.GetAbsolute(path));
+                var node = GetDiskNodeInternal(parts);
+
+                return node != null;
             }
 
             public bool FileExists(string path)
             {
-                throw new NotImplementedException();
+                var parts = Paths.Split(Paths.GetAbsolute(path));
+                var fileNode = GetFileNodeInternal(parts);
+
+                return fileNode != null;
             }
 
             public void CreateDirectory(string directory)
@@ -189,12 +303,30 @@ namespace Shiftnet.Modules
 
             public IEnumerable<string> GetDirectories(string path)
             {
-                throw new NotImplementedException();
+                var parts = Paths.Split(Paths.GetAbsolute(path));
+                var dir = GetDiskNodeInternal(parts);
+                
+                if (dir == null)
+                    throw new IOException($"The directory '{path}' does not exist.");
+
+                foreach (var subnode in dir.Children)
+                {
+                    yield return Paths.Combine(path, subnode.Name);
+                }
             }
 
             public IEnumerable<string> GetFiles(string path)
             {
-                throw new NotImplementedException();
+                var parts = Paths.Split(Paths.GetAbsolute(path));
+                var dir = GetDiskNodeInternal(parts);
+                
+                if (dir == null)
+                    throw new IOException($"The directory '{path}' does not exist.");
+
+                foreach (var subnode in dir.Files)
+                {
+                    yield return Paths.Combine(path, subnode.FileName);
+                }
             }
         }
         

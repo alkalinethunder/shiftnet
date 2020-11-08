@@ -15,6 +15,6 @@ namespace Shiftnet.Commands
             Description = desc;
         }
 
-        public abstract Task Run(CancellationToken token, string[] args, ConsoleControl console, Desktop desktop);
+        public abstract Task Run(CancellationToken token, string[] args, ConsoleControl console, Desktop desktop, string cwd);
     }
 }

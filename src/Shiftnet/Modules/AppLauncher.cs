@@ -10,7 +10,7 @@ namespace Shiftnet.Modules
 
         public string Command
             => _appInfo.Command;
-
+        
         public bool HasCommand
             => !string.IsNullOrWhiteSpace(Command);
         
@@ -29,11 +29,11 @@ namespace Shiftnet.Modules
             _appInfo = info;
         }
 
-        public void Launch(string[] args, Desktop os)
+        public void Launch(string[] args, Desktop os, string cwd)
         {
             var app = (ShiftApp) Activator.CreateInstance(_app, null);
             var appHost = os.CreateAppHost(_appInfo);
-            app.Initialize(appHost, args);
+            app.Initialize(appHost, args, cwd);
         }
     }
 }
