@@ -20,7 +20,7 @@ namespace Shiftnet.Commands
 
             var cmd = (Command) Activator.CreateInstance(_type, null);
 
-            await cmd.Run(token, args, console, cwd);
+            await cmd.Run(token, args, console, os.CurrentOS, cwd);
         }
 
     }

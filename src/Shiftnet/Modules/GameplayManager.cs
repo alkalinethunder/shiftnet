@@ -278,7 +278,32 @@ namespace Shiftnet.Modules
 
             public void CreateDirectory(string directory)
             {
-                throw new NotImplementedException();
+                var parts = Paths.Split(Paths.GetAbsolute(directory));
+                var existing = GetDiskNodeInternal(parts);
+
+                if (existing == null)
+                {
+                    var file = GetFileNodeInternal(parts);
+                    if (file != null)
+                        return;
+                    
+                    var parent = GetDiskNodeInternal(parts.Take(parts.Length - 1).ToArray());
+
+                    if (parent != null)
+                    {
+                        var existingDirectory = _gameplayManager.GetDirectoryEntry(parent.DirectoryEntry);
+                        var spawn = _gameplayManager.SpawnDirectoryEntry(existingDirectory, parts.Last());
+
+                        var node = new DiskNode
+                        {
+                            DirectoryEntry = spawn.Id,
+                            Name = spawn.Name,
+                            Parent = parent
+                        };
+                        
+                        parent.Children.Add(node);
+                    }
+                }
             }
 
             public void DeleteFile(string path)
