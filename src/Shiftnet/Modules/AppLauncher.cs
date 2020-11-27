@@ -8,6 +8,9 @@ namespace Shiftnet.Modules
         private AppInformationAttribute _appInfo;
         private Type _app;
 
+        public bool PlayerOnly
+            => _appInfo.PlayerOnly;
+        
         public string Command
             => _appInfo.Command;
         

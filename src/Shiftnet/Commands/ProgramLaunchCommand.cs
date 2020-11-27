@@ -10,6 +10,8 @@ namespace Shiftnet.Commands
     public class ProgramLaunchCommand : CommandInformation
     {
         private AppLauncher _launcher;
+
+        public override bool PlayerOnly => _launcher.PlayerOnly;
         
         public ProgramLaunchCommand(AppLauncher launcher) : base(launcher.Command, launcher.Description)
         {

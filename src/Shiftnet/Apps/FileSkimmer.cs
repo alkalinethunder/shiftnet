@@ -3,11 +3,6 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Plex.Engine;
-using Plex.Engine.GraphicsSubsystem;
-using Plex.Engine.GUI;
-using Plex.Objects;
-using static Plex.Engine.FSUtils;
 
 namespace Shiftnet.Apps
 {

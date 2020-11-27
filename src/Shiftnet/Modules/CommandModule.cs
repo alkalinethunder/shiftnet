@@ -31,6 +31,9 @@ namespace Shiftnet.Modules
             var command = _commands.FirstOrDefault(x => x.Name == name);
             if (command != null)
             {
+                if (command.PlayerOnly && !os.CurrentOS.IsPlayer)
+                    return false;
+                
                 await command.Run(token, args, console, os, cwd);
                 return true;
             }
@@ -51,7 +54,7 @@ namespace Shiftnet.Modules
 
                         if (attribute != null)
                         {
-                            var info = new ConsoleCommand(attribute.Name, attribute.Description, type);
+                            var info = new ConsoleCommand(attribute.Name, attribute.Description, type, attribute.PlayerOnly);
                             _commands.Add(info);
                         }
                     }

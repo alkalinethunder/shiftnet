@@ -8,10 +8,14 @@ namespace Shiftnet.Commands
     public class ConsoleCommand : CommandInformation
     {
         private Type _type;
+        private bool _playerOnly;
 
-        public ConsoleCommand(string name, string desc, Type type) : base(name, desc)
+        public override bool PlayerOnly => _playerOnly;
+        
+        public ConsoleCommand(string name, string desc, Type type, bool playerOnly) : base(name, desc)
         {
             _type = type;
+            _playerOnly = playerOnly;
         }
         
         public override async Task Run(CancellationToken token, string[] args, ConsoleControl console, Desktop os, string cwd)

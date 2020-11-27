@@ -3,7 +3,6 @@ using System.Threading;
 using AlkalineThunder.Pandemic;
 using AlkalineThunder.Pandemic.Rendering;
 using Microsoft.Xna.Framework;
-using Plex.Objects;
 using Shiftnet.Apps;
 using AlkalineThunder.Pandemic.Gui;
 using AlkalineThunder.Pandemic.Gui.Controls;

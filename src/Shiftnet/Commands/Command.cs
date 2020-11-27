@@ -3,7 +3,6 @@ using System.ComponentModel.Design;
 using System.Threading;
 using System.Threading.Tasks;
 using AlkalineThunder.Pandemic.Gui.Controls;
-using IronPython.Modules;
 
 namespace Shiftnet.Commands
 {

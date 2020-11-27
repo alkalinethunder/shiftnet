@@ -7,7 +7,8 @@ namespace Shiftnet.Commands
     {
         public string Name { get; }
         public string Description { get; }
-
+        public bool PlayerOnly { get; set; } = false;
+        
         public CommandAttribute(string name, string desc = "")
         {
             Name = name;

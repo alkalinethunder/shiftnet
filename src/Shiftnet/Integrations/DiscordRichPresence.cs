@@ -1,10 +1,12 @@
 using System;
 using AlkalineThunder.Pandemic;
+using AlkalineThunder.Pandemic.Debugging;
 using AlkalineThunder.Pandemic.Settings;
-using Community.CsharpSqlite;
 using DiscordRPC;
 using DiscordRPC.Logging;
 using Microsoft.Xna.Framework;
+using ILogger = DiscordRPC.Logging.ILogger;
+using LogLevel = DiscordRPC.Logging.LogLevel;
 
 namespace Shiftnet.Integrations
 {
@@ -26,7 +28,7 @@ namespace Shiftnet.Integrations
         
         protected override void OnInitialize()
         {
-            GameUtils.Log("discord rpc init...");
+            App.Logger.Info("discord rpc init...");
 
             _timestamps = new Timestamps(DateTime.UtcNow);
 
@@ -42,7 +44,7 @@ namespace Shiftnet.Integrations
         private void InitializeRichPresence()
         {
             _rpc = new DiscordRpcClient("770739106354429953");
-            _rpc.Logger = new PandemicConsoleDiscordLogger();
+            _rpc.Logger = new PandemicConsoleDiscordLogger(App.Logger);
             _rpc.Initialize();
             UpdatePresence();
         }
@@ -55,7 +57,7 @@ namespace Shiftnet.Integrations
         
         protected override void OnLoadContent()
         {
-            GameUtils.Log("discord rpc connected.");
+            App.Logger.Info("discord rpc connected.");
             
             Settings.SettingsUpdated += SettingsOnSettingsUpdated;
         }
@@ -94,24 +96,31 @@ namespace Shiftnet.Integrations
 
     public class PandemicConsoleDiscordLogger : ILogger
     {
+        private Logger _logger;
+        
+        internal PandemicConsoleDiscordLogger(Logger logger)
+        {
+            _logger = logger;
+        }
+        
         public void Trace(string message, params object[] args)
         {
-            GameUtils.Log(string.Format(message, args));
+            _logger.Trace(string.Format(message, args));
         }
 
         public void Info(string message, params object[] args)
         {
-            GameUtils.Log(string.Format(message, args));
+            _logger.Info(string.Format(message, args));
         }
 
         public void Warning(string message, params object[] args)
         {
-            GameUtils.Log(string.Format(message, args));
+            _logger.Warn(string.Format(message, args));
         }
 
         public void Error(string message, params object[] args)
         {
-            GameUtils.Log(string.Format(message, args));
+            _logger.Error(string.Format(message, args));
         }
 
         public LogLevel Level { get; set; }

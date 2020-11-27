@@ -8,7 +8,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\third-party\pandemic-framework\src\AlkalineThunder.Pandemic\AlkalineThunder.Pandemic.csproj" />
-    <ProjectReference Include="..\Plex.Engine\Plex.Engine.csproj" />
   </ItemGroup>
   
   <ItemGroup>

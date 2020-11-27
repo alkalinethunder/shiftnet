@@ -4,12 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Transactions;
 using AlkalineThunder.Pandemic.Scenes;
-using Community.CsharpSqlite;
-using Plex.Objects.ShiftFS;
 using Shiftnet.Saves;
-using Network = Plex.Objects.Network;
 
 namespace Shiftnet.Modules
 {
@@ -362,7 +358,8 @@ namespace Shiftnet.Modules
             
             public string HostName => _gameplayManager.GetPlayerComputer().Name;
             public IFileSystem FileSystem => _fs;
-
+            public bool IsPlayer => true;
+            
             public PlayerOS(GameplayManager manager)
             {
                 _gameplayManager = manager;

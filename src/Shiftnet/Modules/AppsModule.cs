@@ -47,7 +47,7 @@ namespace Shiftnet.Modules
                 sb.AppendLine($"{app.TypeName} (\"{app.Name}\")");
             }
                 
-            GameUtils.Log(sb.ToString());
+            App.Logger.Log(sb.ToString());
         }
 
         protected override void OnInitialize()

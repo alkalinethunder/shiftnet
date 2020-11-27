@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XnaContent xmlns:ns="Microsoft.Xna.Framework">
+  <Asset xmlns:ns="Shiftnet.Data" Type="CodeShopUpgradeList">
+    <Name>ShiftOS</Name>
+    <Description>Upgrade your ShiftOS desktop with new features.</Description>
+    
+    <Upgrades>
+      <CodeShopUpgrade>
+        <Id>testUpgrade</Id>
+        <Name>Test Upgrade</Name>
+        <Cost>10</Cost>
+        <Description>This upgrade does nothing.</Description>
+        <Tutorial>This upgrade did nothing but let you buy another upgrade.</Tutorial>
+      </CodeShopUpgrade>
+      <CodeShopUpgrade>
+        <Id>testUpgradeWithRequirements</Id>
+        <Name>Test Upgrade with Requirements</Name>
+        <Cost>10</Cost>
+        <Description>This upgrade has requirements.</Description>
+        <Tutorial>That's all the upgrades there were!</Tutorial>
+        <Requirements>
+          <String>testUpgrade</String>
+        </Requirements>
+      </CodeShopUpgrade>
+    </Upgrades>
+  </Asset>
+</XnaContent>

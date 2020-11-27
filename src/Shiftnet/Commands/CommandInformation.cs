@@ -8,7 +8,8 @@ namespace Shiftnet.Commands
     {
         public string Name { get; }
         public string Description { get; }
-
+        public abstract bool PlayerOnly { get; }
+        
         public CommandInformation(string name, string desc)
         {
             Name = name;
