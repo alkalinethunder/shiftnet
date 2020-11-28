@@ -9,16 +9,6 @@
                         Apps
                     </text>
                 </button>
-                <button id="settings">
-                    <text>
-                        Settings
-                    </text>
-                </button>
-                <button id="leave">
-                    <text>
-                        Leave
-                    </text>
-                </button>
                 
                 <spacer group.autoSize="false" />
                 <text id="time" vertical-align="Center">
@@ -27,38 +17,63 @@
             </group>
         </box>
         
-        <box id="workspace" style.color="#00000000">
-            <dockPanel padding="10">
-                <group padding="5" spacing="10" dockPanel.dock="Left" width="300">
-                    <blur id="status" group.autoSize="false">
-                        <text vertical-align="Center" horizontal-align="Center" font="Heading1">
-                            SYSTEM STATUS AREA
-                        </text>    
-                    </blur>
-                    <blur id="feed" group.autoSize="false">
-                        <text vertical-align="Center" horizontal-align="Center" font="Heading1">
-                            SOCIAL MEDIA FEED
-                        </text>  
-                    </blur>
-                </group>
-                
-                <blur padding="5" dockPanel.dock="Bottom" height="335">
-                    <console style.bg="#00000000" id="console" />
-                </blur>
-                <blur padding="5">
-                    <group>
-                        <box>
-                            <group orientation="Horizontal" padding="2" spacing="5">
-                                <text id="title" vertical-align="Center">
-                                    Programs
-                                </text>
-                                <stackPanel group.autoSize="false" orientation="Horizontal" id="tabs-main" spacing="2" />
-                            </group>
+        <overlay>
+            <box id="workspace" style.color="#00000000">
+                <dockPanel padding="10">
+                    <group padding="5" spacing="10" dockPanel.dock="Left" width="300">
+                        <box id="status" group.autoSize="false">
+                            <text vertical-align="Center" horizontal-align="Center" font="Heading1">
+                                SYSTEM STATUS AREA
+                            </text>    
                         </box>
-                        <switcher group.autoSize="false" id="main-switcher" />
+                        <box id="feed" group.autoSize="false">
+                            <text vertical-align="Center" horizontal-align="Center" font="Heading1">
+                                SOCIAL MEDIA FEED
+                            </text>  
+                        </box>
                     </group>
-                </blur>
-            </dockPanel>
-        </box>
+                    
+                    <box padding="5" dockPanel.dock="Bottom" height="335">
+                        <console style.bg="#00000000" id="console" />
+                    </box>
+                    <box padding="5">
+                        <group>
+                            <box>
+                                <group orientation="Horizontal" padding="2" spacing="5">
+                                    <text id="title" vertical-align="Center">
+                                        Programs
+                                    </text>
+                                    <stackPanel group.autoSize="false" orientation="Horizontal" id="tabs-main" spacing="2" />
+                                </group>
+                            </box>
+                            <switcher group.autoSize="false" id="main-switcher" />
+                        </group>
+                    </box>
+                </dockPanel>
+            </box>
+            
+            <canvas>
+                <box id="appLauncher" max-height="600">
+                    <group>
+                        <text>Placeholder Text</text>
+                        <scroller group.autoSize="false">
+                            <stackPanel id="appsList" />
+                        </scroller>
+                        <stackPanel orientation="Horizontal" spacing="5" horizontal-align="Right">
+                            <button id="settings">
+                                <text>
+                                    System Settings
+                                </text>
+                            </button>
+                            <button id="leave">
+                                <text>
+                                    Log Out
+                                </text>
+                            </button>
+                        </stackPanel>
+                    </group>
+                </box>
+            </canvas>
+        </overlay>
     </dockPanel>
 </gui>

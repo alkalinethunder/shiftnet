@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AlkalineThunder.Pandemic;
+using AlkalineThunder.Pandemic.Gui;
 using AlkalineThunder.Pandemic.Gui.Controls;
 using AlkalineThunder.Pandemic.Gui.Markup;
 using AlkalineThunder.Pandemic.Input;
@@ -33,6 +34,7 @@ namespace Shiftnet
         private List<TabbedAppHost> _mainApps = new List<TabbedAppHost>();
         private StackPanel _mainTabs;
         private SwitcherPanel _mainArea;
+        private Box _appLauncherBox;
         
         // windows
         private SettingsWindow _settingsWindow;
@@ -60,9 +62,11 @@ namespace Shiftnet
             _appLauncherOpen = Gui.FindById<Button>("apps");
             _settingsOpen = Gui.FindById<Button>("settings");
             _leave = Gui.FindById<Button>("leave");
+
+            _appLauncherBox = Gui.FindById<Box>("appLauncher");
             
             _settingsOpen.Click += SettingsOpenOnClick;
-
+            _appLauncherOpen.Click+= AppLauncherOpenOnClick;
             _leave.Click += LeaveOnClick;
             
             _console = Gui.FindById<ConsoleControl>("console");
@@ -77,6 +81,23 @@ namespace Shiftnet
             SetWallpaper("Backgrounds/rainyskies");
             
             base.OnLoad();
+
+            _appLauncherBox.Parent.Visible = false;
+            _appLauncherBox.LostFocus += AppLauncherBoxOnLostFocus;
+        }
+
+        private void AppLauncherOpenOnClick(object? sender, MouseButtonEventArgs e)
+        {
+            if (!_appLauncherBox.Visible)
+            {
+                _appLauncherBox.Parent.Visible = true;
+                SceneSystem.SetFocus(_appLauncherBox);
+            }
+        }
+
+        private void AppLauncherBoxOnLostFocus(object? sender, FocusEventArgs e)
+        {
+            _appLauncherBox.Parent.Visible = false;
         }
 
         private void LeaveOnClick(object? sender, MouseButtonEventArgs e)

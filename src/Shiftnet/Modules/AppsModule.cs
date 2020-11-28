@@ -36,7 +36,7 @@ namespace Shiftnet.Modules
 
         }
 
-        [Exec("apps.list")]
+        [Exec("list")]
         public void PrintAppsList()
         {
             var sb = new StringBuilder();

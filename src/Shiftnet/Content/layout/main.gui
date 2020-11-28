@@ -1,47 +1,39 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 
 <gui>
-    <box style.test="test" horizontal-align="Center" vertical-align="Center">
-        <stackPanel>
-            <text horizontal-align="Center">
-                The Shiftnet
-            </text>
-            
-            <spacer height="10" />
+    <overlay>
+        <image src="Backgrounds/menu" />
+        <dockPanel padding="15">
+            <group dockPanel.dock="Left" padding="5">
+                <text>
+                    The Shiftnet
+                </text>
+                
+                <spacer height="25" />
 
-            <button id="continue">
-                <text>Continue</text>
-            </button>
-
-            <spacer height="3" />
-
-            <button id="new">
-                <text>New Game</text>
-            </button>
-
-            <spacer height="3" />
-
-            <button id="load">
-                <text>Load Game</text>
-            </button>
-
-            <spacer height="3" />
-            
-            <button id="settings">
-                <text>Settings</text>
-            </button>
-            
-            <spacer height="3" />
-            
-            <button id="exit">
-                <text>Exit</text>
-            </button>
-
-            <spacer height="10" />
-            
-            <text horizontal-align="Center">
-                Developed by Michael VanOverbeek
-            </text>
-        </stackPanel>
-    </box>
+                <button id="continue">
+                    <text>Continue</text>
+                </button>
+                <button id="new">
+                    <text>New installation</text>
+                </button>
+                <button id="shiftorium">
+                    <text>Shiftorium</text>
+                </button>
+                <button id="settings">
+                    <text>System Settings</text>
+                </button>
+                <button id="exit">
+                    <text>Shut Down</text>
+                </button>
+            </group>
+            <scroller padding="5">
+                <stackPanel spacing="5">
+                    <text>Latest Development Update</text>
+                    <text>Heading Text</text>
+                    <text>I forget how to do font styles in the new gui system... placeholder placeholder the holder of places...</text>
+                </stackPanel>
+            </scroller>
+        </dockPanel>
+    </overlay>
 </gui>

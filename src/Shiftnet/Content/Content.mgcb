@@ -98,6 +98,18 @@
 /processorParam:TextureFormat=Color
 /build:Artwork/Watercolor_Full.png
 
+#begin Backgrounds/menu.BMP
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Backgrounds/menu.BMP
+
 #begin Backgrounds/rainyskies.jpg
 /importer:TextureImporter
 /processor:TextureProcessor

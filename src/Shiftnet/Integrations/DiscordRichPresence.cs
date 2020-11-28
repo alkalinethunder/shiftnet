@@ -87,7 +87,7 @@ namespace Shiftnet.Integrations
             }
         }
 
-        [Exec("discord.setPresenceEnabled")]
+        [Exec("setEnabled")]
         public void Exec_SetPresenceEnabled(bool value)
         {
             EnableRichPresence = value;
