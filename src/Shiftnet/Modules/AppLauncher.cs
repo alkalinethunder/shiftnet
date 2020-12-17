@@ -1,4 +1,5 @@
 ﻿using System;
+using AlkalineThunder.Pandemic;
 using Shiftnet.Apps;
 
 namespace Shiftnet.Modules
@@ -35,11 +36,17 @@ namespace Shiftnet.Modules
             _appInfo = info;
         }
 
-        public void Launch(string[] args, Desktop os, string cwd)
+        public bool IsLauncherFor<T>() where T : ShiftApp, new()
+        {
+            return _app == typeof(T);
+        }
+        
+        public ShiftApp Launch(PropertySet args, Desktop os, string cwd)
         {
             var app = (ShiftApp) Activator.CreateInstance(_app, null);
             var appHost = os.CreateAppHost(_appInfo);
             app.Initialize(appHost, args, cwd);
+            return app;
         }
     }
 }

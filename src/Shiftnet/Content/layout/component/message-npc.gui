@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<gui>
+    <stackPanel orientation="Horizontal" horizontal-align="Left">
+        <icon width="48" height="48" vertical-align="Top" />
+        <stackPanel>
+            <box horizontal-align="Left">
+                <overlay>
+                    <icon src="textures/message-npc" brush-mode="Box" overlay.measure-visible="false" brush-margin="25" style.textColor="#343434" />
+                    <text id="text" padding="15" style.textColor="white">
+                        Message text goes here.
+                    </text>
+                </overlay>
+            </box>
+            <text id="date">Date</text>
+        </stackPanel>
+    </stackPanel>
+</gui>

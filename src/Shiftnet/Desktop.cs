@@ -111,7 +111,7 @@ namespace Shiftnet
             // LAUNCH THEN, BITCH!
             foreach (var launcher in startupApps)
             {
-                launcher.Launch(Array.Empty<string>(), this, this.CurrentOS.Home);
+                launcher.Launch(null, this, this.CurrentOS.Home);
             }
         }
 

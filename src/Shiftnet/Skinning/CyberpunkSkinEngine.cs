@@ -219,6 +219,11 @@ namespace Shiftnet.Skinning
                     break;
             }
 
+            if (control.StyleProperties.HasValue<string>("textColor"))
+            {
+                style.TextColor = ParseColor(control.StyleProperties.GetValue<string>("textColor"));
+            }
+            
             style.BorderSize = 2;
             
             return style;

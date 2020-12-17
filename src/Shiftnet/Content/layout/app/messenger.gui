@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<gui>
+    <group>
+        <group orientation="Horizontal">
+            <icon width="64" height="64" />
+            <stackPanel group.autoSize="false">
+                <text>Display Name</text>
+                <text>Username</text>
+            </stackPanel>
+        </group>
+        <box style.cyberpunk.color="primary">
+            <group orientation="Horizontal">
+                <icon width="12" height="12" />
+                <text group.autoSize="false">
+                    Do Not Disturb is on. Talking to %user will turn Do Not Disturb off.
+                </text>
+            </group>
+        </box>
+        <scroller group.autoSize="false">
+            <stackPanel id="messages" />
+        </scroller>
+        <text>
+            %user is typing...
+        </text>
+    </group>
+</gui>

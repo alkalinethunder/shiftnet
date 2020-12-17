@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<gui>
+    <group>
+        <button id="testContact">
+            <group orientation="Horizontal">
+                <icon width="32" height="32" />
+                <stackPanel group.autoSize="false">
+                    <text>TEst Contact</text>
+                    <text>Last message sent.</text>
+                </stackPanel>
+            </group>
+        </button>
+    </group>
+</gui>

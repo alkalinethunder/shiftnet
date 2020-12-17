@@ -2,6 +2,7 @@
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using AlkalineThunder.Pandemic;
 using AlkalineThunder.Pandemic.Gui.Controls;
 using Shiftnet.Modules;
 
@@ -24,7 +25,10 @@ namespace Shiftnet.Commands
             {
                 try
                 {
-                    _launcher.Launch(args, os, cwd);
+                    var props = new PropertySet();
+                    props.SetValue("Arguments", args);
+
+                    _launcher.Launch(props, os, cwd);
                 }
                 catch (Exception ex)
                 {

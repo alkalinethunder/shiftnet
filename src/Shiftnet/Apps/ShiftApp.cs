@@ -1,10 +1,13 @@
 ﻿using System;
+using System.Numerics;
 using System.Text;
+using AlkalineThunder.Pandemic;
 using AlkalineThunder.Pandemic.Gui;
 using Shiftnet.AppHosts;
 using AlkalineThunder.Pandemic.Gui.Controls;
 using AlkalineThunder.Pandemic.Scenes;
 using AlkalineThunder.Pandemic.Skinning;
+using Microsoft.Xna.Framework;
 
 namespace Shiftnet.Apps
 {
@@ -12,7 +15,8 @@ namespace Shiftnet.Apps
     {
         private IShiftAppHost _appHost;
         private string[] _args;
-
+        private PropertySet _properties;
+        
         protected CanvasPanel Gui
             => _appHost.Gui;
         
@@ -21,6 +25,9 @@ namespace Shiftnet.Apps
 
         protected Desktop ShiftOS
             => _appHost.ShiftOS;
+
+        protected PropertySet LaunchProperties
+            => _properties;
         
         protected string CurrentDirectory { get; private set; }
         
@@ -33,8 +40,11 @@ namespace Shiftnet.Apps
         public void Close()
             => _appHost.Close();
 
-        public void Initialize(IShiftAppHost appHost, string[] args, string cwd)
+        public void Initialize(IShiftAppHost appHost, PropertySet args, string cwd)
         {
+            _properties = args ?? new PropertySet();
+            _args = _properties.GetValue<string[]>("Arguments", Array.Empty<string>());
+            
             if (_appHost != null)
                 throw new InvalidOperationException("Application has already started.");
 
@@ -42,8 +52,9 @@ namespace Shiftnet.Apps
             CurrentDirectory = cwd;
             
             _appHost = appHost ?? throw new ArgumentNullException(nameof(appHost));
-            _args = args;
 
+            _appHost.Closed += AppHostOnClosed;
+            
             try
             {
                 Main();
@@ -66,8 +77,20 @@ namespace Shiftnet.Apps
             }
         }
 
+        private void AppHostOnClosed(object? sender, EventArgs e)
+        {
+            OnClosed(e);
+        }
+
         protected abstract void Main();
         public SceneSystem SceneSystem => ShiftOS.SceneSystem;
         public SkinSystem Skin => ShiftOS.Skin;
+
+        protected virtual void OnClosed(EventArgs e)
+        {
+            Closed?.Invoke(this, e);
+        }
+        
+        public event EventHandler Closed;
     }
 }

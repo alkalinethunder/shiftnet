@@ -3,22 +3,36 @@
     "name": "ShiftOS",
     "description": "The default look and feel of ShiftOS.",
     "author": "Developer X",
-    "engine": "Shiftnet.Skinning.CyberpunkSkinEngine"
+    "engine": "default"
   },
   "colors": {
     "light": {
-      "container": "#101010",
-      "text.primary": "#f71b1b",
-      "text.secondary": "cyan",
-      "text.tertiary": "gray",
-      "text.highlight": "white",
+      "default.bg": "#efefef",
+      "default.text": "#000",
+      "primary.bg": "#1baaf7",
+      "primary.text": "#fff",
+      "secondary.bg": "#808080",
+      "secondary.text": "#fff",
+      "error.bg": "#f71b1b",
+      "error.text": "#fff",
+      "warning.bg": "yellow",
+      "warning.text": "#fff",
+      "info.bg": "purple",
+      "info.text": "#fff"
     },
     "dark": {
-      "container": "#101010",
-      "text.primary": "#f71b1b",
-      "text.secondary": "cyan",
-      "text.tertiary": "gray",
-      "text.highlight": "white"
+      "default.bg": "#111",
+      "default.text": "#efefef",
+      "primary.bg": "#1baaf7",
+      "primary.text": "#fff",
+      "secondary.bg": "#808080",
+      "secondary.text": "#fff",
+      "error.bg": "#f71b1b",
+      "error.text": "#fff",
+      "warning.bg": "yellow",
+      "warning.text": "#fff",
+      "info.bg": "purple",
+      "info.text": "#fff"
     }
   },
   "properties": {

@@ -17,6 +17,11 @@ namespace Shiftnet.Modules
 
         public IEnumerable<AppLauncher> AvailableAppLaunchers
             => _apps.AsReadOnly();
+
+        public AppLauncher GetLauncher<T>() where T : ShiftApp, new()
+        {
+            return _apps.First(x => x.IsLauncherFor<T>());
+        }
         
         private void LocateApps()
         {
