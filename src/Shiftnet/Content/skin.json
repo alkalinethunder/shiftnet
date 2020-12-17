@@ -3,25 +3,24 @@
     "name": "ShiftOS",
     "description": "The default look and feel of ShiftOS.",
     "author": "Developer X",
-    "engine": "default" /* new pandemic skin system */
+    "engine": "Shiftnet.Skinning.CyberpunkSkinEngine"
   },
   "colors": {
     "light": {
-      "background": "#efefef",
-      "foreground": "#000000",
-      "primary": "#1baaf7",
-      "secondary": "#808080",
-      "danger": "#f71b1b"
+      "container": "#101010",
+      "text.primary": "#f71b1b",
+      "text.secondary": "cyan",
+      "text.tertiary": "gray",
+      "text.highlight": "white",
     },
     "dark": {
-      "background": "#222222",
-      "foreground": "#ffffff",
-      "primary": "#1baaf7",
-      "secondary": "#808080",
-      "danger": "#f71b1b"
+      "container": "#101010",
+      "text.primary": "#f71b1b",
+      "text.secondary": "cyan",
+      "text.tertiary": "gray",
+      "text.highlight": "white"
     }
   },
-  /* Properties that are unique to the skin engine being used. */
   "properties": {
     "selectList.borderSize": 0,
     "selectList.padding.left": 0,

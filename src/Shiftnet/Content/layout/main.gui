@@ -3,30 +3,34 @@
 <gui>
     <overlay>
         <image src="Backgrounds/menu" />
-        <dockPanel padding="15">
-            <group dockPanel.dock="Left" padding="5">
-                <text>
-                    The Shiftnet
-                </text>
-                
-                <spacer height="25" />
+        <dockPanel>
+            <box dockPanel.dock="Left">
+                <group padding="20">
+                    <text>
+                        The Shiftnet
+                    </text>
+                    
+                    <spacer group.autoSize="false" />
+    
+                    <button id="continue">
+                        <text>Continue</text>
+                    </button>
+                    <button id="new">
+                        <text>New installation</text>
+                    </button>
+                    <button id="shiftorium">
+                        <text>Shiftorium</text>
+                    </button>
+                    <button id="settings">
+                        <text>System Settings</text>
+                    </button>
+                    <button id="exit">
+                        <text>Shut Down</text>
+                    </button>
 
-                <button id="continue">
-                    <text>Continue</text>
-                </button>
-                <button id="new">
-                    <text>New installation</text>
-                </button>
-                <button id="shiftorium">
-                    <text>Shiftorium</text>
-                </button>
-                <button id="settings">
-                    <text>System Settings</text>
-                </button>
-                <button id="exit">
-                    <text>Shut Down</text>
-                </button>
-            </group>
+                    <spacer group.autoSize="false" />
+                </group>
+            </box>
             <scroller padding="5">
                 <stackPanel spacing="5">
                     <text>Latest Development Update</text>

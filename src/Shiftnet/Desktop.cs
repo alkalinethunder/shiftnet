@@ -29,12 +29,17 @@ namespace Shiftnet
         private double _wallFadeTime;
         private double _wallFadeDuration = 1;
         private StackPanel _tabs;
+        private StackPanel _socialTabs;
         private IShiftOS _currentOS;
         private Box _mainContent;
         private List<TabbedAppHost> _mainApps = new List<TabbedAppHost>();
+        private List<TabbedAppHost> _socialApps = new List<TabbedAppHost>();
         private StackPanel _mainTabs;
         private SwitcherPanel _mainArea;
+        private SwitcherPanel _socialSwitcher;
         private Box _appLauncherBox;
+
+        private AppsModule AppsModule => GetModule<AppsModule>();
         
         // windows
         private SettingsWindow _settingsWindow;
@@ -84,6 +89,30 @@ namespace Shiftnet
 
             _appLauncherBox.Parent.Visible = false;
             _appLauncherBox.LostFocus += AppLauncherBoxOnLostFocus;
+
+            _socialTabs = Gui.FindById<StackPanel>("tabs-social");
+            _socialSwitcher = Gui.FindById<SwitcherPanel>("switcher-social");
+            
+            LaunchStartupApps();
+        }
+
+        private void LaunchStartupApps()
+        {
+            // Are we a player?
+            var isPlayer = this.CurrentOS.IsPlayer;
+
+            // Get all app launchers
+            //  - that can be launched by the current user
+            // - and that are startup apps.
+            var startupApps = this.AppsModule.AvailableAppLaunchers
+                .Where(x => isPlayer || !x.PlayerOnly)
+                .Where(x => x.Startup);
+
+            // LAUNCH THEN, BITCH!
+            foreach (var launcher in startupApps)
+            {
+                launcher.Launch(Array.Empty<string>(), this, this.CurrentOS.Home);
+            }
         }
 
         private void AppLauncherOpenOnClick(object? sender, MouseButtonEventArgs e)
@@ -152,6 +181,11 @@ namespace Shiftnet
                 
                 switch (appInfo.DisplayTarget)
                 {
+                    case DisplayTarget.Feed:
+                        _socialTabs.AddChild(tab);
+                        _socialSwitcher.AddChild(canvas);
+                        _socialApps.Add(tabHost);
+                        break;
                     default:
                         _mainTabs.AddChild(tab);
                         _mainArea.AddChild(canvas);

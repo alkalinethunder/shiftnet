@@ -359,6 +359,7 @@ namespace Shiftnet.Modules
             public string HostName => _gameplayManager.GetPlayerComputer().Name;
             public IFileSystem FileSystem => _fs;
             public bool IsPlayer => true;
+            public string Home => "/";
             
             public PlayerOS(GameplayManager manager)
             {

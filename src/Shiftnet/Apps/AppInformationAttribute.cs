@@ -12,6 +12,7 @@ namespace Shiftnet.Apps
         public DisplayTarget DisplayTarget { get; }
         public bool SingleInstance { get; set; } = true;
         public bool PlayerOnly { get; set; } = false;
+        public bool Startup { get; set; } = false;
         
         public AppInformationAttribute(string name, string desc, DisplayTarget target = Apps.DisplayTarget.Default)
         {

@@ -22,14 +22,19 @@
                 <dockPanel padding="10">
                     <group padding="5" spacing="10" dockPanel.dock="Left" width="300">
                         <box id="status" group.autoSize="false">
-                            <text vertical-align="Center" horizontal-align="Center" font="Heading1">
-                                SYSTEM STATUS AREA
-                            </text>    
                         </box>
                         <box id="feed" group.autoSize="false">
-                            <text vertical-align="Center" horizontal-align="Center" font="Heading1">
-                                SOCIAL MEDIA FEED
-                            </text>  
+                            <group>
+                                <box>
+                                    <group orientation="Horizontal" padding="2" spacing="5">
+                                        <text id="title-social" vertical-align="Center">
+                                            Social
+                                        </text>
+                                        <stackPanel group.autoSize="false" orientation="Horizontal" id="tabs-social" spacing="2" />
+                                    </group>
+                                </box>
+                                <switcher group.autoSize="false" id="switcher-social" />
+                            </group>
                         </box>
                     </group>
                     

@@ -1,3 +1,4 @@
 [submodule "third-party/pandemic-framework"]
 	path = third-party/pandemic-framework
 	url = https://github.com/alkalinethunder/pandemic-framework
+	branch = 2020.12
