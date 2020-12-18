@@ -5,30 +5,80 @@
         <image src="Backgrounds/menu" />
         <dockPanel>
             <box dockPanel.dock="Left">
-                <group padding="20">
-                    <text>
+                <group padding="20" width="400">
+                    <text style.font="title-1">
                         The Shiftnet
                     </text>
                     
                     <spacer group.autoSize="false" />
     
-                    <button id="continue">
-                        <text>Continue</text>
+                    <button id="continue" style.accent="Default">
+                        <group orientation="Horizontal" spacing="5" padding="10" horizontal-align="Stretch">
+                            <icon width="48" height="48" vertical-align="Center" />
+                            <stackPanel vertical-align="Center" group.autoSize="false">
+                                <text style.font="display-1">
+                                    Continue
+                                </text>
+                                <text id="lastSaveName">
+                                    Last Player Name
+                                </text>
+                            </stackPanel>
+                        </group>
                     </button>
-                    <button id="new">
-                        <text>New installation</text>
+                    <button id="new" style.accent="Default">
+                        <group orientation="Horizontal" spacing="5" padding="10" horizontal-align="Stretch">
+                            <icon width="48" height="48" vertical-align="Center" />
+                            <stackPanel vertical-align="Center" group.autoSize="false">
+                                <text style.font="display-1">
+                                    New installation
+                                </text>
+                            </stackPanel>
+                        </group>
                     </button>
-                    <button id="shiftorium">
-                        <text>Shiftorium</text>
+                    <button id="shiftorium" style.accent="Default">
+                        <group orientation="Horizontal" spacing="5" padding="10" horizontal-align="Stretch">
+                            <icon width="48" height="48" vertical-align="Center" />
+                            <stackPanel vertical-align="Center" group.autoSize="false">
+                                <text style.font="display-1">
+                                    Shiftorium
+                                </text>
+                                <text>
+                                    Browse and install new wallpapers, skins, and mods made just for ShiftOS. Shift it your way.
+                                </text>
+                            </stackPanel>
+                        </group>
                     </button>
-                    <button id="settings">
-                        <text>System Settings</text>
+                    <button id="settings" style.accent="Default">
+                        <group orientation="Horizontal" spacing="5" padding="10" horizontal-align="Stretch">
+                            <icon width="48" height="48" vertical-align="Center" />
+                            <stackPanel vertical-align="Center" group.autoSize="false">
+                                <text style.font="display-1">
+                                    System settings
+                                </text>
+                                <text>
+                                    Adjust graphics, user interface, audio, and other preferences.
+                                </text>
+                            </stackPanel>
+                        </group>
                     </button>
-                    <button id="exit">
-                        <text>Shut Down</text>
+                    <button id="exit" style.accent="Default">
+                        <group orientation="Horizontal" spacing="5" padding="10" horizontal-align="Stretch">
+                            <icon width="48" height="48" vertical-align="Center" />
+                            <stackPanel vertical-align="Center" group.autoSize="false">
+                                <text style.font="display-1">
+                                    Shut down
+                                </text>
+                            </stackPanel>
+                        </group>
                     </button>
 
                     <spacer group.autoSize="false" />
+                    
+                    <text>
+                        Developed with &lt;3 by Michael VanOverbeek.
+                        
+                        Powered by Pandemic Framework 2020.12.
+                    </text>
                 </group>
             </box>
             <scroller padding="5">

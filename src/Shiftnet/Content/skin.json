@@ -43,17 +43,26 @@
     "selectList.padding.bottom": 0
   },
   "fonts": {
-    "console": {
-      "path": "UbuntuMono-R.ttf",
-      "size": 12
+    "title-1": {
+      "path": "fonts/Gruppo-Regular.ttf",
+      "size": 48
     },
-    "paragraph": {
-      "path": "fonts/Overpass-Regular.ttf",
-      "size": 12
+    "console": {
+      "path": "fonts/NanumGothicCoding-Regular.ttf",
+      "size": 18
+    },
+    "default": {
+      "path": "fonts/AndikaNewBasic-Regular.ttf",
+      "size": 24
     },
     "heading": {
       "path": "fonts/Overpass-Regular.ttf",
-      "size": 15
+      "size": 24
+    },
+    "display-1": {
+      "path": "fonts/Teko-Regular.ttf",
+      "size": 28,
+      "lineSpacing": -6,
     }
   }
 }
