@@ -1,26 +1,26 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 
 <gui>
-    <group>
-        <group orientation="Horizontal">
-            <icon width="64" height="64" />
-            <stackPanel group.autoSize="false">
-                <text>Display Name</text>
-                <text>Username</text>
+    <group spacing="5">
+        <group orientation="Horizontal" padding="5" spacing="10">
+            <icon width="64" height="64" vertical-align="Center"/>
+            <stackPanel group.autoSize="false" vertical-align="Center">
+                <text id="fullname">Display Name</text>
+                <text id="username">Username</text>
             </stackPanel>
         </group>
-        <box style.cyberpunk.color="primary">
-            <group orientation="Horizontal">
-                <icon width="12" height="12" />
-                <text group.autoSize="false">
+        <box style.accent="Error" padding="5" id="dnd">
+            <group orientation="Horizontal" padding="5" spacing="3">
+                <icon width="12" height="12" style.accent="Error" />
+                <text group.autoSize="false" style.accent="Error">
                     Do Not Disturb is on. Talking to %user will turn Do Not Disturb off.
                 </text>
             </group>
         </box>
-        <scroller group.autoSize="false">
+        <scroller group.autoSize="false" padding="5">
             <stackPanel id="messages" />
         </scroller>
-        <text>
+        <text id="typing" padding="5">
             %user is typing...
         </text>
     </group>

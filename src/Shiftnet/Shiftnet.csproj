@@ -56,6 +56,14 @@
     <None Update="Content\layout\component\message-player.gui">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Update="Content\layout\component\contactButton.gui">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  
+  <ItemGroup>
+    <None Remove="Resources\npcs.json" />
+    <EmbeddedResource Include="Resources\npcs.json" />
   </ItemGroup>
   
 </Project>

@@ -4,7 +4,9 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using AlkalineThunder.Pandemic.Debugging;
 using AlkalineThunder.Pandemic.Scenes;
+using Newtonsoft.Json;
 using Shiftnet.Saves;
 
 namespace Shiftnet.Modules
@@ -15,6 +17,11 @@ namespace Shiftnet.Modules
     {
         private List<IShiftOS> _activeOSes = new List<IShiftOS>();
         private string _playerName;
+        private Npc[] _npcs;
+        private static readonly string ContactsColumn = "contacts";
+        private bool _dnd;
+
+        public event EventHandler DoNotDisturbChanged;
         
         private SceneSystem SceneSystem
             => GetModule<SceneSystem>();
@@ -22,6 +29,39 @@ namespace Shiftnet.Modules
         private SaveSystem SaveSystem
             => GetModule<SaveSystem>();
 
+        public bool DoNotDisturb
+        {
+            get => _dnd;
+            set
+            {
+                if (_dnd != value)
+                {
+                    _dnd = value;
+                    DoNotDisturbChanged?.Invoke(this, EventArgs.Empty);
+                }
+            }
+        }
+        
+        public event EventHandler ContactAdded;
+
+        public IEnumerable<ContactInformation> Contacts
+        {
+            get
+            {
+                if (SaveSystem.IsGameLoaded)
+                {
+                    using var save = SaveSystem.OpenSaveFile();
+
+                    var contacts = save.Database.GetCollection<Contact>(ContactsColumn);
+
+                    foreach (var contact in contacts.FindAll())
+                    {
+                        yield return new ContactInformation(contact, _npcs.First(x => x.Id == contact.NpcId));
+                    }
+                }
+            }
+        }
+        
         public void ContinueGame()
         {
             if (SaveSystem.GetSlots().Any())
@@ -48,6 +88,22 @@ namespace Shiftnet.Modules
             StartInternal();
         }
 
+        private void LoadNpcs()
+        {
+            using var resource = this.GetType().Assembly.GetManifestResourceStream("Shiftnet.Resources.npcs.json");
+            using var reader = new StreamReader(resource);
+
+            var json = reader.ReadToEnd();
+
+            _npcs = JsonConvert.DeserializeObject<Npc[]>(json);
+        }
+
+        protected override void OnLoadContent()
+        {
+            LoadNpcs();
+            base.OnLoadContent();
+        }
+
         private DirectoryEntry[] GetChildDirectories(DirectoryEntry entry)
         {
             using var transaction = SaveSystem.OpenSaveFile();
@@ -71,6 +127,8 @@ namespace Shiftnet.Modules
 
         private void StartInternal()
         {
+            _dnd = false;
+            
             var hostname = _playerName;
             FindOrCreatePlayerComputer(hostname);
 
@@ -348,6 +406,48 @@ namespace Shiftnet.Modules
                 {
                     yield return Paths.Combine(path, subnode.FileName);
                 }
+            }
+        }
+
+        private void AddContact(Npc npc)
+        {
+            using var transaction = SaveSystem.OpenSaveFile();
+            var contacts = transaction.Database.GetCollection<Contact>(ContactsColumn);
+
+            if (contacts.FindOne(x => x.NpcId == npc.Id) != null)
+                return;
+            
+            var contact = new Contact
+            {
+                NpcId = npc.Id
+            };
+
+            contacts.Insert(contact);
+
+            App.GameLoop.Invoke(() =>
+            {
+                ContactAdded?.Invoke(this, EventArgs.Empty);
+            });
+        }
+
+        [Exec("addContact")]
+        public void Exec_AddContact(int id)
+        {
+            AddContact(_npcs.First(x => x.Id == id));
+        }
+
+        [Exec("doNotDisturb")]
+        public void Exec_DoNotDisturb()
+        {
+            DoNotDisturb = !DoNotDisturb;
+        }
+        
+        [Exec("npcs")]
+        public void PrintNpcs()
+        {
+            foreach (var npc in _npcs)
+            {
+                App.Logger.Trace($"{npc.Id}: {npc.FullName} (@{npc.Username})");
             }
         }
         

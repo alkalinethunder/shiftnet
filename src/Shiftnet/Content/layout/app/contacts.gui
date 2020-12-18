@@ -2,14 +2,8 @@
 
 <gui>
     <group>
-        <button id="testContact">
-            <group orientation="Horizontal">
-                <icon width="32" height="32" />
-                <stackPanel group.autoSize="false">
-                    <text>TEst Contact</text>
-                    <text>Last message sent.</text>
-                </stackPanel>
-            </group>
-        </button>
+        <scroller group.autoSize="false">
+            <stackPanel spacing="3" id="contactsList" />
+        </scroller>
     </group>
 </gui>

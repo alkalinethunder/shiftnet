@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<gui>
+    <button>
+        <group orientation="Horizontal">
+            <icon width="32" height="32" vertical-align="Center" />
+            <stackPanel group.autoSize="false">
+                <text id="fullname">Full name</text>
+                <text id="username">Username</text>
+            </stackPanel>
+        </group>
+    </button>
+</gui>
