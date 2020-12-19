@@ -1,0 +1,10 @@
+﻿[
+  {
+    "Id": "test",
+    "Members": [
+      0
+    ],
+    "ConversationId": "Shiftnet.Resources.Conversations.test.xml",
+    "EncounterType": "Scripted"
+  }
+]

@@ -2,7 +2,7 @@
 
 <gui>
     <dockPanel>
-        <box id="topPanel" dockPanel.dock="Top">
+        <box id="topPanel" dockPanel.dock="Top" style.accent="Info">
             <group spacing="5" orientation="Horizontal">
                 <button id="apps">
                     <text>
@@ -11,23 +11,23 @@
                 </button>
                 
                 <spacer group.autoSize="false" />
-                <text id="time" vertical-align="Center">
+                <text id="time" vertical-align="Center" style.font="title-4">
                     12:00
                 </text>
             </group>
         </box>
         
         <overlay>
-            <box id="workspace" style.color="#00000000">
+            <box id="workspace" style.bgColor="#00000000">
                 <dockPanel padding="10">
                     <group padding="5" spacing="10" dockPanel.dock="Left" width="300">
-                        <box id="status" group.autoSize="false">
+                        <box id="status" group.autoSize="false" style.bgOpacity="0.5">
                         </box>
-                        <box id="feed" group.autoSize="false">
+                        <box id="feed" group.autoSize="false" style.bgOpacity="0.85">
                             <group>
                                 <box>
                                     <group orientation="Horizontal" padding="2" spacing="5">
-                                        <text id="title-social" vertical-align="Center">
+                                        <text id="title-social" vertical-align="Center" style.font="title-4">
                                             Social
                                         </text>
                                         <stackPanel group.autoSize="false" orientation="Horizontal" id="tabs-social" spacing="2" />
@@ -38,14 +38,14 @@
                         </box>
                     </group>
                     
-                    <box padding="5" dockPanel.dock="Bottom" height="335">
+                    <box padding="5" dockPanel.dock="Bottom" height="335" style.bgOpacity="0.8">
                         <console style.bg="#00000000" id="console" />
                     </box>
-                    <box padding="5">
+                    <box padding="5" style.bgOpacity="0.8">
                         <group>
                             <box>
                                 <group orientation="Horizontal" padding="2" spacing="5">
-                                    <text id="title" vertical-align="Center">
+                                    <text id="title" vertical-align="Center" style.font="title-4">
                                         Programs
                                     </text>
                                     <stackPanel group.autoSize="false" orientation="Horizontal" id="tabs-main" spacing="2" />

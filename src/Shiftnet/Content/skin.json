@@ -47,6 +47,10 @@
       "path": "fonts/Gruppo-Regular.ttf",
       "size": 48
     },
+    "title-4": {
+      "path": "fonts/Gruppo-Regular.ttf",
+      "size": 24
+    },
     "console": {
       "path": "fonts/NanumGothicCoding-Regular.ttf",
       "size": 18

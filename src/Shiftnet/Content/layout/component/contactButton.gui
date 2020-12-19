@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 
 <gui>
-    <button>
-        <group orientation="Horizontal">
+    <button style.accent="Default">
+        <group orientation="Horizontal" spacing="5" padding="10">
             <icon width="32" height="32" vertical-align="Center" />
-            <stackPanel group.autoSize="false">
-                <text id="fullname">Full name</text>
+            <stackPanel group.autoSize="false" vertical-align="Center">
+                <text id="fullname" style.font="display-1">Full name</text>
                 <text id="username">Username</text>
             </stackPanel>
         </group>

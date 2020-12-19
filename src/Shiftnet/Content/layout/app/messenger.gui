@@ -17,7 +17,7 @@
                 </text>
             </group>
         </box>
-        <scroller group.autoSize="false" padding="5">
+        <scroller group.autoSize="false" padding="5" origin="Bottom">
             <stackPanel id="messages" />
         </scroller>
         <text id="typing" padding="5">

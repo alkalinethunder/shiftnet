@@ -20,7 +20,8 @@ namespace Shiftnet.Modules
         private Npc[] _npcs;
         private static readonly string ContactsColumn = "contacts";
         private bool _dnd;
-
+        private List<ConversationInfo> _conversationEncounters = null;
+        
         public event EventHandler DoNotDisturbChanged;
         
         private SceneSystem SceneSystem
@@ -91,11 +92,15 @@ namespace Shiftnet.Modules
         private void LoadNpcs()
         {
             using var resource = this.GetType().Assembly.GetManifestResourceStream("Shiftnet.Resources.npcs.json");
+            using var convos = this.GetType().Assembly
+                .GetManifestResourceStream("Shiftnet.Resources.conversations.json");
             using var reader = new StreamReader(resource);
-
+            using var convoReader = new StreamReader(convos);
+            
             var json = reader.ReadToEnd();
 
             _npcs = JsonConvert.DeserializeObject<Npc[]>(json);
+            _conversationEncounters = JsonConvert.DeserializeObject<List<ConversationInfo>>(convoReader.ReadToEnd());
         }
 
         protected override void OnLoadContent()
@@ -468,5 +473,13 @@ namespace Shiftnet.Modules
             }
         }
 
+        [Exec("chatEncounters")]
+        public void Exec_ChatEncounters()
+        {
+            foreach (var encounter in _conversationEncounters)
+            {
+                App.Logger.Info(encounter.Id);
+            }
+        }
     }
 }

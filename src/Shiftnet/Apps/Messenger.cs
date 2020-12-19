@@ -59,7 +59,7 @@ namespace Shiftnet.Apps
 
         private void MakeMessage(DateTime time, string message, bool isNPC)
         {
-            var gui = (isNPC ? MakeNpcGui : MakePlayerGui)();
+            var gui = (isNPC ? MakeNpcGui : MakePlayerGui)(); // <-------- RIGHT HERE
 
             gui.FindById<TextBlock>("text").Text = message;
             gui.FindById<TextBlock>("date").Text = time.ToString();
