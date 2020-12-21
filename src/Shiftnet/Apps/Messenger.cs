@@ -3,14 +3,23 @@ using System.Net.Mime;
 using AlkalineThunder.Pandemic.Gui;
 using AlkalineThunder.Pandemic.Gui.Controls;
 using AlkalineThunder.Pandemic.Gui.Markup;
+using Microsoft.Xna.Framework;
+using Shiftnet.Dialog;
 using Shiftnet.Modules;
 using Shiftnet.Saves;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using AlkalineThunder.Pandemic.Input;
 
 namespace Shiftnet.Apps
 {
     [AppInformation("Messenger", "Chat with people.", UserCloseable = true, SingleInstance = false, PlayerOnly = true)]
     public class Messenger : ShiftApp
     {
+        private StackPanel _choices;
+        private List<string> _typers = new List<string>();
+        private DialogPlayer _dialog;
         private Func<Control> MakeNpcGui;
         private Func<Control> MakePlayerGui;
         private StackPanel _messages;
@@ -51,10 +60,118 @@ namespace Shiftnet.Apps
             _dnd.Visible = GameplayManager.DoNotDisturb;
             _dnd.LayoutVisible = GameplayManager.DoNotDisturb;
 
-            for (var i = 0; i < 200; i++)
+            _choices = Gui.FindById<StackPanel>("choices");
+            
+            _dialog = _contact.GetDialogPlayer();
+            _dialog.TypingStarted += DialogOnTypingStarted;
+            _dialog.TypingEnded += DialogOnTypingEnded;
+            _dialog.MessageSent += DialogOnMessageSent;
+            
+            _dialog.ChoiceNeeded += DialogOnChoiceNeeded;
+            _dialog.ChoiceFinished += DialogOnChoiceFinished;
+        }
+
+        private void DialogOnChoiceFinished(object? sender, EventArgs e)
+        {
+            _choices.Visible = false;
+            _choices.Clear();
+        }
+
+        private void DialogOnChoiceNeeded(object? sender, ChoiceNeededEventArgs e)
+        {
+            _choices.Visible = true;
+            _choices.Clear();
+
+            foreach (var choice in e.Choices)
             {
-                MakeMessage(DateTime.Now, "Test message " + (i + 1).ToString(), i % 2 == 0);
+                var message = MakePlayerGui();
+
+                message.FindById<TextBlock>("text").Text = choice.Label;
+                message.FindById<TextBlock>("date").Text = "Click to choose.";
+
+                message.Tag = choice;
+
+                _choices.AddChild(message);
+                
+                message.Click += ChoiceClicked;
             }
+        }
+
+        private void ChoiceClicked(object? sender, MouseButtonEventArgs e)
+        {
+            if (sender is Control control)
+            {
+                if (control.Tag is PlayerChoice choice)
+                {
+                    _dialog.SubmitChoice(choice);
+                }
+            }
+        }
+
+        private void DialogOnMessageSent(object? sender, DialogMessageEventArgs e)
+        {
+            MakeMessage(e.DialogMessage.Sent, e.DialogMessage.Text, !e.IsPlayer);
+        }
+
+        private void DialogOnTypingEnded(object? sender, TypingEventArgs e)
+        {
+            _typers.Remove(e.Username);
+            UpdateTypers();
+        }
+        
+        private void DialogOnTypingStarted(object? sender, TypingEventArgs e)
+        {
+            _typers.Add(e.Username);
+            UpdateTypers();
+        }
+
+        private void UpdateTypers()
+        {
+            if (_typers.Any())
+            {
+                var sb = new StringBuilder();
+
+                for (var i = 0; i < _typers.Count; i++)
+                {
+                    var typer = _typers[i];
+
+                    if (i > 0)
+                    {
+                        if (i == _typers.Count - 1)
+                        {
+                            sb.Append(" and ");
+                        }
+                        else
+                        {
+                            sb.Append(", ");
+                        }
+                    }
+
+                    sb.Append(typer);
+                }
+
+                if (_typers.Count > 1)
+                {
+                    sb.Append(" are ");
+                }
+                else
+                {
+                    sb.Append(" is ");
+                }
+
+                sb.Append("typing...");
+                _typing.Text = sb.ToString();
+                _typing.Visible = true;
+            }
+            else
+            {
+                _typing.Visible = false;
+            }
+        }
+
+        protected override void OnUpdate(GameTime gameTime)
+        {
+            _dialog.Update(gameTime);
         }
 
         private void MakeMessage(DateTime time, string message, bool isNPC)

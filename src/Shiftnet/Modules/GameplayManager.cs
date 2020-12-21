@@ -57,7 +57,7 @@ namespace Shiftnet.Modules
 
                     foreach (var contact in contacts.FindAll())
                     {
-                        yield return new ContactInformation(contact, _npcs.First(x => x.Id == contact.NpcId));
+                        yield return new ContactInformation(this, contact);
                     }
                 }
             }
@@ -73,6 +73,16 @@ namespace Shiftnet.Modules
                 _playerName = latestSlot.Name;
                 StartInternal();
             }
+        }
+
+        public ConversationInfo GetConversationInfo(string id)
+        {
+            return _conversationEncounters.First(x => x.Id == id);
+        }
+
+        public Npc GetNpcById(int id)
+        {
+            return _npcs.First(x => x.Id == id);
         }
         
         public void StartNewGame(string hostname)
@@ -414,17 +424,17 @@ namespace Shiftnet.Modules
             }
         }
 
-        private void AddContact(Npc npc)
+        private void AddContact(ConversationInfo info)
         {
             using var transaction = SaveSystem.OpenSaveFile();
             var contacts = transaction.Database.GetCollection<Contact>(ContactsColumn);
 
-            if (contacts.FindOne(x => x.NpcId == npc.Id) != null)
+            if (contacts.FindOne(x => x.ConversationId == info.Id) != null)
                 return;
-            
+
             var contact = new Contact
             {
-                NpcId = npc.Id
+                ConversationId = info.Id
             };
 
             contacts.Insert(contact);
@@ -436,9 +446,9 @@ namespace Shiftnet.Modules
         }
 
         [Exec("addContact")]
-        public void Exec_AddContact(int id)
+        public void Exec_AddContact(string id)
         {
-            AddContact(_npcs.First(x => x.Id == id));
+            AddContact(_conversationEncounters.First(x => x.Id == id));
         }
 
         [Exec("doNotDisturb")]

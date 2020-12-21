@@ -9,10 +9,11 @@ using AlkalineThunder.Pandemic.Scenes;
 using AlkalineThunder.Pandemic.Skinning;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using IGameComponent = AlkalineThunder.Pandemic.IGameComponent;
 
 namespace Shiftnet.Apps
 {
-    public abstract class ShiftApp : IGuiContext
+    public abstract class ShiftApp : IGuiContext, IGameComponent
     {
         private IShiftAppHost _appHost;
         private string[] _args;
@@ -51,6 +52,8 @@ namespace Shiftnet.Apps
 
         public void Initialize(IShiftAppHost appHost, PropertySet args, string cwd)
         {
+            appHost.ShiftOS.App.AddComponent(this);
+            
             _properties = args ?? new PropertySet();
             _args = _properties.GetValue<string[]>("Arguments", Array.Empty<string>());
             
@@ -95,8 +98,17 @@ namespace Shiftnet.Apps
         public SceneSystem SceneSystem => ShiftOS.SceneSystem;
         public SkinSystem Skin => ShiftOS.Skin;
 
+        public void Update(GameTime gameTime)
+            => OnUpdate(gameTime);
+        
+        protected virtual void OnUpdate(GameTime gameTime)
+        {
+            
+        }
+        
         protected virtual void OnClosed(EventArgs e)
         {
+            ShiftOS.App.RemoveComponent(this);
             Closed?.Invoke(this, e);
         }
         
