@@ -11,6 +11,7 @@
                 </button>
                 
                 <spacer group.autoSize="false" />
+                <stackPanel orientation="Horizontal" spacing="5" vertical-align="Center" id="userIcons" />
                 <text id="time" vertical-align="Center" style.font="title-4">
                     12:00
                 </text>

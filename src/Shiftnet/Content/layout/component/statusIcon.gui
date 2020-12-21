@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<gui>
+    <button vertical-align="Center" style.accent="Info">
+        <icon id="icon" width="16" height="16" />
+    </button>
+</gui>

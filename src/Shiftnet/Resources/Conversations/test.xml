@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<Conversation>
+    <!--
+    Defines the members of the conversation and gives them a friendly ID.
+    Required.
+    Id: the friendly ID of the conversation member.
+    Npc: The internal ID of the NPC data to use for the member.
+    -->
+    <Members>
+        <Member Id="mallow" Npc="0" />
+    </Members>
+    
+    <!-- The beginning branch of the conversation. When the end of this branch is reached,
+    the conversation ends. Required. -->
+    <Start>
+        <!-- List of actions to perform during this branch. -->
+        <Actions>
+            <SendMessage From="mallow">
+                This is a test.
+            </SendMessage>
+            <SendMessage From="mallow">
+                Can you verify that you have received these messages?
+            </SendMessage>
+        </Actions>
+        
+        <!-- List of choices the player can make at the end of the branch. -->
+        <Choices>
+            <Choice Id="no">
+                <Actions>
+                    <SendMessage From="mallow">
+                        Then how did you know to say "No"?
+                    </SendMessage>
+                </Actions>
+                <Label>
+                    Answer "No."
+                </Label>
+            </Choice>
+            <Choice Id="yes">
+                <Actions>
+                    <SendMessage From="mallow">
+                        Awesome! The developer's code works.
+                    </SendMessage>
+                </Actions>
+                <Label>
+                    Answer "Yes."
+                </Label>
+            </Choice>
+        </Choices>
+    </Start>
+</Conversation>

@@ -1,6 +1,7 @@
 ﻿using AlkalineThunder.Pandemic.Windowing;
 using Shiftnet.AppHosts;
 using System;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace Shiftnet
 {
@@ -8,6 +9,8 @@ namespace Shiftnet
     {
         private Desktop _os;
 
+        public Texture2D Icon { get; set; }
+        
         public Desktop ShiftOS => _os;
 
         public ShiftAppWindow LinkToDesktop(Desktop os)

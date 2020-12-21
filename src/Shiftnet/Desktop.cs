@@ -23,6 +23,8 @@ namespace Shiftnet
 {
     public class Desktop : Scene
     {
+        private Func<Control> MakeStatusIcon;
+        
         private Texture2D _wallpaper;
         private float _wallFade;
         private Texture2D _newWallpaper;
@@ -38,7 +40,8 @@ namespace Shiftnet
         private SwitcherPanel _mainArea;
         private SwitcherPanel _socialSwitcher;
         private Box _appLauncherBox;
-
+        private StackPanel _userIcons;
+        
         private AppsModule AppsModule => GetModule<AppsModule>();
         
         // windows
@@ -57,6 +60,8 @@ namespace Shiftnet
         
         protected override void OnLoad()
         {
+            MakeStatusIcon = GuiBuilder.MakeBuilderFunction(this, "layout/component/statusIcon.gui");
+            
             _currentOS = Properties.GetValue<IShiftOS>("os", null)
                          ?? throw new InvalidOperationException(
                              "An IShiftOS implementation is needed in the 'os' property of this Scene.");
@@ -92,6 +97,8 @@ namespace Shiftnet
 
             _socialTabs = Gui.FindById<StackPanel>("tabs-social");
             _socialSwitcher = Gui.FindById<SwitcherPanel>("switcher-social");
+
+            _userIcons = Gui.FindById<StackPanel>("userIcons");
             
             LaunchStartupApps();
         }
@@ -173,6 +180,16 @@ namespace Shiftnet
             {
                 return OpenWindow<ShiftAppWindow>().LinkToDesktop(this);
             }
+            else if (appInfo.DisplayTarget == DisplayTarget.StatusIcon)
+            {
+                var icon = MakeStatusIcon();
+                var canvas = new CanvasPanel();
+                var host = new StatusIconHost(this, icon, canvas);
+
+                _userIcons.AddChild(icon);
+
+                return host;
+            }
             else
             {
                 var tab = new PanelTab(appInfo.UserCloseable);
@@ -242,8 +259,8 @@ namespace Shiftnet
             _shell.Stop();
             base.OnUnload();
         }
-
-        [Exec("desktop.setWallpaper")]
+        
+        [Exec("setWallpaper")]
         public void SetWallpaper(string wallpaper)
         {
             _newWallpaper = App.GameLoop.Content.Load<Texture2D>(wallpaper);

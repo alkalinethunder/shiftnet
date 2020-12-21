@@ -1,6 +1,7 @@
 ﻿using System;
 using AlkalineThunder.Pandemic.Gui.Controls;
 using AlkalineThunder.Pandemic.Input;
+using Microsoft.Xna.Framework.Graphics;
 using Shiftnet.Controls;
 
 namespace Shiftnet.AppHosts
@@ -11,6 +12,8 @@ namespace Shiftnet.AppHosts
         private PanelTab _tab;
         private CanvasPanel _tabContent;
 
+        public Texture2D Icon { get; set; }
+        
         public TabbedAppHost(Desktop os, PanelTab tab, CanvasPanel contentArea)
         {
             _os = os;

@@ -95,6 +95,9 @@
     <None Update="Content\fonts\Teko-SemiBold.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Update="Content\layout\component\statusIcon.gui">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   
   <ItemGroup>
@@ -102,6 +105,8 @@
     <EmbeddedResource Include="Resources\npcs.json" />
     <None Remove="Resources\conversations.json" />
     <EmbeddedResource Include="Resources\conversations.json" />
+    <None Remove="Resources\Conversations\test.xml" />
+    <EmbeddedResource Include="Resources\Conversations\test.xml" />
   </ItemGroup>
   
 </Project>

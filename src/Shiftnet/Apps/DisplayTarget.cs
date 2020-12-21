@@ -5,6 +5,7 @@
         Default,
         Feed,
         Consoles,
+        StatusIcon,
         Windows
     }
 }

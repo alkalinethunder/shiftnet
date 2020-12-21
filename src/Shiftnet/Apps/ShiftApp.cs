@@ -8,6 +8,7 @@ using AlkalineThunder.Pandemic.Gui.Controls;
 using AlkalineThunder.Pandemic.Scenes;
 using AlkalineThunder.Pandemic.Skinning;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace Shiftnet.Apps
 {
@@ -28,8 +29,16 @@ namespace Shiftnet.Apps
 
         protected PropertySet LaunchProperties
             => _properties;
+
+        protected internal IShiftAppHost AppHost => _appHost;
         
         protected string CurrentDirectory { get; private set; }
+
+        public Texture2D Icon
+        {
+            get => _appHost.Icon;
+            set => _appHost.Icon = value;
+        }
         
         public string Title
         {
