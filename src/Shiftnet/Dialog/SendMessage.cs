@@ -26,7 +26,7 @@ namespace Shiftnet.Dialog
             _isPlayer = isPlayer;
         }
 
-        public SendMessage(Npc npc, string message) : this(npc.Avatar, npc.Username, npc.FullName, false, message)
+        public SendMessage(Npc npc, string message) : this(npc.Avatar, npc.Username, npc.FullName, npc.Id == -1, message)
         {
             
         }

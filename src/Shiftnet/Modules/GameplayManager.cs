@@ -21,6 +21,7 @@ namespace Shiftnet.Modules
         private static readonly string ContactsColumn = "contacts";
         private bool _dnd;
         private List<ConversationInfo> _conversationEncounters = null;
+        private Npc _playerNpc;
         
         public event EventHandler DoNotDisturbChanged;
         
@@ -30,6 +31,22 @@ namespace Shiftnet.Modules
         private SaveSystem SaveSystem
             => GetModule<SaveSystem>();
 
+        public Npc GetPlayerCharacter()
+        {
+            if (_playerNpc == null)
+            {
+                _playerNpc = new Npc
+                {
+                    Avatar = "",
+                    Id = -1,
+                    FullName = _playerName,
+                    Username = "player"
+                };
+            }
+
+            return _playerNpc;
+        }
+        
         public bool DoNotDisturb
         {
             get => _dnd;

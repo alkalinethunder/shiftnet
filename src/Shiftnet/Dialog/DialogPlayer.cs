@@ -24,6 +24,7 @@ namespace Shiftnet.Dialog
         private GameplayManager _gameplayManager;
         private ConversationInfo _convo;
 
+        private Npc _playerNpc;
         private double _cooldownTimer = 0;
         private double _typeTimer = 0;
         private bool _typing;
@@ -32,7 +33,7 @@ namespace Shiftnet.Dialog
         private Npc[] _npcs;
 
         private bool _choicesReady = false;
-        
+
         public DialogPlayer(GameplayManager gameplayManager, ConversationInfo resource)
         {
             _convo = resource;
@@ -40,6 +41,8 @@ namespace Shiftnet.Dialog
 
             _npcs = _convo.Members.Keys.Select(x => _gameplayManager.GetNpcById(x)).ToArray();
             _typer = _npcs.First();
+
+            _playerNpc = _gameplayManager.GetPlayerCharacter();
 
             ReadConversationData();
         }
@@ -124,9 +127,17 @@ namespace Shiftnet.Dialog
                     var from = childNode.Attributes["From"].Value;
                     var text = childNode.InnerText.Trim();
 
-                    var npcId = _convo.Members.First(
-                        x => x.Value == from).Key;
-                    var npc = _gameplayManager.GetNpcById(npcId);
+                    var npc = null as Npc;
+                    if (from == "player")
+                    {
+                        npc = _playerNpc;
+                    }
+                    else
+                    {
+                        var npcId = _convo.Members.First(
+                            x => x.Value == from).Key;
+                        npc = _gameplayManager.GetNpcById(npcId);
+                    }
 
                     yield return new SendMessage(npc, text);
                 }

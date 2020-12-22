@@ -28,8 +28,23 @@
         <Choices>
             <Choice Id="no">
                 <Actions>
+                    <SendMessage From="player">
+                        What messages?
+                    </SendMessage>
+                    <SendMessage From="mallow">
+                        Wait...you didn't get them?
+                    </SendMessage>
                     <SendMessage From="mallow">
                         Then how did you know to say "No"?
+                    </SendMessage>
+                    <SendMessage From="mallow">
+                        My brain hurts.
+                    </SendMessage>
+                    <SendMessage From="mallow">
+                        Gonna go lay down...
+                    </SendMessage>
+                    <SendMessage From="mallow">
+                        *zzzzzzzzzzzzzzzzzzzzzzzzzz*
                     </SendMessage>
                 </Actions>
                 <Label>
@@ -38,6 +53,9 @@
             </Choice>
             <Choice Id="yes">
                 <Actions>
+                    <SendMessage From="player">
+                        Yeah. Everything works fine!
+                    </SendMessage>
                     <SendMessage From="mallow">
                         Awesome! The developer's code works.
                     </SendMessage>
