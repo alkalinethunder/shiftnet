@@ -1,0 +1,22 @@
+﻿[
+  {
+    "Id": "ssh",
+    "FullName": "Secure Shell",
+    "Summary": "Device can be accessed and controlled remotely with a Terminal.",
+  },
+  {
+    "Id": "http",
+    "FullName": "Web Server",
+    "Summary": "Device hosts a Shiftnet site."
+  },
+  {
+    "Id": "rds",
+    "FullName": "Remote Display Service",
+    "Summary": "Device can be accessed and controlled remotely with the ShiftOS Desktop."
+  },
+  {
+    "Id": "sql",
+    "FullName": "SQL Database",
+    "Summary": "Device stores useful information."
+  }
+]

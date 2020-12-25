@@ -105,8 +105,9 @@
     <EmbeddedResource Include="Resources\npcs.json" />
     <None Remove="Resources\conversations.json" />
     <EmbeddedResource Include="Resources\conversations.json" />
-    <None Remove="Resources\Conversations\test.xml" />
-    <EmbeddedResource Include="Resources\Conversations\test.xml" />
+    <EmbeddedResource Include="Resources\Conversations\intro.xml" />
+    <None Remove="Resources\services.json" />
+    <EmbeddedResource Include="Resources\services.json" />
   </ItemGroup>
   
 </Project>

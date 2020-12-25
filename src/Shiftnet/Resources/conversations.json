@@ -4,7 +4,7 @@
     "Members": {
       0: "mallow"
     },
-    "ConversationId": "Shiftnet.Resources.Conversations.test.xml",
+    "ConversationId": "Shiftnet.Resources.Conversations.intro.xml",
     "EncounterType": "Scripted"
   }
 ]
