@@ -23,7 +23,10 @@
                 <dockPanel padding="10">
                     <group padding="5" spacing="10" dockPanel.dock="Left" width="300">
                         <box id="status" group.autoSize="false" style.bgOpacity="0.5">
-                        </box>
+                            <scroller>
+                                <stackPanel id="infoWidgets" />
+                            </scroller>
+                        </box> 
                         <box id="feed" group.autoSize="false" style.bgOpacity="0.85">
                             <group>
                                 <box>

@@ -6,6 +6,7 @@
         Feed,
         Consoles,
         StatusIcon,
-        Windows
+        Windows,
+        InfoWidgets,
     }
 }

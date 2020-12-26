@@ -101,6 +101,9 @@
     <None Update="Content\layout\component\codeshopupgrade.gui">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Update="Content\layout\app\skillWidget.gui">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   
   <ItemGroup>
@@ -113,6 +116,8 @@
     <EmbeddedResource Include="Resources\services.json" />
     <None Remove="Resources\codeshop.json" />
     <EmbeddedResource Include="Resources\codeshop.json" />
+    <None Remove="Resources\levels.json" />
+    <EmbeddedResource Include="Resources\levels.json" />
   </ItemGroup>
   
 </Project>

@@ -17,6 +17,7 @@ namespace Shiftnet.Modules
     [CriticalModule]
     public class GameplayManager : EngineModule
     {
+        private Dictionary<int, string> _levelNames = new Dictionary<int, string>();
         private List<CodeShopCategory> _categories = new List<CodeShopCategory>();
         private List<IShiftOS> _activeOSes = new List<IShiftOS>();
         private string _playerName;
@@ -30,6 +31,7 @@ namespace Shiftnet.Modules
         
         
         public event EventHandler DoNotDisturbChanged;
+        public event EventHandler PlayerSkillChanged;
         
         private SceneSystem SceneSystem
             => GetModule<SceneSystem>();
@@ -163,16 +165,21 @@ namespace Shiftnet.Modules
         
         private void LoadNpcs()
         {
+            
             using var resource = this.GetType().Assembly.GetManifestResourceStream("Shiftnet.Resources.npcs.json");
+            using var levels = this.GetType().Assembly.GetManifestResourceStream("Shiftnet.Resources.levels.json");
             using var convos = this.GetType().Assembly
                 .GetManifestResourceStream("Shiftnet.Resources.conversations.json");
             using var reader = new StreamReader(resource);
             using var convoReader = new StreamReader(convos);
-            
+            using var levelsReader = new StreamReader(levels);
+
+            var levelsJson = levelsReader.ReadToEnd();
             var json = reader.ReadToEnd();
 
             _npcs = JsonConvert.DeserializeObject<Npc[]>(json);
             _conversationEncounters = JsonConvert.DeserializeObject<List<ConversationInfo>>(convoReader.ReadToEnd());
+            _levelNames = JsonConvert.DeserializeObject<Dictionary<int, string>>(levelsJson);
         }
 
         private void LoadUpgrades()
@@ -315,6 +322,32 @@ namespace Shiftnet.Modules
 
             dirs.Insert(directory);
             return directory;
+        }
+
+        public (int Level, string LevelName, int XP, int LevelStart, int NextLevelXP, int SkillPoints) GetPlayerSkill()
+        {
+            var xp = _playerState?.Experience ?? 0;
+            var levelStart = -1;
+            var levelEnd = 0;
+            var levelName = _levelNames[0];
+            var level = 0;
+            
+            foreach (var key in _levelNames.Keys)
+            {
+                if (xp >= key)
+                {
+                    levelName = _levelNames[key];
+                    levelStart = key;
+                    level++;
+                }
+                else
+                {
+                    levelEnd = key;
+                    break;
+                }
+            }
+
+            return (level, levelName, xp, levelStart, levelEnd, _playerState.SkillPoints);
         }
         
         private Computer SpawnComputer(Network network, string hostname, ComputerType type)
@@ -568,6 +601,30 @@ namespace Shiftnet.Modules
             });
         }
 
+        [Exec("addXP")]
+        public void AddExperience(int xp)
+        {
+            const int BaseLevelUpPoints = 5;
+            const float PointsMultiplier = 2.5f;
+            
+            var currLevel = GetPlayerSkill().Level;
+
+            _playerState.Experience += xp;
+
+            var newLevel = GetPlayerSkill().LevelStart;
+            
+            if (newLevel > currLevel)
+            {
+                for (var i = currLevel; i < newLevel; i++)
+                {
+                    var pointsToAdd = (int) Math.Round((i * BaseLevelUpPoints) * PointsMultiplier);
+                    _playerState.SkillPoints += pointsToAdd;
+                }    
+            }
+            
+            PlayerSkillChanged?.Invoke(this, EventArgs.Empty);
+        }
+        
         [Exec("addContact")]
         public void Exec_AddContact(string id)
         {

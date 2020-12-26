@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<gui>
+    <stackPanel>
+        <text id="levelName" style.font="title-4">
+            Level Name
+        </text>
+        <text id="xp">
+            Level 1 / 0 XP
+        </text>
+        <progress id="levelProgress" height="4" />
+        <group orientation="Horizontal">
+            <text id="levelStart">
+                0
+            </text>
+            <spacer group.autoSize="false" />
+            <text id="levelEnd">
+                1024
+            </text>
+        </group>
+    </stackPanel>
+</gui>

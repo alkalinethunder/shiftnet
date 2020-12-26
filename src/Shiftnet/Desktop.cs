@@ -41,6 +41,7 @@ namespace Shiftnet
         private SwitcherPanel _socialSwitcher;
         private Box _appLauncherBox;
         private StackPanel _userIcons;
+        private StackPanel _infoWidgets;
         
         private AppsModule AppsModule => GetModule<AppsModule>();
         
@@ -68,6 +69,7 @@ namespace Shiftnet
             
             Gui.AddChild(GuiBuilder.Build(this, "layout/desktop.gui"));
 
+            _infoWidgets = Gui.FindById<StackPanel>("infoWidgets");
             _time = Gui.FindById<TextBlock>("time");
             _appLauncherOpen = Gui.FindById<Button>("apps");
             _settingsOpen = Gui.FindById<Button>("settings");
@@ -179,6 +181,14 @@ namespace Shiftnet
             if (appInfo.DisplayTarget == DisplayTarget.Windows)
             {
                 return OpenWindow<ShiftAppWindow>().LinkToDesktop(this);
+            }
+            else if (appInfo.DisplayTarget == DisplayTarget.InfoWidgets)
+            {
+                var canvas = new CanvasPanel();
+                var host = new InfoWidgetHost(this, canvas);
+                
+                _infoWidgets.AddChild(canvas);
+                return host;
             }
             else if (appInfo.DisplayTarget == DisplayTarget.StatusIcon)
             {
