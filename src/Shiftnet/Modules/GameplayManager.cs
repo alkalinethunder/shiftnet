@@ -7,21 +7,27 @@ using System.Linq;
 using AlkalineThunder.Pandemic.Debugging;
 using AlkalineThunder.Pandemic.Scenes;
 using Newtonsoft.Json;
+using Shiftnet.Data;
 using Shiftnet.Saves;
 
 namespace Shiftnet.Modules
 {
     [RequiresModule(typeof(SceneSystem))]
     [RequiresModule(typeof(SaveSystem))]
+    [CriticalModule]
     public class GameplayManager : EngineModule
     {
+        private List<CodeShopCategory> _categories = new List<CodeShopCategory>();
         private List<IShiftOS> _activeOSes = new List<IShiftOS>();
         private string _playerName;
+        private List<CodeShopUpgrade> _upgrades = new List<CodeShopUpgrade>();
         private Npc[] _npcs;
         private static readonly string ContactsColumn = "contacts";
-        private bool _dnd;
+        private static readonly string UpgradesColumn = "codeshop";
         private List<ConversationInfo> _conversationEncounters = null;
         private Npc _playerNpc;
+        private PlayerState _playerState;
+        
         
         public event EventHandler DoNotDisturbChanged;
         
@@ -31,6 +37,25 @@ namespace Shiftnet.Modules
         private SaveSystem SaveSystem
             => GetModule<SaveSystem>();
 
+        public IEnumerable<CodeShopCategory> GetCodeShopCategories
+            => _categories.OrderBy(x => x.Name);
+
+        public bool IsGameActive
+            => SaveSystem.IsGameLoaded;
+
+        public void EndGame()
+        {
+            SaveSystem.UnloadGame();
+            _playerState = null;
+        }
+        
+        public event EventHandler UpgradeUnlocked;
+        
+        public IEnumerable<CodeShopUpgrade> GetUpgradesInCategory(CodeShopCategory category)
+        {
+            return _upgrades.Where(x => x.Category == category.Name).OrderBy(x => x.Name);
+        }
+        
         public Npc GetPlayerCharacter()
         {
             if (_playerNpc == null)
@@ -49,12 +74,12 @@ namespace Shiftnet.Modules
         
         public bool DoNotDisturb
         {
-            get => _dnd;
+            get => _playerState.DoNotDisturb;
             set
             {
-                if (_dnd != value)
+                if (_playerState.DoNotDisturb != value)
                 {
-                    _dnd = value;
+                    _playerState.DoNotDisturb = value;
                     DoNotDisturbChanged?.Invoke(this, EventArgs.Empty);
                 }
             }
@@ -116,6 +141,26 @@ namespace Shiftnet.Modules
             StartInternal();
         }
 
+        private bool UnlockUpgradeInternal(string upgradeId)
+        {
+            using var sf = SaveSystem.OpenSaveFile();
+            var collection = sf.Database.GetCollection<CodeShopUnlock>(UpgradesColumn);
+
+            var exists = collection.FindOne(x => x.UpgradeId == upgradeId) != null;
+            if (exists) return false;
+
+            var unlock = new CodeShopUnlock
+            {
+                UpgradeId = upgradeId
+            };
+
+            collection.Insert(unlock);
+
+            UpgradeUnlocked?.Invoke(this, EventArgs.Empty);
+            
+            return true;
+        }
+        
         private void LoadNpcs()
         {
             using var resource = this.GetType().Assembly.GetManifestResourceStream("Shiftnet.Resources.npcs.json");
@@ -130,9 +175,50 @@ namespace Shiftnet.Modules
             _conversationEncounters = JsonConvert.DeserializeObject<List<ConversationInfo>>(convoReader.ReadToEnd());
         }
 
+        private void LoadUpgrades()
+        {
+            var asm = this.GetType().Assembly;
+            using var stream = asm.GetManifestResourceStream("Shiftnet.Resources.codeshop.json");
+
+            if (stream != null)
+            {
+                using var reader = new StreamReader(stream);
+
+                var json = reader.ReadToEnd();
+
+                var lists = JsonConvert.DeserializeObject<CodeShopUpgradeList[]>(json);
+
+                foreach (var listInfo in lists)
+                {
+                    _categories.Add(new CodeShopCategory(listInfo));
+                    foreach (var upgradeInfo in listInfo.Upgrades)
+                    {
+                        var upgrade = new CodeShopUpgrade(listInfo, upgradeInfo);
+                        _upgrades.Add(upgrade);
+                    }
+                }
+            }
+        }
+
+        public (int Unlocked, int Total) GetUpgradeProgress(CodeShopCategory category)
+        {
+            var upgrades = GetUpgradesInCategory(category);
+
+            using var sf = SaveSystem.OpenSaveFile();
+            var collection = sf.Database.GetCollection<CodeShopUnlock>(UpgradesColumn);
+
+            var unlockedUpgrades = collection.FindAll();
+
+            var total = upgrades.Count();
+            var unlocked = upgrades.Count(x => unlockedUpgrades.Any(y => y.UpgradeId == x.Id));
+
+            return (unlocked, total);
+        }
+        
         protected override void OnLoadContent()
         {
             LoadNpcs();
+            LoadUpgrades();
             base.OnLoadContent();
         }
 
@@ -157,9 +243,29 @@ namespace Shiftnet.Modules
             return directories.Find(x => x.ParentId == entry.Id).ToArray();
         }
 
+        private void DownloadPlayerState()
+        {
+            using var sf = SaveSystem.OpenSaveFile();
+            var stateId = "playerState";
+
+            if (sf.Database.FileStorage.Exists(stateId))
+            {
+                using var stream = sf.Database.FileStorage.OpenRead(stateId);
+                using var reader = new StreamReader(stream);
+
+                var json = reader.ReadToEnd();
+
+                _playerState = JsonConvert.DeserializeObject<PlayerState>(json);
+            }
+            else
+            {
+                _playerState = new PlayerState();
+            }
+        }
+        
         private void StartInternal()
         {
-            _dnd = false;
+            DownloadPlayerState();
             
             var hostname = _playerName;
             FindOrCreatePlayerComputer(hostname);
@@ -468,6 +574,30 @@ namespace Shiftnet.Modules
             AddContact(_conversationEncounters.First(x => x.Id == id));
         }
 
+        [Exec("getUpgrades")]
+        public void Exec_GetUpgrades()
+        {
+            foreach (var upgrade in _upgrades)
+            {
+                App.Logger.Info(upgrade.Id + ": " + upgrade.Name);
+            }
+        }
+
+        [Exec("unlock")]
+        public void Cheat_UnlockUpgrade(string upgradeId)
+        {
+            var upgrade = _upgrades.First(x => x.Id == upgradeId);
+
+            if (UnlockUpgradeInternal(upgrade.Id))
+            {
+                App.Logger.Log("Unlocked.");
+            }
+            else
+            {
+                App.Logger.Log("Already unlocked.");
+            }
+        }
+        
         [Exec("doNotDisturb")]
         public void Exec_DoNotDisturb()
         {
@@ -500,6 +630,15 @@ namespace Shiftnet.Modules
             }
         }
 
+        [Exec("getUpgradeCategories")]
+        public void Exec_GetUpgradeCategories()
+        {
+            foreach (var cat in _categories)
+            {
+                App.Logger.Log($"{cat.Id}: {cat.Name}");
+            }
+        }
+        
         [Exec("chatEncounters")]
         public void Exec_ChatEncounters()
         {
@@ -508,5 +647,12 @@ namespace Shiftnet.Modules
                 App.Logger.Info(encounter.Id);
             }
         }
+    }
+
+    public class PlayerState
+    {
+        public int Experience { get; set; }
+        public int SkillPoints { get; set; }
+        public bool DoNotDisturb { get; set; }
     }
 }

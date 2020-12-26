@@ -154,6 +154,11 @@ namespace Shiftnet.Skinning
             return Vector2.Zero;
         }
 
+        public override void DrawProgressBar(ProgressBar progressBar, SpriteRocket2D renderer)
+        {
+            throw new NotImplementedException();
+        }
+
         public override DynamicSpriteFont EditorFont => null;
         public override Vector2 MeasureWindowButton(WindowButton button)
         {

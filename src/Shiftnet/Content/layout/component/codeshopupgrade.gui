@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<gui>
+    <button style.accent="Default">
+        <group orientation="Horizontal" horizontal-align="Stretch">
+            <icon width="24" height="24" vertical-align="Center" id="icon" />
+            <stackPanel vertical-align="Center" group.autoSize="false">
+                <text id="name" wrap="None">
+                    Upgrade name
+                </text>
+                <text id="description" wrap="None">
+                    Upgrade Description.
+                </text>
+            </stackPanel>
+        </group>
+    </button>
+</gui>

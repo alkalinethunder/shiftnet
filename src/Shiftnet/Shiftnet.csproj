@@ -98,6 +98,9 @@
     <None Update="Content\layout\component\statusIcon.gui">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Update="Content\layout\component\codeshopupgrade.gui">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   
   <ItemGroup>
@@ -108,6 +111,8 @@
     <EmbeddedResource Include="Resources\Conversations\intro.xml" />
     <None Remove="Resources\services.json" />
     <EmbeddedResource Include="Resources\services.json" />
+    <None Remove="Resources\codeshop.json" />
+    <EmbeddedResource Include="Resources\codeshop.json" />
   </ItemGroup>
   
 </Project>

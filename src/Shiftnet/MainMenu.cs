@@ -26,6 +26,9 @@ namespace Shiftnet
         
         protected override void OnLoad()
         {
+            if (GameplayManager.IsGameActive)
+                GameplayManager.EndGame();
+            
             Gui.AddChild(GuiBuilder.Build(this, "layout/main.gui"));
 
             _play = Gui.FindById<Button>("new");

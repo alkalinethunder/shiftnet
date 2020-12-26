@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace Shiftnet.Data
 {
     [Serializable]
-    public class CodeShopUpgrade
+    public class CodeShopUpgradeInfo
     {
         public string Id { get; set; }
         public string Name { get; set; }

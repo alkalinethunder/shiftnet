@@ -1,0 +1,14 @@
+﻿[
+  {
+    "Id": "shiftnet.gui",
+    "Name": "Desktop",
+    "Description": "Make the ShiftOS desktop more powerful.",
+    "Upgrades": [
+      {
+        "Id": "terminalScrollback",
+        "Name": "Consoles: Scrollback",
+        "Description": "Lets you scroll further back in the Console to see the output of previous commands instead of the command that was just run."
+      }
+    ]
+  }
+]

@@ -1,25 +1,42 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 
 <gui>
-    <dockPanel padding="10">
-        <group spacing="5" dockPanel.dock="Left" width="360">
-            <text>Code Shop</text>
-            <select id="upgrades" group.autoSize="false" />
-            <text>Cash left: $29.90</text>
+    <group padding="10">
+        <group orientation="Horizontal" padding="5">
+            <text vertical-align="Center" style.font="title-4">
+                Category:
+            </text>
+            <flowPanel id="categories" group.autoSize="false" />
         </group>
-        <group min-width="400" spacing="5">
-            <text>Upgrade Title</text>
-            <scroller group.autoSize="false">
-                <text>Upgrade Description goes here.</text>
-            </scroller>
-            <group orientation="Horizontal" spacing="5">
-                <text group.autoSize="false">Upgrade Cost: $0.00</text>
-                <button id="buy">
-                    <text>
-                        Purchase Upgrade
+        <group orientation="Horizontal" group.autoSize="false" padding="5" spacing="5">
+            <group width="375">
+                <text id="categoryName" style.font="heading-1" align="Center">
+                    Category name
+                </text>
+                <text id="categoryDescription" align="Center">
+                    Category Description
+                </text>
+                <spacer height="10" />
+                <group orientation="Horizontal" spacing="5">
+                    <text vertical-align="Center">Upgrades unlocked:</text>
+                    <progress id="categoryProgress" group.autoSize="false" height="5" vertical-align="Center" />
+                    <text id="categoryProgressText" vertical-align="Center">
+                        0/0
                     </text>
-                </button>
+                </group>
+                <spacer height="25" />
+                <scroller>
+                    <stackPanel id="upgrades" />
+                </scroller>
+            </group>
+            <group id="upgradeInfo" group.autoSize="false">
+                <text id="upgradeName" style.font="heading-1" align="Center">
+                    Upgrade name
+                </text>
+                <text id="upgradeDescription" align="Center">
+                    Upgrade description
+                </text>
             </group>
         </group>
-    </dockPanel>
+    </group>
 </gui>
