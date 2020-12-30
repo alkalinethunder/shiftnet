@@ -50,7 +50,7 @@
                     </button>
                     <button id="settings" style.accent="Default">
                         <group orientation="Horizontal" spacing="5" padding="10" horizontal-align="Stretch">
-                            <icon width="48" height="48" vertical-align="Center" />
+                            <icon width="48" height="48" vertical-align="Center" src="textures/settings" />
                             <stackPanel vertical-align="Center" group.autoSize="false">
                                 <text style.font="display-1">
                                     System settings

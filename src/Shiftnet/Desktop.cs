@@ -90,7 +90,7 @@ namespace Shiftnet
             _mainArea = Gui.FindById<SwitcherPanel>("main-switcher");
             _mainTabs = Gui.FindById<StackPanel>("tabs-main");
             
-            SetWallpaper("Backgrounds/rainyskies");
+            SetWallpaper("Backgrounds/contest_spotlight");
             
             base.OnLoad();
 

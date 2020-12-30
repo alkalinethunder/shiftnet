@@ -1,4 +1,5 @@
 ﻿using System;
+using AlkalineThunder.Pandemic;
 using AlkalineThunder.Pandemic.Gui;
 using AlkalineThunder.Pandemic.Gui.Controls;
 using AlkalineThunder.Pandemic.Input;
@@ -33,7 +34,9 @@ namespace Shiftnet.Controls
             _titleText = new TextBlock();
             _windowIcon = new Icon();
             _closeButton = new Button();
-            
+
+            _closeButton.StyleProperties.SetValue("bgColor", "#00000000");
+
             _buttonContent = new StackPanel
             {
                 Orientation = Orientation.Horizontal,
@@ -51,6 +54,13 @@ namespace Shiftnet.Controls
             _closeButton.Click += CloseButtonOnClick;
             
             InternalChildren.Add(_button);
+
+            _closeButton.Content = new Icon
+            {
+                FixedWidth = 16,
+                FixedHeight = 16,
+                Image = GameLoop.LoadTexture("textures/close")
+            };
         }
 
         private void CloseButtonOnClick(object? sender, MouseButtonEventArgs e)

@@ -1,5 +1,6 @@
 ﻿using System;
 using AlkalineThunder.Pandemic.Scenes;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace Shiftnet.Apps
 {
@@ -7,6 +8,12 @@ namespace Shiftnet.Apps
     public class SettingsIcon : StatusApplet
     {
         private SettingsWindow _settingsWindow;
+
+        protected override void Main()
+        {
+            base.Main();
+            Icon = ShiftOS.App.Content.Load<Texture2D>("textures/settings");
+        }
 
         protected override void OnClick()
         {

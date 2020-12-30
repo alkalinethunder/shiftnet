@@ -98,6 +98,18 @@
 /processorParam:TextureFormat=Color
 /build:Artwork/Watercolor_Full.png
 
+#begin Backgrounds/contest_spotlight.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Backgrounds/contest_spotlight.png
+
 #begin Backgrounds/menu.BMP
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -164,6 +176,18 @@
 /processorParam:Quality=Best
 /build:SFX/maximize.wav
 
+#begin textures/close.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:textures/close.png
+
 #begin textures/do-not-disturb.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -211,6 +235,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:textures/message-player.png
+
+#begin textures/settings.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:textures/settings.png
 
 #begin UbuntuMono-B.spritefont
 /importer:FontDescriptionImporter
